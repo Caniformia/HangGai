@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DB264D644000A251EB /* QuestionModel.swift */; };
+		32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DC264D644000A251EB /* UserDataModel.swift */; };
+		32DDE6F1264D646D00A251EB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6EA264D646D00A251EB /* MainView.swift */; };
+		32DDE6F2264D646D00A251EB /* FZSSJW.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 32DDE6EC264D646D00A251EB /* FZSSJW.TTF */; };
+		32DDE6F3264D646D00A251EB /* SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32DDE6ED264D646D00A251EB /* SmartFontUI.ttf */; };
+		32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6EF264D646D00A251EB /* CustomButtons.swift */; };
+		32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6F0264D646D00A251EB /* InfoModal.swift */; };
 		3F641589264C4CF8002950CF /* HangGaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F641588264C4CF8002950CF /* HangGaiApp.swift */; };
-		3F64158B264C4CF8002950CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64158A264C4CF8002950CF /* MainView.swift */; };
 		3F64158D264C4CF9002950CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F64158C264C4CF9002950CF /* Assets.xcassets */; };
 		3F641590264C4CF9002950CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F64158F264C4CF9002950CF /* Preview Assets.xcassets */; };
-		3F64159B264C4CF9002950CF /* HangGaiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64159A264C4CF9002950CF /* HangGaiTests.swift */; };
-		3F6415A6264C4CF9002950CF /* HangGaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6415A5264C4CF9002950CF /* HangGaiUITests.swift */; };
-		3F6415B5264C4F6E002950CF /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6415B4264C4F6E002950CF /* CustomButtons.swift */; };
-		3F6415B8264C510F002950CF /* InfoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6415B7264C510F002950CF /* InfoModal.swift */; };
 		3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6415BA264C518E002950CF /* CustomFuncs.swift */; };
-		3F86CC67264C554900BC1AAD /* SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F6415BC264C5218002950CF /* SmartFontUI.ttf */; };
-		3F86CC68264C554D00BC1AAD /* FZSSJW.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 3F6415BD264C5280002950CF /* FZSSJW.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,23 +38,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32DDE6DB264D644000A251EB /* QuestionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		32DDE6DC264D644000A251EB /* UserDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
+		32DDE6EA264D646D00A251EB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		32DDE6EC264D646D00A251EB /* FZSSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZSSJW.TTF; sourceTree = "<group>"; };
+		32DDE6ED264D646D00A251EB /* SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmartFontUI.ttf; sourceTree = "<group>"; };
+		32DDE6EF264D646D00A251EB /* CustomButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
+		32DDE6F0264D646D00A251EB /* InfoModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModal.swift; sourceTree = "<group>"; };
 		3F641585264C4CF8002950CF /* HangGai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangGai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F641588264C4CF8002950CF /* HangGaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangGaiApp.swift; sourceTree = "<group>"; };
-		3F64158A264C4CF8002950CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3F64158C264C4CF9002950CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F64158F264C4CF9002950CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F641591264C4CF9002950CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F641596264C4CF9002950CF /* HangGaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangGaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F64159A264C4CF9002950CF /* HangGaiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangGaiTests.swift; sourceTree = "<group>"; };
-		3F64159C264C4CF9002950CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F6415A1264C4CF9002950CF /* HangGaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangGaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F6415A5264C4CF9002950CF /* HangGaiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangGaiUITests.swift; sourceTree = "<group>"; };
-		3F6415A7264C4CF9002950CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F6415B4264C4F6E002950CF /* CustomButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
-		3F6415B7264C510F002950CF /* InfoModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModal.swift; sourceTree = "<group>"; };
 		3F6415BA264C518E002950CF /* CustomFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFuncs.swift; sourceTree = "<group>"; };
-		3F6415BC264C5218002950CF /* SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmartFontUI.ttf; sourceTree = "<group>"; };
-		3F6415BD264C5280002950CF /* FZSSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZSSJW.TTF; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +80,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32DDE6DA264D644000A251EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32DDE6DB264D644000A251EB /* QuestionModel.swift */,
+				32DDE6DC264D644000A251EB /* UserDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		32DDE6E9264D646D00A251EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32DDE6EA264D646D00A251EB /* MainView.swift */,
+				32DDE6EB264D646D00A251EB /* Fonts */,
+				32DDE6EE264D646D00A251EB /* Components */,
+				32DDE6F0264D646D00A251EB /* InfoModal.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		32DDE6EB264D646D00A251EB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				32DDE6EC264D646D00A251EB /* FZSSJW.TTF */,
+				32DDE6ED264D646D00A251EB /* SmartFontUI.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		32DDE6EE264D646D00A251EB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				32DDE6EF264D646D00A251EB /* CustomButtons.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		3F64157C264C4CF8002950CF = {
 			isa = PBXGroup;
 			children = (
 				3F641587264C4CF8002950CF /* HangGai */,
-				3F641599264C4CF9002950CF /* HangGaiTests */,
-				3F6415A4264C4CF9002950CF /* HangGaiUITests */,
 				3F641586264C4CF8002950CF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,14 +138,12 @@
 		3F641587264C4CF8002950CF /* HangGai */ = {
 			isa = PBXGroup;
 			children = (
+				32DDE6E9264D646D00A251EB /* Views */,
+				32DDE6DA264D644000A251EB /* Models */,
 				3F6415B9264C5185002950CF /* Utilities */,
-				3F6415B6264C4FAA002950CF /* Fonts */,
-				3F6415B3264C4F4E002950CF /* Components */,
 				3F641588264C4CF8002950CF /* HangGaiApp.swift */,
-				3F64158A264C4CF8002950CF /* MainView.swift */,
 				3F64158C264C4CF9002950CF /* Assets.xcassets */,
 				3F641591264C4CF9002950CF /* Info.plist */,
-				3F6415B7264C510F002950CF /* InfoModal.swift */,
 				3F64158E264C4CF9002950CF /* Preview Content */,
 			);
 			path = HangGai;
@@ -124,41 +155,6 @@
 				3F64158F264C4CF9002950CF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		3F641599264C4CF9002950CF /* HangGaiTests */ = {
-			isa = PBXGroup;
-			children = (
-				3F64159A264C4CF9002950CF /* HangGaiTests.swift */,
-				3F64159C264C4CF9002950CF /* Info.plist */,
-			);
-			path = HangGaiTests;
-			sourceTree = "<group>";
-		};
-		3F6415A4264C4CF9002950CF /* HangGaiUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3F6415A5264C4CF9002950CF /* HangGaiUITests.swift */,
-				3F6415A7264C4CF9002950CF /* Info.plist */,
-			);
-			path = HangGaiUITests;
-			sourceTree = "<group>";
-		};
-		3F6415B3264C4F4E002950CF /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				3F6415B4264C4F6E002950CF /* CustomButtons.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		3F6415B6264C4FAA002950CF /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				3F6415BD264C5280002950CF /* FZSSJW.TTF */,
-				3F6415BC264C5218002950CF /* SmartFontUI.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		3F6415B9264C5185002950CF /* Utilities */ = {
@@ -273,9 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F641590264C4CF9002950CF /* Preview Assets.xcassets in Resources */,
-				3F86CC68264C554D00BC1AAD /* FZSSJW.TTF in Resources */,
+				32DDE6F2264D646D00A251EB /* FZSSJW.TTF in Resources */,
 				3F64158D264C4CF9002950CF /* Assets.xcassets in Resources */,
-				3F86CC67264C554900BC1AAD /* SmartFontUI.ttf in Resources */,
+				32DDE6F3264D646D00A251EB /* SmartFontUI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,10 +296,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F64158B264C4CF8002950CF /* MainView.swift in Sources */,
-				3F6415B5264C4F6E002950CF /* CustomButtons.swift in Sources */,
+				32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */,
 				3F641589264C4CF8002950CF /* HangGaiApp.swift in Sources */,
-				3F6415B8264C510F002950CF /* InfoModal.swift in Sources */,
+				32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */,
+				32DDE6F1264D646D00A251EB /* MainView.swift in Sources */,
+				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
+				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
 				3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F64159B264C4CF9002950CF /* HangGaiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F6415A6264C4CF9002950CF /* HangGaiUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
