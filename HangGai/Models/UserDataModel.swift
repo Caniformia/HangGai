@@ -2,12 +2,12 @@
 //  UserDataModel.swift
 //  HangGai
 //
-//  Created by 吴家焱 on 5/13/21.
+//  Created by roife on 5/13/21.
 //
 
 import Foundation
 
-public struct UserQuestionInfo: CustomStringConvertible {
+struct UserQuestionInfo: CustomStringConvertible {
     var comment: String
     var lastAnswer: [Int]
     var incorrectCount: Int
@@ -21,7 +21,7 @@ public struct UserQuestionInfo: CustomStringConvertible {
     }
 }
 
-public struct UserDataModel: CustomStringConvertible {
+struct UserDataModel: CustomStringConvertible {
     var favorites: Set<Int>
     var incorrects: Set<Int>
     var questionStatus: [Int:UserQuestionInfo]

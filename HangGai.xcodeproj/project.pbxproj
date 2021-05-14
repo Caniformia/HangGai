@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B3E71F264E635A00D9F3AC /* QuestionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */; };
+		32B3E741264EADEA00D9F3AC /* questions.db in Resources */ = {isa = PBXBuildFile; fileRef = 32B3E72F264EAA8D00D9F3AC /* questions.db */; };
 		32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DB264D644000A251EB /* QuestionModel.swift */; };
 		32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DC264D644000A251EB /* UserDataModel.swift */; };
 		32DDE6F1264D646D00A251EB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6EA264D646D00A251EB /* MainView.swift */; };
@@ -20,24 +22,9 @@
 		3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6415BA264C518E002950CF /* CustomFuncs.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3F641597264C4CF9002950CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F64157D264C4CF8002950CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F641584264C4CF8002950CF;
-			remoteInfo = HangGai;
-		};
-		3F6415A2264C4CF9002950CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F64157D264C4CF8002950CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F641584264C4CF8002950CF;
-			remoteInfo = HangGai;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLoader.swift; sourceTree = "<group>"; };
+		32B3E72F264EAA8D00D9F3AC /* questions.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = questions.db; sourceTree = "<group>"; };
 		32DDE6DB264D644000A251EB /* QuestionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		32DDE6DC264D644000A251EB /* UserDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		32DDE6EA264D646D00A251EB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -50,8 +37,6 @@
 		3F64158C264C4CF9002950CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F64158F264C4CF9002950CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F641591264C4CF9002950CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F641596264C4CF9002950CF /* HangGaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangGaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F6415A1264C4CF9002950CF /* HangGaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangGaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6415BA264C518E002950CF /* CustomFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFuncs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,23 +48,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F641593264C4CF9002950CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F64159E264C4CF9002950CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32B3E72D264EAA5300D9F3AC /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				32B3E72E264EAA6600D9F3AC /* db */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		32B3E72E264EAA6600D9F3AC /* db */ = {
+			isa = PBXGroup;
+			children = (
+				32B3E72F264EAA8D00D9F3AC /* questions.db */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
 		32DDE6DA264D644000A251EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				3F641585264C4CF8002950CF /* HangGai.app */,
-				3F641596264C4CF9002950CF /* HangGaiTests.xctest */,
-				3F6415A1264C4CF9002950CF /* HangGaiUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +123,7 @@
 		3F641587264C4CF8002950CF /* HangGai */ = {
 			isa = PBXGroup;
 			children = (
+				32B3E72D264EAA5300D9F3AC /* Assets */,
 				32DDE6E9264D646D00A251EB /* Views */,
 				32DDE6DA264D644000A251EB /* Models */,
 				3F6415B9264C5185002950CF /* Utilities */,
@@ -161,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				3F6415BA264C518E002950CF /* CustomFuncs.swift */,
+				32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -185,42 +172,6 @@
 			productReference = 3F641585264C4CF8002950CF /* HangGai.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3F641595264C4CF9002950CF /* HangGaiTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F6415AD264C4CF9002950CF /* Build configuration list for PBXNativeTarget "HangGaiTests" */;
-			buildPhases = (
-				3F641592264C4CF9002950CF /* Sources */,
-				3F641593264C4CF9002950CF /* Frameworks */,
-				3F641594264C4CF9002950CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3F641598264C4CF9002950CF /* PBXTargetDependency */,
-			);
-			name = HangGaiTests;
-			productName = HangGaiTests;
-			productReference = 3F641596264C4CF9002950CF /* HangGaiTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3F6415A0264C4CF9002950CF /* HangGaiUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F6415B0264C4CF9002950CF /* Build configuration list for PBXNativeTarget "HangGaiUITests" */;
-			buildPhases = (
-				3F64159D264C4CF9002950CF /* Sources */,
-				3F64159E264C4CF9002950CF /* Frameworks */,
-				3F64159F264C4CF9002950CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3F6415A3264C4CF9002950CF /* PBXTargetDependency */,
-			);
-			name = HangGaiUITests;
-			productName = HangGaiUITests;
-			productReference = 3F6415A1264C4CF9002950CF /* HangGaiUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -232,14 +183,6 @@
 				TargetAttributes = {
 					3F641584264C4CF8002950CF = {
 						CreatedOnToolsVersion = 12.5;
-					};
-					3F641595264C4CF9002950CF = {
-						CreatedOnToolsVersion = 12.5;
-						TestTargetID = 3F641584264C4CF8002950CF;
-					};
-					3F6415A0264C4CF9002950CF = {
-						CreatedOnToolsVersion = 12.5;
-						TestTargetID = 3F641584264C4CF8002950CF;
 					};
 				};
 			};
@@ -257,8 +200,6 @@
 			projectRoot = "";
 			targets = (
 				3F641584264C4CF8002950CF /* HangGai */,
-				3F641595264C4CF9002950CF /* HangGaiTests */,
-				3F6415A0264C4CF9002950CF /* HangGaiUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,23 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F641590264C4CF9002950CF /* Preview Assets.xcassets in Resources */,
+				32B3E741264EADEA00D9F3AC /* questions.db in Resources */,
 				32DDE6F2264D646D00A251EB /* FZSSJW.TTF in Resources */,
 				3F64158D264C4CF9002950CF /* Assets.xcassets in Resources */,
 				32DDE6F3264D646D00A251EB /* SmartFontUI.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F641594264C4CF9002950CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F64159F264C4CF9002950CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +227,7 @@
 				32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */,
 				3F641589264C4CF8002950CF /* HangGaiApp.swift in Sources */,
 				32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */,
+				32B3E71F264E635A00D9F3AC /* QuestionLoader.swift in Sources */,
 				32DDE6F1264D646D00A251EB /* MainView.swift in Sources */,
 				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
 				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
@@ -306,34 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F641592264C4CF9002950CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F64159D264C4CF9002950CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3F641598264C4CF9002950CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F641584264C4CF8002950CF /* HangGai */;
-			targetProxy = 3F641597264C4CF9002950CF /* PBXContainerItemProxy */;
-		};
-		3F6415A3264C4CF9002950CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F641584264C4CF8002950CF /* HangGai */;
-			targetProxy = 3F6415A2264C4CF9002950CF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3F6415A8264C4CF9002950CF /* Debug */ = {
@@ -496,90 +398,6 @@
 			};
 			name = Release;
 		};
-		3F6415AE264C4CF9002950CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMTNTXNK98;
-				INFOPLIST_FILE = HangGaiTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGaiTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HangGai.app/HangGai";
-			};
-			name = Debug;
-		};
-		3F6415AF264C4CF9002950CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMTNTXNK98;
-				INFOPLIST_FILE = HangGaiTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGaiTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HangGai.app/HangGai";
-			};
-			name = Release;
-		};
-		3F6415B1264C4CF9002950CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMTNTXNK98;
-				INFOPLIST_FILE = HangGaiUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGaiUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HangGai;
-			};
-			name = Debug;
-		};
-		3F6415B2264C4CF9002950CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMTNTXNK98;
-				INFOPLIST_FILE = HangGaiUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGaiUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HangGai;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -597,24 +415,6 @@
 			buildConfigurations = (
 				3F6415AB264C4CF9002950CF /* Debug */,
 				3F6415AC264C4CF9002950CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F6415AD264C4CF9002950CF /* Build configuration list for PBXNativeTarget "HangGaiTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F6415AE264C4CF9002950CF /* Debug */,
-				3F6415AF264C4CF9002950CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F6415B0264C4CF9002950CF /* Build configuration list for PBXNativeTarget "HangGaiUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F6415B1264C4CF9002950CF /* Debug */,
-				3F6415B2264C4CF9002950CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

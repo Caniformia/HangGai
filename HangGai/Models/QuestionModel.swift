@@ -12,16 +12,18 @@ protocol Question: CustomStringConvertible {
     var id: Int { get }
     var question: String { get }
     var choices: [String] { get }
+    var imgName: String { get }
     
     var description: String { get }
 }
 
-public struct SingleChoiceQuestion: Question & CustomStringConvertible {
+struct SingleChoiceQuestion: Question & CustomStringConvertible {
     let id: Int
     let chapter: Int
     let question: String
     let choices: [String]
     let answer: Int
+    let imgName: String
     
     public var description: String {
         return """
@@ -30,16 +32,18 @@ public struct SingleChoiceQuestion: Question & CustomStringConvertible {
             question: \(question)
             choices: \(choices)
             answer: \(answer)
+            imgName: \(imgName)
             """
     }
 }
 
-public struct MultipleChoiceQuestion: Question & CustomStringConvertible {
-    let chapter: Int
+struct MultipleChoiceQuestion: Question & CustomStringConvertible {
     let id: Int
+    let chapter: Int
     let question: String
     let choices: [String]
     let answer: [Int]
+    let imgName: String
     
     public var description: String {
         return """
@@ -48,6 +52,7 @@ public struct MultipleChoiceQuestion: Question & CustomStringConvertible {
             question: \(question)
             choices: \(choices)
             answer: \(answer)
+            imgName: \(imgName)
             """
     }
 }
