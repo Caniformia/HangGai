@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct HangGaiApp: App {
-    let questions = QuestionLoader.loadQuestions()
-    
     var body: some Scene {
         WindowGroup {
             MainView()

@@ -54,6 +54,7 @@
 		32B3E72D264EAA5300D9F3AC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				32DDE6EB264D646D00A251EB /* fonts */,
 				32B3E72E264EAA6600D9F3AC /* db */,
 			);
 			path = Assets;
@@ -80,20 +81,19 @@
 			isa = PBXGroup;
 			children = (
 				32DDE6EA264D646D00A251EB /* MainView.swift */,
-				32DDE6EB264D646D00A251EB /* Fonts */,
 				32DDE6EE264D646D00A251EB /* Components */,
 				32DDE6F0264D646D00A251EB /* InfoModal.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		32DDE6EB264D646D00A251EB /* Fonts */ = {
+		32DDE6EB264D646D00A251EB /* fonts */ = {
 			isa = PBXGroup;
 			children = (
 				32DDE6EC264D646D00A251EB /* FZSSJW.TTF */,
 				32DDE6ED264D646D00A251EB /* SmartFontUI.ttf */,
 			);
-			path = Fonts;
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		32DDE6EE264D646D00A251EB /* Components */ = {

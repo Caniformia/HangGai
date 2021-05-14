@@ -10,6 +10,7 @@ import SQLite3
 
 public struct QuestionLoader {
     static let path = Bundle.main.path(forResource: "questions", ofType: "db")
+    static let tableName = "science_questions";
     
     private enum ColumnIndex: Int32 {
         case id = 0, question = 1, optionA = 2, optionB = 3, optionC = 4, optionD = 5, answer = 7, type = 8, chapter = 9, imgName = 11
@@ -41,7 +42,7 @@ public struct QuestionLoader {
     }
     
     static func loadQuestions() -> [Question]? {
-        let queryStatementString = "SELECT * FROM science_questions;"
+        let queryStatementString = "SELECT * FROM \(tableName);"
         var queryStatement: OpaquePointer?
         
         guard let db = openDB() else {
