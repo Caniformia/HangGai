@@ -86,13 +86,22 @@ struct AnswerButton: View {
     
     private static let buttonHorizontalMargins: CGFloat = 20
     
-    var backgroundColor: Color
-    var foregroundColor: Color
     var fontSize: CGFloat
     var answerTagID: Int
+    @State private var buttonTapped = false
+    var backgroundColor: Color
+    var foregroundColor: Color
+    var isAnswer: Bool
+    
+    var displayBackgroundColor: Color {
+        return (disabled && isAnswer) ? foregroundColor : ((disabled && !isAnswer) ? backgroundColor : (buttonTapped ? foregroundColor : backgroundColor))
+    }
+    var displayForegroundColor: Color {
+        return (disabled && isAnswer) ? backgroundColor : ((disabled && !isAnswer) ? foregroundColor : (buttonTapped ? backgroundColor : foregroundColor))
+    }
+    
     
     private let title: String
-    private let action: () -> Void
     
     var answerTag: String {
         if self.answerTagID > -1 && self.answerTagID < 26 {
@@ -111,34 +120,41 @@ struct AnswerButton: View {
          foregroundColor: Color = Color.white,
          fontSize: CGFloat = 15,
          answerTagID: Int = 0,
-         action: @escaping () -> Void) {
+         isAnswer: Bool) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.title = title
-        self.action = action
         self.disabled = disabled
         self.fontSize = fontSize
         self.answerTagID = answerTagID
+        self.isAnswer = isAnswer
     }
     
     var body: some View {
         HStack {
             //Spacer(minLength: LargeButton.buttonHorizontalMargins)
-            Button(action:self.action) {
+            Button(action: {
+                if !disabled {
+                    self.buttonTapped.toggle()
+                }
+            }) {
                 HStack(alignment: .center){
                     Text(self.answerTag).padding(.leading).font(Font.custom("FZSSJW--GB1-0", size: 20))
                     Text(self.title).padding(.horizontal)
                     Spacer()
                 }
             }
-            .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
-                                          foregroundColor: foregroundColor,
-                                          isDisabled: disabled,
+            .buttonStyle(LargeButtonStyle(backgroundColor: displayBackgroundColor,
+                                          foregroundColor: displayForegroundColor,
+                                          isDisabled: false,
                                           fontSize: fontSize,
                                           cornerRadius: 15))
-            .disabled(self.disabled)
             //Spacer(minLength: LargeButton.buttonHorizontalMargins)
         }
         .frame(maxWidth:.infinity)
+        .onChange(of: disabled, perform: { value in
+            self.buttonTapped = false
+        })
     }
+    
 }

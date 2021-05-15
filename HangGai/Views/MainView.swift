@@ -12,12 +12,15 @@ struct MainView: View {
         UIApplication.shared.endEditing()
     }
     
-    @ObservedObject var questionManager: QuestionManager
     @State var showInfoModal = false
     
     @State var direction = ""
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
+    @State var questionChanged = true
+    @State var isQuestionIncrement: Bool = true
+    @State var isMemoryMode: Bool = false
+    @ObservedObject var questionManager: QuestionManager = QuestionManager()
     
     var body: some View {
         VStack() {
@@ -28,14 +31,14 @@ struct MainView: View {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(alignment: .leading){
                         if let selectedQuestion = questionManager.selectedQuestion {
-                            QuestionModule(question: selectedQuestion)
+                            QuestionModule(question: selectedQuestion, isIncrement: isQuestionIncrement, isMemoryMode: isMemoryMode)
                             Spacer()
                         } else {
                             Spacer()
                             Text("No Question.")
                             Spacer()
                         }
-                    }.padding(.horizontal).padding(.top,5)
+                    }.padding(.top,5)
                     Spacer()
                 }.padding(.horizontal)
             }
@@ -49,10 +52,9 @@ struct MainView: View {
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Button(action: {
-                    self.showInfoModal = true
-                    self.endEditing()
+                    self.isMemoryMode.toggle()
                 }, label: {
-                    Image(systemName: "arrowshape.turn.up.right.circle").resizable()
+                    Image(systemName: self.isMemoryMode ? "arrowshape.turn.up.right.circle.fill" : "arrowshape.turn.up.right.circle").resizable()
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Divider().frame(height: 20)
@@ -74,7 +76,6 @@ struct MainView: View {
                     .onChanged { gesture in
                         if self.isSwipping {
                             self.startPos = gesture.location
-                            self.direction = "swiping..."
                             self.isSwipping.toggle()
                         }
                     }
@@ -82,6 +83,7 @@ struct MainView: View {
                         let xDist =  abs(gesture.location.x - self.startPos.x)
                         let yDist =  abs(gesture.location.y - self.startPos.y)
                         if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
+                            questionManager.verifyAnswer()
                             questionManager.incrementQuestionIndex()
                         }
                         else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {
@@ -89,14 +91,9 @@ struct MainView: View {
                         }
                         self.isSwipping.toggle()
                     }
-        )
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MainView(questionManager: QuestionManager())
+        ).onAppear(){
+            questionManager.bindIsIncrement(isIncrement: $isQuestionIncrement)
+            questionManager.bindIsMemoryMode(isMemoryMode: $isMemoryMode)
         }
     }
 }

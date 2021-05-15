@@ -13,6 +13,7 @@ struct QuestionNavigationModule: View {
     private var nowQuestionIndex: String {
         return "\(questionManager.questionIndex)" + "/" + "\(questionManager.questionAmount())"
     }
+    
     var body: some View {
         HStack {
             Button(action: {
@@ -35,11 +36,5 @@ struct QuestionNavigationModule: View {
             }).foregroundColor(.black)
             
         }
-    }
-}
-
-struct QuestionNavigationModule_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionNavigationModule(questionManager: QuestionManager())
     }
 }
