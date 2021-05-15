@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct UserQuestionInfo: CustomStringConvertible {
+struct questionStatus: CustomStringConvertible {
     var comment: String
-    var lastAnswer: [Int]
-    var incorrectCount: Int
+    var lastChoices: [Int]
+    var incorrectTotalCount: Int
     
     public var description: String {
         return """
             comment: \(comment)
-            lastAnswer: \(lastAnswer)
-            incorrectCount: \(incorrectCount)
+            lastAnswer: \(lastChoices)
+            incorrectCount: \(incorrectTotalCount)
             """
     }
 }
@@ -24,7 +24,7 @@ struct UserQuestionInfo: CustomStringConvertible {
 struct UserDataModel: CustomStringConvertible {
     var favorites: Set<Int>
     var incorrects: Set<Int>
-    var questionStatus: [Int:UserQuestionInfo]
+    var questionStatus: [Int:questionStatus]
     
     public var description: String {
         return """
@@ -32,5 +32,15 @@ struct UserDataModel: CustomStringConvertible {
             incorrects: \(incorrects)
             \(questionStatus)
             """
+    }
+}
+
+extension UserDataModel {
+    mutating func updateQuestionComment(questionId: Int, comment: String) {
+        self.questionStatus[questionId]?.comment = comment
+    }
+    
+    mutating func updateQuestionChoices(questionId: Int, choices: [Int]) {
+        self.questionStatus[questionId]?.lastChoices = choices
     }
 }
