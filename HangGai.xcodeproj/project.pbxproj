@@ -51,6 +51,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321FF654264FA55A00AAF1AD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		32B3E72D264EAA5300D9F3AC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +130,7 @@
 		3F641587264C4CF8002950CF /* HangGai */ = {
 			isa = PBXGroup;
 			children = (
+				321FF654264FA55A00AAF1AD /* ViewModels */,
 				32B3E72D264EAA5300D9F3AC /* Assets */,
 				32DDE6E9264D646D00A251EB /* Views */,
 				32DDE6DA264D644000A251EB /* Models */,

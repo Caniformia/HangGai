@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct questionStatus: CustomStringConvertible {
+struct UserQuestionStatus: CustomStringConvertible {
     var comment: String
-    var lastChoices: [Int]
-    var incorrectTotalCount: Int
+    var lastChoices: Set<Int>
+    var incorrectCount: Int
     
     public var description: String {
         return """
             comment: \(comment)
             lastAnswer: \(lastChoices)
-            incorrectCount: \(incorrectTotalCount)
+            incorrectCount: \(incorrectCount)
             """
     }
 }
@@ -24,7 +24,7 @@ struct questionStatus: CustomStringConvertible {
 struct UserDataModel: CustomStringConvertible {
     var favorites: Set<Int>
     var incorrects: Set<Int>
-    var questionStatus: [Int:questionStatus]
+    var questionStatus: [Int:UserQuestionStatus]
     
     public var description: String {
         return """
@@ -37,10 +37,21 @@ struct UserDataModel: CustomStringConvertible {
 
 extension UserDataModel {
     mutating func updateQuestionComment(questionId: Int, comment: String) {
-        self.questionStatus[questionId]?.comment = comment
+        guard questionStatus[questionId] != nil else {
+            print("Update question comment failed: question ID \(questionId) not found")
+            return
+        }
+        self.questionStatus[questionId]!.comment = comment
     }
     
-    mutating func updateQuestionChoices(questionId: Int, choices: [Int]) {
-        self.questionStatus[questionId]?.lastChoices = choices
+    mutating func updateQuestionChoices(questionId: Int, choices: Set<Int>, isCorrect: Bool) {
+        guard questionStatus[questionId] != nil else {
+            print("Update question choices failed: question ID \(questionId) not found")
+            return
+        }
+        self.questionStatus[questionId]!.lastChoices = choices
+        if !isCorrect {
+            self.questionStatus[questionId]!.incorrectCount += 1
+        }
     }
 }

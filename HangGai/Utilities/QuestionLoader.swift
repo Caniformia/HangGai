@@ -75,7 +75,7 @@ public struct QuestionLoader {
             let choicesIndexDict = ["A": 0, "B": 1, "C": 2, "D": 3]
             let answer = answerValue.split(separator: "-").map{ choicesIndexDict[String($0)] }
             guard answer.allSatisfy({ $0 != nil }) else {
-                print("")
+                print("Load answers for question \(id) failed: \(answer) not found in dict")
                 return nil
             }
             

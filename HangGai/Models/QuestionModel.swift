@@ -34,7 +34,7 @@ struct Question: CustomStringConvertible {
 }
 
 extension Question {
-    func checkAnswerCorrect(choices: Set<Int>) -> Bool {
+    func checkAnswer(choices: Set<Int>) -> Bool {
         return answer == choices
     }
 }
