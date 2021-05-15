@@ -29,7 +29,7 @@ struct LargeButtonStyle: ButtonStyle {
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(currentForegroundColor, lineWidth: 1)
-        )
+            )
             .padding([.top, .bottom], 10)
             .font(Font.custom("FZSSJW--GB1-0", size: fontSize))
     }
@@ -75,7 +75,7 @@ struct LargeButton: View {
                                           isDisabled: disabled,
                                           fontSize: fontSize,
                                           cornerRadius: 6))
-                .disabled(self.disabled)
+            .disabled(self.disabled)
             //Spacer(minLength: LargeButton.buttonHorizontalMargins)
         }
         .frame(maxWidth:.infinity)
@@ -95,16 +95,9 @@ struct AnswerButton: View {
     private let action: () -> Void
     
     var answerTag: String {
-        switch(self.answerTagID) {
-        case 0:
-            return "A"
-        case 1:
-            return "B"
-        case 2:
-            return "C"
-        case 3:
-            return "D"
-        default:
+        if self.answerTagID > -1 && self.answerTagID < 26 {
+            return String(UnicodeScalar(answerTagID + Int(("A" as UnicodeScalar).value)) ?? "Z")
+        } else {
             return "Z"
         }
     }
@@ -143,7 +136,7 @@ struct AnswerButton: View {
                                           isDisabled: disabled,
                                           fontSize: fontSize,
                                           cornerRadius: 15))
-                .disabled(self.disabled)
+            .disabled(self.disabled)
             //Spacer(minLength: LargeButton.buttonHorizontalMargins)
         }
         .frame(maxWidth:.infinity)

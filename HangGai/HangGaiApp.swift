@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct HangGaiApp: App {
+struct HangGaiApp: App {    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(questionManager: QuestionManager())
         }
     }
 }
