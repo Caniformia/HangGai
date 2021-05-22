@@ -11,7 +11,8 @@ import SwiftUI
 class QuestionManager: ObservableObject {
     private var questions: [Question]
     var isIncrement: Binding<Bool> = .constant(true)
-    var isMemoryMode: Binding<Bool> = .constant(true)
+    @Published var isMemoryMode = false
+    var userAnswer: Binding<Set<Int>> = .constant(Set<Int>())
     
     @Published var questionIndex: Int
     var selectedQuestion: Question? {
@@ -32,12 +33,23 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func questionAmount () -> Int{
+    func questionAmount () -> Int {
         return questions.count;
+    }
+    
+    func questionChapter () -> Int {
+        withAnimation(.easeInOut(duration: 0.5)){
+        if let selectedQuestion = self.selectedQuestion {
+            return selectedQuestion.chapter
+        } else {
+            return 0;
+        }
+        }
     }
     
     func incrementQuestionIndex() {
         isIncrement.wrappedValue = true
+        userAnswer.wrappedValue.removeAll()
         withAnimation(.easeInOut(duration: 0.5)) {
             if questionIndex < questionAmount()  {
                 questionIndex = questionIndex + 1
@@ -47,6 +59,7 @@ class QuestionManager: ObservableObject {
     
     func decrementQuestionIndex() {
         isIncrement.wrappedValue = false
+        userAnswer.wrappedValue.removeAll()
         withAnimation(.easeInOut(duration: 0.5)) {
             if questionIndex > 1 {
                 questionIndex = questionIndex - 1
@@ -54,15 +67,35 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func verifyAnswer() {
-        
+    func verifyAnswer() -> Bool {
+        if let selectedQuestion = selectedQuestion {
+            return selectedQuestion.checkAnswer(choices: self.userAnswer.wrappedValue)
+        } else {
+            return false
+        }
+    }
+    
+    func setQuestionIndex(toSetQuestionIndex: Int) {
+        isIncrement.wrappedValue = toSetQuestionIndex > self.questionIndex
+        withAnimation(.easeInOut(duration: 0.5)) {
+            if toSetQuestionIndex <= questionAmount() && toSetQuestionIndex > 0 {
+                self.questionIndex = toSetQuestionIndex
+            }
+        }
+    }
+    
+    func toggleMemoryMode() {
+        self.isMemoryMode.toggle()
+        if !isMemoryMode {
+            userAnswer.wrappedValue.removeAll()
+        }
     }
     
     func bindIsIncrement(isIncrement: Binding<Bool>) {
         self.isIncrement = isIncrement
     }
     
-    func bindIsMemoryMode(isMemoryMode: Binding<Bool>) {
-        self.isMemoryMode = isMemoryMode
+    func bindUserAnswer(userAnswer: Binding<Set<Int>>) {
+        self.userAnswer = userAnswer
     }
 }

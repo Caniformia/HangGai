@@ -21,17 +21,18 @@ struct MainView: View {
     @State var isQuestionIncrement: Bool = true
     @State var isMemoryMode: Bool = false
     @ObservedObject var questionManager: QuestionManager = QuestionManager()
+    @State var userAnswer: Set<Int> = Set<Int>()
     
     var body: some View {
         VStack() {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                QuestionNavigationModule(questionManager: questionManager)
+                QuestionNavigationModule(questionManager: questionManager, isIncrement: isQuestionIncrement)
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(alignment: .leading){
                         if let selectedQuestion = questionManager.selectedQuestion {
-                            QuestionModule(question: selectedQuestion, isIncrement: isQuestionIncrement, isMemoryMode: isMemoryMode)
+                            QuestionModule(question: selectedQuestion, isIncrement: isQuestionIncrement, isMemoryMode: questionManager.isMemoryMode, userAnswer: $userAnswer)
                             Spacer()
                         } else {
                             Spacer()
@@ -43,35 +44,7 @@ struct MainView: View {
                 }.padding(.horizontal)
             }
             Spacer()
-            HStack(alignment: .center){
-                Button(action: {
-                    self.showInfoModal = true
-                    self.endEditing()
-                }, label: {
-                    Image(systemName: "bookmark.circle").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black)
-                Button(action: {
-                    self.isMemoryMode.toggle()
-                }, label: {
-                    Image(systemName: self.isMemoryMode ? "arrowshape.turn.up.right.circle.fill" : "arrowshape.turn.up.right.circle").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black)
-                Divider().frame(height: 20)
-                LargeButton(title: self.direction, backgroundColor: Color.black, foregroundColor: Color.white) {
-                }
-                Divider().frame(height: 20)
-                Button(action: {
-                    self.showInfoModal = true
-                    self.endEditing()
-                }, label: {
-                    Image(systemName: "info.circle.fill").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black)
-                .sheet(isPresented: self.$showInfoModal) {
-                    InfoModal(showInfoModal: $showInfoModal)
-                }
-            }.padding(.horizontal)
+            BottomToolBox(questionManager: questionManager, showInfoModal: showInfoModal)
         }.gesture(DragGesture()
                     .onChanged { gesture in
                         if self.isSwipping {
@@ -83,8 +56,9 @@ struct MainView: View {
                         let xDist =  abs(gesture.location.x - self.startPos.x)
                         let yDist =  abs(gesture.location.y - self.startPos.y)
                         if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
-                            questionManager.verifyAnswer()
-                            questionManager.incrementQuestionIndex()
+                            if questionManager.verifyAnswer() || isMemoryMode {
+                                questionManager.incrementQuestionIndex()
+                            }
                         }
                         else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {
                             questionManager.decrementQuestionIndex()
@@ -93,7 +67,7 @@ struct MainView: View {
                     }
         ).onAppear(){
             questionManager.bindIsIncrement(isIncrement: $isQuestionIncrement)
-            questionManager.bindIsMemoryMode(isMemoryMode: $isMemoryMode)
+            questionManager.bindUserAnswer(userAnswer: $userAnswer)
         }
     }
 }

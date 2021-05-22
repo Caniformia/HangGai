@@ -23,6 +23,8 @@
 		3F6572E0264FE131004F4650 /* QuestionNavigationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6572DF264FE131004F4650 /* QuestionNavigationModule.swift */; };
 		3F6572E2264FED06004F4650 /* BoldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6572E1264FED06004F4650 /* BoldText.swift */; };
 		3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6572E526501241004F4650 /* CustomTransitions.swift */; };
+		3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8F7C232658F56E008AA07A /* BottomToolBox.swift */; };
+		3FA2B9A8265931B200D35D64 /* QuestionChapterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */; };
 		3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B617264FCB94008167E1 /* QuestionModule.swift */; };
 		3FE0B61A264FCEB2008167E1 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B619264FCEB2008167E1 /* QuestionManager.swift */; };
 		3FE0B61D264FD416008167E1 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B61C264FD416008167E1 /* LocalDataManager.swift */; };
@@ -47,6 +49,8 @@
 		3F6572DF264FE131004F4650 /* QuestionNavigationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionNavigationModule.swift; sourceTree = "<group>"; };
 		3F6572E1264FED06004F4650 /* BoldText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoldText.swift; sourceTree = "<group>"; };
 		3F6572E526501241004F4650 /* CustomTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitions.swift; sourceTree = "<group>"; };
+		3F8F7C232658F56E008AA07A /* BottomToolBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolBox.swift; sourceTree = "<group>"; };
+		3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChapterStatus.swift; sourceTree = "<group>"; };
 		3FE0B617264FCB94008167E1 /* QuestionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModule.swift; sourceTree = "<group>"; };
 		3FE0B619264FCEB2008167E1 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		3FE0B61C264FD416008167E1 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				3FE0B617264FCB94008167E1 /* QuestionModule.swift */,
 				3F6572DF264FE131004F4650 /* QuestionNavigationModule.swift */,
 				3F6572E1264FED06004F4650 /* BoldText.swift */,
+				3F8F7C232658F56E008AA07A /* BottomToolBox.swift */,
+				3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -267,10 +273,12 @@
 				3FE0B61D264FD416008167E1 /* LocalDataManager.swift in Sources */,
 				32B3E71F264E635A00D9F3AC /* QuestionLoader.swift in Sources */,
 				32DDE6F1264D646D00A251EB /* MainView.swift in Sources */,
+				3FA2B9A8265931B200D35D64 /* QuestionChapterStatus.swift in Sources */,
 				3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */,
 				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
 				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
 				3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */,
+				3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */,
 				3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

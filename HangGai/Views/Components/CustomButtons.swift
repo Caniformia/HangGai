@@ -92,6 +92,7 @@ struct AnswerButton: View {
     var backgroundColor: Color
     var foregroundColor: Color
     var isAnswer: Bool
+    @Binding var userAnswer: Set<Int>
     
     var displayBackgroundColor: Color {
         return (disabled && isAnswer) ? foregroundColor : ((disabled && !isAnswer) ? backgroundColor : (buttonTapped ? foregroundColor : backgroundColor))
@@ -120,7 +121,8 @@ struct AnswerButton: View {
          foregroundColor: Color = Color.white,
          fontSize: CGFloat = 15,
          answerTagID: Int = 0,
-         isAnswer: Bool) {
+         isAnswer: Bool,
+         userAnswer: Binding<Set<Int>>) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.title = title
@@ -128,6 +130,7 @@ struct AnswerButton: View {
         self.fontSize = fontSize
         self.answerTagID = answerTagID
         self.isAnswer = isAnswer
+        self._userAnswer = userAnswer
     }
     
     var body: some View {
@@ -136,6 +139,11 @@ struct AnswerButton: View {
             Button(action: {
                 if !disabled {
                     self.buttonTapped.toggle()
+                    if self.buttonTapped {
+                        userAnswer.insert(answerTagID)
+                    } else {
+                        userAnswer.remove(answerTagID)
+                    }
                 }
             }) {
                 HStack(alignment: .center){
@@ -157,4 +165,30 @@ struct AnswerButton: View {
         })
     }
     
+}
+
+struct JumpQuestionButton: ViewModifier
+{
+    @Binding var text: String
+    @ObservedObject var questionManager: QuestionManager
+    
+    public func body(content: Content) -> some View
+    {
+        ZStack(alignment: .trailing)
+        {
+            content
+            Button(action: {
+                if let toSetQuestionIndex = Int(self.text) {
+                    questionManager.setQuestionIndex(toSetQuestionIndex: toSetQuestionIndex)
+                }
+                UIApplication.shared.endEditing()
+            }, label:{
+                Image(systemName: "arrowshape.turn.up.right.circle.fill")
+                    .resizable()
+                    .foregroundColor(Color.black)
+                    .frame(width: 24, height: 24)
+            })
+            .padding(.trailing, 15)
+        }
+    }
 }
