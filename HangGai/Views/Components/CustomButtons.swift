@@ -83,26 +83,22 @@ struct LargeButton: View {
 }
 
 struct AnswerButton: View {
-    
-    private static let buttonHorizontalMargins: CGFloat = 20
-    
-    var fontSize: CGFloat
-    var answerTagID: Int
-    @State private var buttonTapped = false
-    var backgroundColor: Color
-    var foregroundColor: Color
-    var isAnswer: Bool
-    @Binding var userAnswer: Set<Int>
+    private var fontSize: CGFloat
+    private var answerTagID: Int
+    @State private var optionSelected: Bool
+    private var backgroundColor: Color
+    private var foregroundColor: Color
+    private var isAnswer: Bool
+    private var isMemoryMode: Bool
+    private let title: String
+    @ObservedObject var questionManager: QuestionManager
     
     var displayBackgroundColor: Color {
-        return (disabled && isAnswer) ? foregroundColor : ((disabled && !isAnswer) ? backgroundColor : (buttonTapped ? foregroundColor : backgroundColor))
+        return (isMemoryMode && isAnswer) ? foregroundColor : ((isMemoryMode && !isAnswer) ? backgroundColor : (optionSelected ? foregroundColor : backgroundColor))
     }
     var displayForegroundColor: Color {
-        return (disabled && isAnswer) ? backgroundColor : ((disabled && !isAnswer) ? foregroundColor : (buttonTapped ? backgroundColor : foregroundColor))
+        return (isMemoryMode && isAnswer) ? backgroundColor : ((isMemoryMode && !isAnswer) ? foregroundColor : (optionSelected ? backgroundColor : foregroundColor))
     }
-    
-    
-    private let title: String
     
     var answerTag: String {
         if self.answerTagID > -1 && self.answerTagID < 26 {
@@ -112,38 +108,34 @@ struct AnswerButton: View {
         }
     }
     
-    // It would be nice to make this into a binding.
-    private let disabled: Bool
-    
-    init(title: String,
-         disabled: Bool = false,
-         backgroundColor: Color = Color.green,
+    init(backgroundColor: Color = Color.green,
          foregroundColor: Color = Color.white,
          fontSize: CGFloat = 15,
          answerTagID: Int = 0,
-         isAnswer: Bool,
-         userAnswer: Binding<Set<Int>>) {
+            questionManager: QuestionManager) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
-        self.title = title
-        self.disabled = disabled
         self.fontSize = fontSize
         self.answerTagID = answerTagID
-        self.isAnswer = isAnswer
-        self._userAnswer = userAnswer
+        self.questionManager = questionManager
+        
+        if let selectedQuestion = questionManager.selectedQuestion { // Avoid being updated because of the observer for /* selectedQuestion */
+            self.isAnswer = selectedQuestion.answer.contains(answerTagID)
+            self.title = selectedQuestion.options[answerTagID]
+        } else {
+            self.isAnswer = false
+            self.title = ""
+        }
+        self.isMemoryMode = questionManager.getIsMemoryMode()
+        self.optionSelected = questionManager.getUserAnswer().contains(answerTagID)
     }
     
     var body: some View {
         HStack {
-            //Spacer(minLength: LargeButton.buttonHorizontalMargins)
             Button(action: {
-                if !disabled {
-                    self.buttonTapped.toggle()
-                    if self.buttonTapped {
-                        userAnswer.insert(answerTagID)
-                    } else {
-                        userAnswer.remove(answerTagID)
-                    }
+                if !isMemoryMode {
+                    self.questionManager.toggleUserAnswer(answerTagID: self.answerTagID)
+                    self.optionSelected.toggle() // Avoid using compute attribute, as we need it to be updated "lazily", which means "not to be updated when switch to a new question".
                 }
             }) {
                 HStack(alignment: .center){
@@ -157,12 +149,8 @@ struct AnswerButton: View {
                                           isDisabled: false,
                                           fontSize: fontSize,
                                           cornerRadius: 15))
-            //Spacer(minLength: LargeButton.buttonHorizontalMargins)
         }
         .frame(maxWidth:.infinity)
-        .onChange(of: disabled, perform: { value in
-            self.buttonTapped = false
-        })
     }
     
 }

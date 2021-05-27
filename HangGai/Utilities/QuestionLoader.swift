@@ -92,7 +92,7 @@ public struct QuestionLoader {
         sqlite3_finalize(queryStatement)
     
         #if DEBUG
-            print(questions)
+            //print(questions)
         #endif
         
         return questions

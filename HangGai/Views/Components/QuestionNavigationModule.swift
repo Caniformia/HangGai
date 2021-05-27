@@ -11,15 +11,13 @@ struct QuestionNavigationModule: View {
     @ObservedObject var questionManager: QuestionManager
     @State private var showChapterPopover: Bool = false
     @State private var jumpToQuestionID: String = ""
-    private var isIncrement: Bool
     
     private var nowQuestionIndex: String {
         return "\(questionManager.questionIndex)" + "/" + "\(questionManager.questionAmount())"
     }
     
-    init(questionManager: QuestionManager, isIncrement:Bool) {
+    init(questionManager: QuestionManager) {
         self.questionManager = questionManager
-        self.isIncrement = isIncrement
     }
     
     var body: some View {
@@ -52,7 +50,7 @@ struct QuestionNavigationModule: View {
             }
             if showChapterPopover {
                     VStack(alignment: .leading) {
-                        QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: isIncrement)
+                        QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
                         TextField("请输入想跳转的题号", text: $jumpToQuestionID)
                             .keyboardType(.numberPad)
                             .padding()
