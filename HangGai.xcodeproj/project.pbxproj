@@ -57,6 +57,7 @@
 		3220527A2660308F0078A9D5 /* 704h.png in Resources */ = {isa = PBXBuildFile; fileRef = 3220524B2660308E0078A9D5 /* 704h.png */; };
 		3220527B2660308F0078A9D5 /* 910h.png in Resources */ = {isa = PBXBuildFile; fileRef = 3220524C2660308E0078A9D5 /* 910h.png */; };
 		3220527C2660308F0078A9D5 /* 905h.png in Resources */ = {isa = PBXBuildFile; fileRef = 3220524D2660308F0078A9D5 /* 905h.png */; };
+		3220527F266031AC0078A9D5 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220527E266031AC0078A9D5 /* DataStorage.swift */; };
 		32B3E71F264E635A00D9F3AC /* QuestionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */; };
 		32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DB264D644000A251EB /* QuestionModel.swift */; };
 		32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDE6DC264D644000A251EB /* UserDataModel.swift */; };
@@ -128,6 +129,7 @@
 		3220524B2660308E0078A9D5 /* 704h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 704h.png; sourceTree = "<group>"; };
 		3220524C2660308E0078A9D5 /* 910h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 910h.png; sourceTree = "<group>"; };
 		3220524D2660308F0078A9D5 /* 905h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 905h.png; sourceTree = "<group>"; };
+		3220527E266031AC0078A9D5 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLoader.swift; sourceTree = "<group>"; };
 		32DDE6DB264D644000A251EB /* QuestionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		32DDE6DC264D644000A251EB /* UserDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				3F6415BA264C518E002950CF /* CustomFuncs.swift */,
 				32B3E71E264E635A00D9F3AC /* QuestionLoader.swift */,
 				3F6572E526501241004F4650 /* CustomTransitions.swift */,
+				3220527E266031AC0078A9D5 /* DataStorage.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				3F6572E2264FED06004F4650 /* BoldText.swift in Sources */,
 				32DDE6DE264D644000A251EB /* UserDataModel.swift in Sources */,
 				3F641589264C4CF8002950CF /* HangGaiApp.swift in Sources */,
+				3220527F266031AC0078A9D5 /* DataStorage.swift in Sources */,
 				32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */,
 				3F6572E0264FE131004F4650 /* QuestionNavigationModule.swift in Sources */,
 				3FE0B61A264FCEB2008167E1 /* QuestionManager.swift in Sources */,

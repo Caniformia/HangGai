@@ -7,6 +7,8 @@
 
 import Foundation
 
+let QuestionIdRange = 1...972
+
 enum QuestionType: Int {
     case singleChoice = 1, multipleChoices = 2
 }

@@ -90,10 +90,6 @@ public struct QuestionLoader {
         }
         
         sqlite3_finalize(queryStatement)
-    
-        #if DEBUG
-            print(questions)
-        #endif
         
         return questions
     }

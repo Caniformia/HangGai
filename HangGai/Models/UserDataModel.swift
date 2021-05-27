@@ -19,6 +19,16 @@ struct UserQuestionStatus: CustomStringConvertible {
             incorrectCount: \(incorrectCount)
             """
     }
+    
+    init() {
+        self.init(comment: "", lastChoices: Set(), incorrectCount: 0)
+    }
+    
+    init(comment: String, lastChoices: Set<Int>, incorrectCount: Int) {
+        self.comment = comment
+        self.lastChoices = lastChoices
+        self.incorrectCount = incorrectCount
+    }
 }
 
 struct UserDataModel: CustomStringConvertible {
@@ -33,6 +43,20 @@ struct UserDataModel: CustomStringConvertible {
             \(questionStatus)
             """
     }
+    
+    init() {
+        let questionStatus = Dictionary(uniqueKeysWithValues: QuestionIdRange.map { ($0, UserQuestionStatus()) })
+        
+        self.init(favorites: Set(),
+                  incorrects: Set(),
+                  questionStatus: questionStatus)
+    }
+    
+    init(favorites: Set<Int>, incorrects: Set<Int>, questionStatus: [Int:UserQuestionStatus]) {
+        self.favorites = favorites
+        self.incorrects = incorrects
+        self.questionStatus = questionStatus
+    }
 }
 
 extension UserDataModel {
@@ -41,6 +65,7 @@ extension UserDataModel {
             print("Update question comment failed: question ID \(questionId) not found")
             return
         }
+        
         self.questionStatus[questionId]!.comment = comment
     }
     
@@ -49,7 +74,9 @@ extension UserDataModel {
             print("Update question choices failed: question ID \(questionId) not found")
             return
         }
+        
         self.questionStatus[questionId]!.lastChoices = choices
+        
         if !isCorrect {
             self.questionStatus[questionId]!.incorrectCount += 1
         }
