@@ -26,6 +26,7 @@ struct BottomToolBox: View {
             Divider().frame(height: 20)
             LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
             }
+            .padding([.top, .bottom], 10)
             Divider().frame(height: 20)
             Button(action: {
                 self.showInfoModal = true

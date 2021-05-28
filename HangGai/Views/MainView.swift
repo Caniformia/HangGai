@@ -28,10 +28,13 @@ struct MainView: View {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(alignment: .leading){
                         QuestionModule(questionManager: questionManager)
-                        Spacer()
+                        //Spacer()
                     }.padding(.top,5)
-                    Spacer()
-                }.padding(.horizontal)
+                    //Spacer()
+                }
+                //.scrollOnlyOnOverflow()
+                .padding(.horizontal)
+                
             }
             Spacer()
             BottomToolBox(questionManager: questionManager, showInfoModal: showInfoModal)

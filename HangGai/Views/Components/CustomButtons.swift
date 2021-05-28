@@ -28,9 +28,8 @@ struct LargeButtonStyle: ButtonStyle {
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(currentForegroundColor, lineWidth: 1)
+                    .stroke(currentForegroundColor, lineWidth: 0.8)
             )
-            .padding([.top, .bottom], 10)
             .font(Font.custom("FZSSJW--GB1-0", size: fontSize))
     }
 }
@@ -140,7 +139,8 @@ struct AnswerButton: View {
             }) {
                 HStack(alignment: .center){
                     Text(self.answerTag).padding(.leading).font(Font.custom("FZSSJW--GB1-0", size: 20))
-                    Text(self.title).padding(.horizontal)
+                    BoldText(text: self.title,width: 1,color: displayForegroundColor,size:15,kerning: 0).padding(.horizontal)
+                    //Text(self.title).padding(.horizontal)
                     Spacer()
                 }
             }
