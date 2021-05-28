@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 
 class QuestionManager: ObservableObject {
-    private var questions: [Question]
+    private let globalQuestions: [Question] // All questions
+    private var questions: [Question] // current questions
     var isIncrement: Binding<Bool> = .constant(true)
     @Published var isMemoryMode = false
     var userAnswer: Binding<Set<Int>> = .constant(Set<Int>())
     
     @Published var questionIndex: Int
+    
     var selectedQuestion: Question? {
         if (questionIndex <= 0) {
             return nil
@@ -25,9 +27,11 @@ class QuestionManager: ObservableObject {
     
     init() {
         if let questions = QuestionLoader.loadQuestions(){
+            self.globalQuestions = questions
             self.questions = questions
             self.questionIndex = 1
         } else {
+            self.globalQuestions = []
             self.questions = []
             self.questionIndex = 0
         }
@@ -97,5 +101,9 @@ class QuestionManager: ObservableObject {
     
     func bindUserAnswer(userAnswer: Binding<Set<Int>>) {
         self.userAnswer = userAnswer
+    }
+    
+    func updateQuestionList(questionIds: Set<Int>) {
+        self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
     }
 }
