@@ -26,6 +26,7 @@ class UserDataManager: ObservableObject {
             favorites.insert(questionId)
         }
         
+        print("\(favorites)")
         DataStorage.saveSet(key: DataStorage.favoritesKey, set: favorites)
     }
     
@@ -35,7 +36,6 @@ class UserDataManager: ObservableObject {
         } else {
             incorrects.insert(questionId)
         }
-        
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
     }
     

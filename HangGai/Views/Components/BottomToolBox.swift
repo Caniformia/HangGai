@@ -9,18 +9,20 @@ import SwiftUI
 
 struct BottomToolBox: View {
     @ObservedObject var questionManager: QuestionManager
+    @ObservedObject var userDataManager: UserDataManager
     @State var showInfoModal: Bool
     var body: some View {
         HStack(alignment: .center){
             Button(action: {
+                self.userDataManager.toggleFavorite(questionId: questionManager.questionIndex)
             }, label: {
-                Image(systemName: "bookmark.circle").resizable()
+                Image(systemName: self.userDataManager.favorites.contains(questionManager.questionIndex) ? "bookmark.circle.fill" : "bookmark.circle").resizable()
                     .frame(width: 24.0, height: 24.0)
             }).foregroundColor(.black)
             Button(action: {
                 self.questionManager.toggleMemoryMode()
             }, label: {
-                Image(systemName: self.questionManager.isMemoryMode ? "book.circle.fill" : "book.circle").resizable()
+                Image(systemName: self.questionManager.getIsMemoryMode() ? "book.circle.fill" : "book.circle").resizable()
                     .frame(width: 24.0, height: 24.0)
             }).foregroundColor(.black)
             Divider().frame(height: 20)

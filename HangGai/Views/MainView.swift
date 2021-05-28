@@ -18,6 +18,7 @@ struct MainView: View {
     @State var isSwipping = true
     
     @ObservedObject var questionManager: QuestionManager = QuestionManager()
+    @ObservedObject var userDataManager: UserDataManager = UserDataManager()
     
     var body: some View {
         VStack() {
@@ -37,7 +38,7 @@ struct MainView: View {
                 
             }
             Spacer()
-            BottomToolBox(questionManager: questionManager, showInfoModal: showInfoModal)
+            BottomToolBox(questionManager: questionManager, userDataManager: userDataManager, showInfoModal: showInfoModal)
         }.gesture(DragGesture()
                     .onChanged { gesture in
                         if self.isSwipping {

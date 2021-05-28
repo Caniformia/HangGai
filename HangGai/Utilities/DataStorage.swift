@@ -14,7 +14,8 @@ struct DataStorage {
     static let incorrectsKey = "incorrects"
     
     static func saveSet(key: String, set: Set<Int>) {
-        standard.set(set, forKey: key)
+        standard.set(Array(set), forKey: key)
+        print("\(set)")
         standard.synchronize()
     }
     
@@ -28,7 +29,7 @@ struct DataStorage {
             print("Cannot convert data to \(key)")
             return Set()
         }
-
+        
         return set
     }
     
