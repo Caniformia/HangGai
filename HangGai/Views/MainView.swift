@@ -14,31 +14,21 @@ struct MainView: View {
     
     @State var showInfoModal = false
     
-    @State var direction = ""
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
-    @State var questionChanged = true
-    @State var isQuestionIncrement: Bool = true
-    @State var isMemoryMode: Bool = false
+    
     @ObservedObject var questionManager: QuestionManager = QuestionManager()
-    @State var userAnswer: Set<Int> = Set<Int>()
     
     var body: some View {
         VStack() {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                QuestionNavigationModule(questionManager: questionManager, isIncrement: isQuestionIncrement)
+                QuestionNavigationModule(questionManager: questionManager)
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(alignment: .leading){
-                        if let selectedQuestion = questionManager.selectedQuestion {
-                            QuestionModule(question: selectedQuestion, isIncrement: isQuestionIncrement, isMemoryMode: questionManager.isMemoryMode, userAnswer: $userAnswer)
-                            Spacer()
-                        } else {
-                            Spacer()
-                            Text("No Question.")
-                            Spacer()
-                        }
+                        QuestionModule(questionManager: questionManager)
+                        Spacer()
                     }.padding(.top,5)
                     Spacer()
                 }.padding(.horizontal)
@@ -56,7 +46,7 @@ struct MainView: View {
                         let xDist =  abs(gesture.location.x - self.startPos.x)
                         let yDist =  abs(gesture.location.y - self.startPos.y)
                         if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
-                            if questionManager.verifyAnswer() || isMemoryMode {
+                            if questionManager.verifyAnswer() || questionManager.getIsMemoryMode() {
                                 questionManager.incrementQuestionIndex()
                             }
                         }
@@ -65,9 +55,6 @@ struct MainView: View {
                         }
                         self.isSwipping.toggle()
                     }
-        ).onAppear(){
-            questionManager.bindIsIncrement(isIncrement: $isQuestionIncrement)
-            questionManager.bindUserAnswer(userAnswer: $userAnswer)
-        }
+        )
     }
 }
