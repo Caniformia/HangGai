@@ -2,7 +2,7 @@
 //  LocalDataManager.swift
 //  HangGai
 //
-//  Created by TakiP on 2021/5/15.
+//  Created by roife on 2021/5/15.
 //
 
 import Foundation
@@ -14,6 +14,7 @@ class UserDataManager: ObservableObject {
     private var questionStatus: [Int:UserQuestionStatus]
     
     init() {
+        DataStorage.initialize()
         self.favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
         self.incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         self.questionStatus = DataStorage.getQuestionStatus()
@@ -25,8 +26,7 @@ class UserDataManager: ObservableObject {
         } else {
             favorites.insert(questionId)
         }
-        
-        print("\(favorites)")
+    
         DataStorage.saveSet(key: DataStorage.favoritesKey, set: favorites)
     }
     
@@ -36,6 +36,7 @@ class UserDataManager: ObservableObject {
         } else {
             incorrects.insert(questionId)
         }
+        
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
     }
     
