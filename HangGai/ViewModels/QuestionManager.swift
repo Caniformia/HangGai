@@ -12,7 +12,6 @@ class QuestionManager: ObservableObject {
     private let globalQuestions: [Question] // All questions
     private var questions: [Question] // current questions
 
-    @Published var isIncrement: Bool
     @Published var isMemoryMode = false
     @Published var userAnswer: Set<Int> = []
     
@@ -21,6 +20,8 @@ class QuestionManager: ObservableObject {
             self.userAnswer.removeAll()
         }
     }
+    
+    @Published var isIncrement: Bool
 
     var selectedQuestion: Question? {
         if (questionIndex <= 0) {
@@ -66,6 +67,7 @@ class QuestionManager: ObservableObject {
     }
     
     func getIsIncrement() -> Bool {
+        print("\(self.isIncrement)")
         return self.isIncrement
     }
     

@@ -38,7 +38,7 @@ struct MainView: View {
                 
             }
             Spacer()
-            BottomToolBox(questionManager: questionManager, userDataManager: userDataManager, showInfoModal: showInfoModal)
+            BottomToolBox(userDataManager: userDataManager, questionManager: questionManager, showInfoModal: showInfoModal)
         }.gesture(DragGesture()
                     .onChanged { gesture in
                         if self.isSwipping {

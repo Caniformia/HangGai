@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct BottomToolBox: View {
-    @ObservedObject var questionManager: QuestionManager
     @ObservedObject var userDataManager: UserDataManager
+    @ObservedObject var questionManager: QuestionManager
     @State var showInfoModal: Bool
     var body: some View {
         HStack(alignment: .center){

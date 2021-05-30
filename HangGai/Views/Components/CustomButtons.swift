@@ -84,7 +84,7 @@ struct LargeButton: View {
 struct AnswerButton: View {
     private var fontSize: CGFloat
     private var answerTagID: Int
-    @State private var optionSelected: Bool
+    @State private var optionSelected: Bool = false
     private var backgroundColor: Color
     private var foregroundColor: Color
     private var isAnswer: Bool
