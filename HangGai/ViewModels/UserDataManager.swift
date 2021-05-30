@@ -10,6 +10,7 @@ import Foundation
 class UserDataManager: ObservableObject {
     @Published var favorites: Set<Int>
     @Published var incorrects: Set<Int>
+    @Published var visitedQuestions: Set<Int>
     
     private var questionStatus: [Int:UserQuestionStatus]
     
@@ -18,16 +19,24 @@ class UserDataManager: ObservableObject {
         self.favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
         self.incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         self.questionStatus = DataStorage.getQuestionStatus()
+        self.visitedQuestions = DataStorage.getSet(key: DataStorage.visitedQuestions)
     }
     
+    // TODO
     func getFavorites() -> Set<Int> {
         favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
         return favorites
     }
     
+    // TODO
     func getIncorrects() -> Set<Int> {
         incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         return incorrects
+    }
+    
+    func getVisitedQuestions() -> Set<Int> {
+        visitedQuestions = DataStorage.getSet(key: DataStorage.lastVisitedQuestionIdKey)
+        return visitedQuestions
     }
     
     func toggleFavorite(questionId: Int) {
@@ -40,6 +49,7 @@ class UserDataManager: ObservableObject {
         DataStorage.saveSet(key: DataStorage.favoritesKey, set: favorites)
     }
     
+    // TODO
     func updateIncorrects(questionId: Int, isCorrect: Bool) {
         if isCorrect && incorrects.contains(questionId) {
             incorrects.remove(questionId)
@@ -115,5 +125,19 @@ class UserDataManager: ObservableObject {
     
     func getIncorrectsCountList() -> [(Int, Int)] {
         questionStatus.map{ ($1.incorrectCount, $0) }.sorted{ $0.0 != $1.0 ? $0.0 > $1.0 : $0.1 < $1.1 }
+    }
+    
+    func updateLastVisitedQuestionId(questionId: Int) {
+        DataStorage.saveLastVisitedQuestionId(questionId: questionId)
+    }
+    
+    func getLastVisitedQuestionId() -> Int {
+        DataStorage.getLastVisitedQuestionId()
+    }
+    
+    func addVisitedQuestions(questionId: Int) {
+        visitedQuestions.insert(questionId)
+    
+        DataStorage.saveSet(key: DataStorage.visitedQuestions, set: visitedQuestions)
     }
 }

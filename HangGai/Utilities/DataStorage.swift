@@ -14,7 +14,9 @@ struct DataStorage {
     
     static let favoritesKey = "favorites"
     static let incorrectsKey = "incorrects"
+    static let visitedQuestions = "visitedQuestions"
     static let initializedKey = "init"
+    static let lastVisitedQuestionIdKey = "lastVisitedQuestionId"
     
     private static func questionKey(questionId: Int) -> String {
         return "questionStatus\(questionId)"
@@ -90,5 +92,19 @@ struct DataStorage {
     
     static func getQuestionStatus() -> [Int:UserQuestionStatus] {
         Dictionary(uniqueKeysWithValues: QuestionIdRange.map { ($0, getQuestionStatus(questionId: $0)) })
+    }
+    
+    static func getLastVisitedQuestionId() -> Int {
+        let questionId = standard.integer(forKey: lastVisitedQuestionIdKey)
+        guard questionId != 0 else {
+            print("Cannot read \(lastVisitedQuestionIdKey)")
+            return 0
+        }
+        
+        return questionId
+    }
+    
+    static func saveLastVisitedQuestionId(questionId: Int) {
+        standard.setValue(questionId, forKey: lastVisitedQuestionIdKey)
     }
 }
