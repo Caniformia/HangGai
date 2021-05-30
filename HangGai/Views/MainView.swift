@@ -12,22 +12,23 @@ struct MainView: View {
         UIApplication.shared.endEditing()
     }
     
-    @State var showInfoModal = false
+    @State var showSettingModal = false
     
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
     
-    @ObservedObject var userDataManager: UserDataManager = UserDataManager()
-    @ObservedObject var questionManager: QuestionManager = QuestionManager()
+    @EnvironmentObject var userDataManager: UserDataManager
+    @EnvironmentObject var questionManager: QuestionManager
+    @EnvironmentObject var noticeManager: NoticeManager
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                QuestionNavigationModule(questionManager: questionManager)
+                QuestionNavigationModule()
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 //ScrollView (.vertical, showsIndicators: false) {
-                        QuestionModule(questionManager: questionManager)
+                        QuestionModule()
                         .padding(.top,20)
                 //}
                 //.scrollOnlyOnOverflow()
@@ -35,7 +36,7 @@ struct MainView: View {
                 
             }
             Spacer()
-            BottomToolBox(userDataManager: userDataManager, questionManager: questionManager, showInfoModal: showInfoModal)
+            BottomToolBox(showSettingModal: showSettingModal)
         }.gesture(DragGesture()
                     .onChanged { gesture in
                         if self.isSwipping {
@@ -49,6 +50,10 @@ struct MainView: View {
                         if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
                             if questionManager.getIsMemoryMode() {
                                 questionManager.incrementQuestionIndex()
+                                if questionManager.isDisplayingAnswer {
+                                    questionManager.toggleMemoryMode()
+                                    questionManager.isDisplayingAnswer.toggle()
+                                }
                             } else {
                                 questionManager.verifyAnswer()
                             }
@@ -58,6 +63,8 @@ struct MainView: View {
                         }
                         self.isSwipping.toggle()
                     }
-        )
+        ).onAppear() {
+            questionManager.bindUserDataManager(userDataManager: userDataManager)
+        }
     }
 }

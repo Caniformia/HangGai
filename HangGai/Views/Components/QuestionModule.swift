@@ -5,11 +5,11 @@
 //  Created by TakiP on 2021/5/15.
 //
 
-import Combine
+import Foundation
 import SwiftUI
 
 struct QuestionModule: View {
-    @ObservedObject var questionManager: QuestionManager
+    @EnvironmentObject var questionManager: QuestionManager
     
     var body: some View {
         if let selectedQuestion = self.questionManager.selectedQuestion {
@@ -46,7 +46,7 @@ struct QuestionModule: View {
                     }
                     .padding(.horizontal)
                     .transition(questionManager.isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
-                    .id(selectedQuestion.id)
+                    .id("\(selectedQuestion.id).\(questionManager.questionAmount())")
                 }
                 .blur(radius: questionManager.playAnswerVerifyAnimation ? 10.0 : 0.0)
                 .opacity(questionManager.playAnswerVerifyAnimation ? 0.2 : 1.0)
@@ -61,14 +61,10 @@ struct QuestionModule: View {
             
         }
     }
-    
-    init(questionManager: QuestionManager) {
-        self.questionManager = questionManager
-    }
 }
 
 struct QuestionModule_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionModule(questionManager: QuestionManager())
+        QuestionModule()
     }
 }

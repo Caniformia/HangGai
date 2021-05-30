@@ -11,11 +11,14 @@ import SwiftUI
 class QuestionManager: ObservableObject {
     private let globalQuestions: [Question] // All questions
     private var questions: [Question] // current questions
+    private var questionSetIdentifier: String = "Meta"
+    @ObservedObject var userDataManager: UserDataManager = UserDataManager()
     
     @Published var isMemoryMode = false
     @Published var userAnswer: Set<Int> = []
     @Published var playAnswerVerifyAnimation: Bool = false
     @Published var isAnswerRight: Bool = false
+    @Published var isDisplayingAnswer = false
     
     @Published var questionIndex: Int {
         willSet {
@@ -97,7 +100,7 @@ class QuestionManager: ObservableObject {
     func verifyAnswer(){
         if let selectedQuestion = selectedQuestion {
             self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
-            UserDataManager().updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
+            userDataManager.updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
             if selectedQuestion.checkAnswer(choices: self.userAnswer) {
                 self.incrementQuestionIndex()
             }
@@ -107,6 +110,10 @@ class QuestionManager: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()) {
                     withAnimation {
                         self.playAnswerVerifyAnimation.toggle()
+                        if !self.isAnswerRight {
+                            self.isMemoryMode.toggle()
+                            self.isDisplayingAnswer.toggle()
+                        }
                     }
                 }
             }
@@ -135,11 +142,29 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func updateQuestionList(questionIds: Set<Int>) {
-        withAnimation(.easeInOut(duration: 0.5)) {
-            self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
-            print("Updated: \(questionIds)")
-            self.questionIndex = 1
+    func updateQuestionList(questionIds: Set<Int>, identifier: String) {
+        if identifier != self.questionSetIdentifier {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
+                self.questionSetIdentifier = identifier
+                self.questionIndex = 1
+                self.isMemoryMode = false
+                self.isDisplayingAnswer = false
+            }
         }
+    }
+    
+    func restoreQuestionList() {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.questions = self.globalQuestions
+            self.questionSetIdentifier = "Meta"
+            self.questionIndex = 1
+            self.isMemoryMode = false
+            self.isDisplayingAnswer = false
+        }
+    }
+    
+    func bindUserDataManager(userDataManager: UserDataManager) {
+        self.userDataManager = userDataManager
     }
 }

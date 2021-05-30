@@ -12,6 +12,9 @@ struct HangGaiApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(UserDataManager())
+                .environmentObject(QuestionManager())
+                .environmentObject(NoticeManager())
         }
     }
 }
