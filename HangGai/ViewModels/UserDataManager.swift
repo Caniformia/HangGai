@@ -20,6 +20,16 @@ class UserDataManager: ObservableObject {
         self.questionStatus = DataStorage.getQuestionStatus()
     }
     
+    func getFavorites() -> Set<Int> {
+        favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
+        return favorites
+    }
+    
+    func getIncorrects() -> Set<Int> {
+        incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
+        return incorrects
+    }
+    
     func toggleFavorite(questionId: Int) {
         if favorites.contains(questionId) {
             favorites.remove(questionId)
@@ -30,13 +40,22 @@ class UserDataManager: ObservableObject {
         DataStorage.saveSet(key: DataStorage.favoritesKey, set: favorites)
     }
     
+    func updateIncorrects(questionId: Int, isCorrect: Bool) {
+        if isCorrect && incorrects.contains(questionId) {
+            incorrects.remove(questionId)
+        } else if !isCorrect && !incorrects.contains(questionId) {
+            incorrects.insert(questionId)
+        }
+        print(incorrects)
+        DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
+    }
+    
     func toggleIncorrects(questionId: Int) {
         if incorrects.contains(questionId) {
             incorrects.remove(questionId)
         } else {
             incorrects.insert(questionId)
         }
-        
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
     }
     

@@ -17,22 +17,19 @@ struct MainView: View {
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
     
-    @ObservedObject var questionManager: QuestionManager = QuestionManager()
     @ObservedObject var userDataManager: UserDataManager = UserDataManager()
+    @ObservedObject var questionManager: QuestionManager = QuestionManager()
     
     var body: some View {
-        VStack() {
+        VStack(spacing: 0) {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
                 QuestionNavigationModule(questionManager: questionManager)
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
-                ScrollView (.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading){
+                //ScrollView (.vertical, showsIndicators: false) {
                         QuestionModule(questionManager: questionManager)
-                        //Spacer()
-                    }.padding(.top,5)
-                    //Spacer()
-                }
+                        .padding(.top,20)
+                //}
                 //.scrollOnlyOnOverflow()
                 .padding(.horizontal)
                 
@@ -50,8 +47,10 @@ struct MainView: View {
                         let xDist =  abs(gesture.location.x - self.startPos.x)
                         let yDist =  abs(gesture.location.y - self.startPos.y)
                         if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
-                            if questionManager.verifyAnswer() || questionManager.getIsMemoryMode() {
+                            if questionManager.getIsMemoryMode() {
                                 questionManager.incrementQuestionIndex()
+                            } else {
+                                questionManager.verifyAnswer()
                             }
                         }
                         else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {

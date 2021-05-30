@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,12 @@
 		3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6572E526501241004F4650 /* CustomTransitions.swift */; };
 		3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8F7C232658F56E008AA07A /* BottomToolBox.swift */; };
 		3FA2B9A8265931B200D35D64 /* QuestionChapterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */; };
+		3FC0851D2663A417008780A8 /* CustomProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0851C2663A417008780A8 /* CustomProgressBar.swift */; };
+		3FC0851F2663A9A7008780A8 /* ProgressBarQuestionChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */; };
+		3FC085212663C42B008780A8 /* AnimationSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085202663C42B008780A8 /* AnimationSettingManager.swift */; };
+		3FC085232663D1EF008780A8 /* BigCorrectMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085222663D1EF008780A8 /* BigCorrectMark.swift */; };
+		3FC085252663D467008780A8 /* ColorSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085242663D467008780A8 /* ColorSettingManager.swift */; };
+		3FC085282663EE81008780A8 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 3FC085272663EE81008780A8 /* MarqueeText */; };
 		3FCDFFB5266152ED0047B961 /* CustomModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCDFFB4266152ED0047B961 /* CustomModifier.swift */; };
 		3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B617264FCB94008167E1 /* QuestionModule.swift */; };
 		3FE0B61A264FCEB2008167E1 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B619264FCEB2008167E1 /* QuestionManager.swift */; };
@@ -54,6 +60,11 @@
 		3F6572E526501241004F4650 /* CustomTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitions.swift; sourceTree = "<group>"; };
 		3F8F7C232658F56E008AA07A /* BottomToolBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolBox.swift; sourceTree = "<group>"; };
 		3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChapterStatus.swift; sourceTree = "<group>"; };
+		3FC0851C2663A417008780A8 /* CustomProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressBar.swift; sourceTree = "<group>"; };
+		3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarQuestionChapter.swift; sourceTree = "<group>"; };
+		3FC085202663C42B008780A8 /* AnimationSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettingManager.swift; sourceTree = "<group>"; };
+		3FC085222663D1EF008780A8 /* BigCorrectMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCorrectMark.swift; sourceTree = "<group>"; };
+		3FC085242663D467008780A8 /* ColorSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingManager.swift; sourceTree = "<group>"; };
 		3FCDFFB4266152ED0047B961 /* CustomModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifier.swift; sourceTree = "<group>"; };
 		3FE0B617264FCB94008167E1 /* QuestionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModule.swift; sourceTree = "<group>"; };
 		3FE0B619264FCEB2008167E1 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC085282663EE81008780A8 /* MarqueeText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +137,9 @@
 				3F6572E1264FED06004F4650 /* BoldText.swift */,
 				3F8F7C232658F56E008AA07A /* BottomToolBox.swift */,
 				3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */,
+				3FC0851C2663A417008780A8 /* CustomProgressBar.swift */,
+				3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */,
+				3FC085222663D1EF008780A8 /* BigCorrectMark.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -186,6 +201,8 @@
 			children = (
 				3FE0B619264FCEB2008167E1 /* QuestionManager.swift */,
 				3FE0B61C264FD416008167E1 /* UserDataManager.swift */,
+				3FC085202663C42B008780A8 /* AnimationSettingManager.swift */,
+				3FC085242663D467008780A8 /* ColorSettingManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -206,6 +223,9 @@
 			dependencies = (
 			);
 			name = HangGai;
+			packageProductDependencies = (
+				3FC085272663EE81008780A8 /* MarqueeText */,
+			);
 			productName = HangGai;
 			productReference = 3F641585264C4CF8002950CF /* HangGai.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +253,9 @@
 				Base,
 			);
 			mainGroup = 3F64157C264C4CF8002950CF;
+			packageReferences = (
+				3FC085262663EE81008780A8 /* XCRemoteSwiftPackageReference "MarqueeText" */,
+			);
 			productRefGroup = 3F641586264C4CF8002950CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -274,11 +297,16 @@
 				32DDE6F1264D646D00A251EB /* MainView.swift in Sources */,
 				3FA2B9A8265931B200D35D64 /* QuestionChapterStatus.swift in Sources */,
 				3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */,
+				3FC0851F2663A9A7008780A8 /* ProgressBarQuestionChapter.swift in Sources */,
+				3FC0851D2663A417008780A8 /* CustomProgressBar.swift in Sources */,
+				3FC085232663D1EF008780A8 /* BigCorrectMark.swift in Sources */,
 				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
+				3FC085212663C42B008780A8 /* AnimationSettingManager.swift in Sources */,
 				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
 				3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */,
 				3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */,
 				3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */,
+				3FC085252663D467008780A8 /* ColorSettingManager.swift in Sources */,
 				3FCDFFB5266152ED0047B961 /* CustomModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +496,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3FC085262663EE81008780A8 /* XCRemoteSwiftPackageReference "MarqueeText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joekndy/MarqueeText.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FC085272663EE81008780A8 /* MarqueeText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FC085262663EE81008780A8 /* XCRemoteSwiftPackageReference "MarqueeText" */;
+			productName = MarqueeText;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F64157D264C4CF8002950CF /* Project object */;
 }

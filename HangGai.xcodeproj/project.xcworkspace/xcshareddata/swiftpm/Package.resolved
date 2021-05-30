@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MarqueeText",
+        "repositoryURL": "https://github.com/joekndy/MarqueeText.git",
+        "state": {
+          "branch": "master",
+          "revision": "1138da10162958c7887d908f4196a9065dbc8f2b",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

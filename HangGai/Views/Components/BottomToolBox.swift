@@ -27,6 +27,7 @@ struct BottomToolBox: View {
             }).foregroundColor(.black)
             Divider().frame(height: 20)
             LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
+                questionManager.updateQuestionList(questionIds: userDataManager.getIncorrects())
             }
             .padding([.top, .bottom], 10)
             Divider().frame(height: 20)

@@ -11,9 +11,11 @@ import SwiftUI
 class QuestionManager: ObservableObject {
     private let globalQuestions: [Question] // All questions
     private var questions: [Question] // current questions
-
+    
     @Published var isMemoryMode = false
     @Published var userAnswer: Set<Int> = []
+    @Published var playAnswerVerifyAnimation: Bool = false
+    @Published var isAnswerRight: Bool = false
     
     @Published var questionIndex: Int {
         willSet {
@@ -22,9 +24,9 @@ class QuestionManager: ObservableObject {
     }
     
     @Published var isIncrement: Bool
-
+    
     var selectedQuestion: Question? {
-        if (questionIndex <= 0) {
+        if (questionIndex <= 0 || questionIndex > questionAmount()) {
             return nil
         } else {
             return questions[questionIndex - 1]
@@ -67,7 +69,6 @@ class QuestionManager: ObservableObject {
     }
     
     func getIsIncrement() -> Bool {
-        print("\(self.isIncrement)")
         return self.isIncrement
     }
     
@@ -77,7 +78,7 @@ class QuestionManager: ObservableObject {
     
     func incrementQuestionIndex() {
         isIncrement = true
-        withAnimation(.easeInOut(duration: 0.5)) {
+        withAnimation(.easeInOut(duration: self.isMemoryMode ? 0.5 : 2 * (AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()))) {
             if questionIndex < questionAmount()  {
                 questionIndex = questionIndex + 1
             }
@@ -93,11 +94,22 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func verifyAnswer() -> Bool {
+    func verifyAnswer(){
         if let selectedQuestion = selectedQuestion {
-            return selectedQuestion.checkAnswer(choices: self.userAnswer)
-        } else {
-            return false
+            self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
+            UserDataManager().updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
+            if selectedQuestion.checkAnswer(choices: self.userAnswer) {
+                self.incrementQuestionIndex()
+            }
+            print("\(isAnswerRight)")
+            withAnimation {
+                self.playAnswerVerifyAnimation.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()) {
+                    withAnimation {
+                        self.playAnswerVerifyAnimation.toggle()
+                    }
+                }
+            }
         }
     }
     
@@ -124,6 +136,10 @@ class QuestionManager: ObservableObject {
     }
     
     func updateQuestionList(questionIds: Set<Int>) {
-        self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
+            print("Updated: \(questionIds)")
+            self.questionIndex = 1
+        }
     }
 }
