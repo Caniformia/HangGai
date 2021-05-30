@@ -85,7 +85,7 @@ public struct QuestionLoader {
                                     questionText: questionText,
                                     options: [optionA, optionB, optionC, optionD],
                                     answer: Set(answer.compactMap{ $0 }),
-                                    imgNameWithExtension: imgName)
+                                    rawImgName: imgName)
             questions.append(question)
         }
         

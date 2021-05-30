@@ -20,10 +20,10 @@ struct Question: CustomStringConvertible {
     let questionText: String
     let options: [String]
     let answer: Set<Int>
-    let imgNameWithExtension: String
+    let rawImgName: String
     
     var imgName: String {
-        String(imgNameWithExtension.dropLast(4))
+        String(rawImgName.dropLast(4))
     }
     
     public var description: String {
@@ -33,7 +33,7 @@ struct Question: CustomStringConvertible {
             question: \(questionText)
             choices: \(options)
             answer: \(answer)
-            imgName: \(imgNameWithExtension)
+            imgName: \(rawImgName)
             answer: \(answer)
             """
     }

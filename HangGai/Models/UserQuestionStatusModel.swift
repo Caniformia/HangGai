@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserQuestionStatus: CustomStringConvertible {
+struct UserQuestionStatus: CustomStringConvertible & Codable {
     var comment: String
     var lastChoices: Set<Int>
     var incorrectCount: Int
