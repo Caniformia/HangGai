@@ -26,6 +26,8 @@ struct DataStorage {
         if !standard.bool(forKey: self.initializedKey) {
             saveSet(key: self.favoritesKey, set: Set())
             saveSet(key: self.incorrectsKey, set: Set())
+            saveSet(key: lastVisitedQuestionIdKey, set: Set())
+            saveLastVisitedQuestionId(questionId: 0)
             saveQuestionStatus(questionStatusDict: Dictionary(uniqueKeysWithValues: QuestionIdRange.map { ($0, UserQuestionStatus()) }))
             
             standard.set(true, forKey: self.initializedKey)
