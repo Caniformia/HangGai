@@ -103,7 +103,9 @@ class QuestionManager: ObservableObject {
     func verifyAnswer(){
         if let selectedQuestion = selectedQuestion {
             self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
+            withAnimation {
             userDataManager.updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
+            }
             if selectedQuestion.checkAnswer(choices: self.userAnswer) {
                 self.incrementQuestionIndex()
             }
@@ -154,6 +156,27 @@ class QuestionManager: ObservableObject {
                 self.isDisplayingAnswer = false
             }
         }
+    }
+    
+    func updateQuestionList(identifier: String) {
+        if identifier != self.questionSetIdentifier {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                let questionIds: Set<Int> = (identifier == "Favorites") ?
+                    userDataManager.getFavorites() : ((identifier == "Incorrects") ?
+                                                        userDataManager.getIncorrects() : Set(globalQuestions.map{$0.id}))
+                self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
+                self.questionSetIdentifier = identifier
+                self.questionIndex = 1
+                self.isMemoryMode = false
+                self.isDisplayingAnswer = false
+            }
+        }
+    }
+    
+    func getQuestionListCount(identifier: String) -> Int {
+        return (identifier == "Favorites") ?
+            userDataManager.favorites.count : ((identifier == "Incorrects") ?
+                                                        userDataManager.incorrects.count : globalQuestions.count)
     }
     
     func restoreQuestionList() {

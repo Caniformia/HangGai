@@ -33,7 +33,7 @@ struct SettingModal: View {
                 Text("收藏").font(.custom("FZSSJW--GB1-0", size: 30))
                 Spacer()
                 LargeButton(title: "切换至收藏题单", disabled: userDataManager.favorites.isEmpty, backgroundColor: Color.white, foregroundColor: Color.black, fontSize: 20, action: {
-                    questionManager.updateQuestionList(questionIds: userDataManager.getFavorites(), identifier: "Favorite")
+                    questionManager.updateQuestionList(questionIds: userDataManager.getFavorites(), identifier: "Favorites")
                     self.showSettingModal = false
                 })
             }.padding(.leading, 20)
