@@ -27,7 +27,7 @@ struct DataStorage {
             saveSet(key: self.favoritesKey, set: Set())
             saveSet(key: self.incorrectsKey, set: Set())
             saveSet(key: lastVisitedQuestionIdKey, set: Set())
-            saveLastVisitedQuestionId(questionId: 0)
+            saveLastVisitedQuestionId(questionId: 1)
             saveQuestionStatus(questionStatusDict: Dictionary(uniqueKeysWithValues: QuestionIdRange.map { ($0, UserQuestionStatus()) }))
             
             standard.set(true, forKey: self.initializedKey)
