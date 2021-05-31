@@ -23,6 +23,9 @@ class QuestionManager: ObservableObject {
     @Published var questionIndex: Int {
         willSet {
             self.userAnswer.removeAll()
+            if questionSetIdentifier == "Meta" {
+                userDataManager.updateLastVisitedQuestionId(questionId: newValue)
+            }
         }
     }
     
@@ -131,7 +134,6 @@ class QuestionManager: ObservableObject {
     
     func toggleMemoryMode() {
         self.isMemoryMode.toggle()
-        print("toggled memory mode, now is \(userAnswer).")
     }
     
     func toggleUserAnswer(answerTagID: Int) {
@@ -158,7 +160,7 @@ class QuestionManager: ObservableObject {
         withAnimation(.easeInOut(duration: 0.5)) {
             self.questions = self.globalQuestions
             self.questionSetIdentifier = "Meta"
-            self.questionIndex = 1
+            self.questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
             self.isMemoryMode = false
             self.isDisplayingAnswer = false
         }
@@ -166,5 +168,6 @@ class QuestionManager: ObservableObject {
     
     func bindUserDataManager(userDataManager: UserDataManager) {
         self.userDataManager = userDataManager
+        self.questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
     }
 }

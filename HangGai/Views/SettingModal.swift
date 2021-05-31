@@ -18,12 +18,9 @@ struct SettingModal: View {
         VStack(alignment: .center){
             HStack {
                 Spacer()
-                Button(action: {
-                    self.showSettingModal = false
-                }, label: {
-                    Image(systemName: "xmark.circle.fill").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black).padding()
+                RoundedRectangle(cornerRadius: 4.0).frame(width: showSettingModal ? 30.0 : 10.0 ,height: 5.0).padding(.top, 10).opacity(0.2)
+                Spacer()
+                
             }
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0) {

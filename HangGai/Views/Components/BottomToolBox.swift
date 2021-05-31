@@ -39,14 +39,16 @@ struct BottomToolBox: View {
             .id("\(noticeManager.noticeIndex)")
             .transition(.expandVertically)
             /*
-            LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
-                questionManager.updateQuestionList(questionIds: userDataManager.getIncorrects())
-            }
- */
+             LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
+             questionManager.updateQuestionList(questionIds: userDataManager.getIncorrects())
+             }
+             */
             .padding([.top, .bottom], 10)
             Divider().frame(height: 20)
             Button(action: {
-                self.showSettingModal = true
+                withAnimation {
+                    self.showSettingModal = true
+                }
             }, label: {
                 Image(systemName: "line.horizontal.3.circle.fill").resizable()
                     .frame(width: 24.0, height: 24.0)
