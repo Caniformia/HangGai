@@ -32,6 +32,9 @@
 		3FC085232663D1EF008780A8 /* BigCorrectMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085222663D1EF008780A8 /* BigCorrectMark.swift */; };
 		3FC085252663D467008780A8 /* ColorSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085242663D467008780A8 /* ColorSettingManager.swift */; };
 		3FC085282663EE81008780A8 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 3FC085272663EE81008780A8 /* MarqueeText */; };
+		3FC0852A2663F887008780A8 /* NoticeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085292663F887008780A8 /* NoticeManager.swift */; };
+		3FC0852C2663F938008780A8 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0852B2663F938008780A8 /* NoticeModel.swift */; };
+		3FC0852E266402E3008780A8 /* SettingModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0852D266402E3008780A8 /* SettingModal.swift */; };
 		3FCDFFB5266152ED0047B961 /* CustomModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCDFFB4266152ED0047B961 /* CustomModifier.swift */; };
 		3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B617264FCB94008167E1 /* QuestionModule.swift */; };
 		3FE0B61A264FCEB2008167E1 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B619264FCEB2008167E1 /* QuestionManager.swift */; };
@@ -65,6 +68,9 @@
 		3FC085202663C42B008780A8 /* AnimationSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettingManager.swift; sourceTree = "<group>"; };
 		3FC085222663D1EF008780A8 /* BigCorrectMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCorrectMark.swift; sourceTree = "<group>"; };
 		3FC085242663D467008780A8 /* ColorSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingManager.swift; sourceTree = "<group>"; };
+		3FC085292663F887008780A8 /* NoticeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeManager.swift; sourceTree = "<group>"; };
+		3FC0852B2663F938008780A8 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
+		3FC0852D266402E3008780A8 /* SettingModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModal.swift; sourceTree = "<group>"; };
 		3FCDFFB4266152ED0047B961 /* CustomModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifier.swift; sourceTree = "<group>"; };
 		3FE0B617264FCB94008167E1 /* QuestionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModule.swift; sourceTree = "<group>"; };
 		3FE0B619264FCEB2008167E1 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 			children = (
 				32DDE6DB264D644000A251EB /* QuestionModel.swift */,
 				32DDE6DC264D644000A251EB /* UserQuestionStatusModel.swift */,
+				3FC0852B2663F938008780A8 /* NoticeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -122,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				32DDE6F0264D646D00A251EB /* InfoModal.swift */,
+				3FC0852D266402E3008780A8 /* SettingModal.swift */,
 				32DDE6EA264D646D00A251EB /* MainView.swift */,
 				32DDE6EE264D646D00A251EB /* Components */,
 			);
@@ -203,6 +211,7 @@
 				3FE0B61C264FD416008167E1 /* UserDataManager.swift */,
 				3FC085202663C42B008780A8 /* AnimationSettingManager.swift */,
 				3FC085242663D467008780A8 /* ColorSettingManager.swift */,
+				3FC085292663F887008780A8 /* NoticeManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 				3F6572E2264FED06004F4650 /* BoldText.swift in Sources */,
 				32DDE6DE264D644000A251EB /* UserQuestionStatusModel.swift in Sources */,
 				3F641589264C4CF8002950CF /* HangGaiApp.swift in Sources */,
+				3FC0852A2663F887008780A8 /* NoticeManager.swift in Sources */,
 				3220527F266031AC0078A9D5 /* DataStorage.swift in Sources */,
 				32DDE6DD264D644000A251EB /* QuestionModel.swift in Sources */,
 				3F6572E0264FE131004F4650 /* QuestionNavigationModule.swift in Sources */,
@@ -299,10 +309,12 @@
 				3FE0B618264FCB94008167E1 /* QuestionModule.swift in Sources */,
 				3FC0851F2663A9A7008780A8 /* ProgressBarQuestionChapter.swift in Sources */,
 				3FC0851D2663A417008780A8 /* CustomProgressBar.swift in Sources */,
+				3FC0852C2663F938008780A8 /* NoticeModel.swift in Sources */,
 				3FC085232663D1EF008780A8 /* BigCorrectMark.swift in Sources */,
 				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
 				3FC085212663C42B008780A8 /* AnimationSettingManager.swift in Sources */,
 				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
+				3FC0852E266402E3008780A8 /* SettingModal.swift in Sources */,
 				3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */,
 				3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */,
 				3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */,

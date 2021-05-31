@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import MarqueeText
 
 struct BottomToolBox: View {
-    @ObservedObject var userDataManager: UserDataManager
-    @ObservedObject var questionManager: QuestionManager
-    @State var showInfoModal: Bool
+    @EnvironmentObject var userDataManager: UserDataManager
+    @EnvironmentObject var questionManager: QuestionManager
+    @EnvironmentObject var noticeManager: NoticeManager
+    
+    @State var showSettingModal: Bool
     var body: some View {
         HStack(alignment: .center){
             Button(action: {
@@ -22,24 +25,37 @@ struct BottomToolBox: View {
             Button(action: {
                 self.questionManager.toggleMemoryMode()
             }, label: {
-                Image(systemName: self.questionManager.getIsMemoryMode() ? "book.circle.fill" : "book.circle").resizable()
+                Image(systemName: (self.questionManager.getIsMemoryMode() && !self.questionManager.isDisplayingAnswer) ? "book.circle.fill" : "book.circle").resizable()
                     .frame(width: 24.0, height: 24.0)
             }).foregroundColor(.black)
             Divider().frame(height: 20)
+            MarqueeText(
+                text: self.noticeManager.selectedNotice.toString(),
+                font: UIFont(name: "FZSSJW--GB1-0", size: 15) ?? UIFont.preferredFont(forTextStyle: .subheadline),
+                leftFade: 4,
+                rightFade: 24,
+                startDelay: 2
+            )
+            .id("\(noticeManager.noticeIndex)")
+            .transition(.expandVertically)
+            /*
             LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
                 questionManager.updateQuestionList(questionIds: userDataManager.getIncorrects())
             }
+ */
             .padding([.top, .bottom], 10)
             Divider().frame(height: 20)
             Button(action: {
-                self.showInfoModal = true
+                self.showSettingModal = true
             }, label: {
-                Image(systemName: "info.circle.fill").resizable()
+                Image(systemName: "line.horizontal.3.circle.fill").resizable()
                     .frame(width: 24.0, height: 24.0)
             }).foregroundColor(.black)
-            .sheet(isPresented: self.$showInfoModal) {
-                InfoModal(showInfoModal: $showInfoModal)
+            .sheet(isPresented: self.$showSettingModal) {
+                SettingModal(showSettingModal: $showSettingModal)
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .padding(.bottom, 5)
     }
 }

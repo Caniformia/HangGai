@@ -12,6 +12,9 @@ class UserDataManager: ObservableObject {
     @Published var incorrects: Set<Int>
     @Published var visitedQuestions: Set<Int>
     
+    @Published var isFavoritesEmpty: Bool
+    @Published var isIncorrectsEmpty: Bool
+    
     private var questionStatus: [Int:UserQuestionStatus]
     
     init() {
@@ -20,6 +23,8 @@ class UserDataManager: ObservableObject {
         self.incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         self.questionStatus = DataStorage.getQuestionStatus()
         self.visitedQuestions = DataStorage.getSet(key: DataStorage.visitedQuestions)
+        self.isFavoritesEmpty = DataStorage.getSet(key: DataStorage.favoritesKey).isEmpty
+        self.isIncorrectsEmpty = DataStorage.getSet(key: DataStorage.incorrectsKey).isEmpty
     }
     
     // TODO
@@ -58,6 +63,8 @@ class UserDataManager: ObservableObject {
         }
         print(incorrects)
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
+        incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
+        isIncorrectsEmpty = incorrects.isEmpty
     }
     
     func toggleIncorrects(questionId: Int) {

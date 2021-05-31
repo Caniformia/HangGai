@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct QuestionNavigationModule: View {
-    @ObservedObject var questionManager: QuestionManager
+    @EnvironmentObject var questionManager: QuestionManager
     @State private var showChapterPopover: Bool = false
     @State private var jumpToQuestionID: String = ""
     
     private var nowQuestionIndex: String {
         return "\(questionManager.questionIndex)" + "/" + "\(questionManager.questionAmount())"
-    }
-    
-    init(questionManager: QuestionManager) {
-        self.questionManager = questionManager
     }
     
     var body: some View {
@@ -87,6 +83,6 @@ struct QuestionNavigationModule: View {
 
 struct QuestionNavigationModule_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionNavigationModule(questionManager: QuestionManager())
+        QuestionNavigationModule()
     }
 }
