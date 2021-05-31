@@ -142,4 +142,8 @@ class QuestionManager: ObservableObject {
             self.questionIndex = 1
         }
     }
+    
+    func getChapterQuestions(chapterId: Int) -> Set<Int> {
+        return Set(globalQuestions.filter{ $0.chapter == chapterId }.map { $0.id })
+    }
 }
