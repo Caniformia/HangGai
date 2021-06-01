@@ -48,8 +48,8 @@ struct QuestionModule: View {
                     .transition(questionManager.isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
                     .id("\(selectedQuestion.id).\(questionManager.questionAmount())")
                 }
-                .blur(radius: questionManager.playAnswerVerifyAnimation ? 10.0 : 0.0)
-                .opacity(questionManager.playAnswerVerifyAnimation ? 0.2 : 1.0)
+                .blur(radius: questionManager.playAnswerVerifyAnimation ? 1.0 : 0.0)
+                .opacity(questionManager.playAnswerVerifyAnimation ? 0.05 : 1.0)
                 
                 if questionManager.playAnswerVerifyAnimation {
                     BigCorrectMark(correct: questionManager.isAnswerRight).transition(.opacity)

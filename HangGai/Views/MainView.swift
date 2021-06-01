@@ -28,11 +28,11 @@ struct MainView: View {
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 //ScrollView (.vertical, showsIndicators: false) {
-                        QuestionModule()
-                        .padding(.top,20)
-                //}
-                //.scrollOnlyOnOverflow()
-                .padding(.horizontal)
+                QuestionModule()
+                    .padding(.top,20)
+                    //}
+                    //.scrollOnlyOnOverflow()
+                    .padding(.horizontal)
                 
             }
             Spacer()

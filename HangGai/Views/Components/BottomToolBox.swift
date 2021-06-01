@@ -23,7 +23,7 @@ struct BottomToolBox: View {
                     self.userDataManager.toggleFavorite(questionId: questionManager.questionIndex)
                     }
                 }, label: {
-                    Image(systemName: self.userDataManager.favorites.contains(questionManager.questionIndex) ? "bookmark.circle.fill" : "bookmark.circle").resizable()
+                    Image(systemName: self.userDataManager.favorites.contains(questionManager.selectedQuestion?.id ?? 0) ? "bookmark.circle.fill" : "bookmark.circle").resizable()
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Button(action: {
@@ -33,6 +33,7 @@ struct BottomToolBox: View {
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Divider().frame(height: 20)
+                /*
                 MarqueeText(
                     text: self.noticeManager.selectedNotice.toString(),
                     font: UIFont(name: "FZSSJW--GB1-0", size: 15) ?? UIFont.preferredFont(forTextStyle: .subheadline),
@@ -42,19 +43,18 @@ struct BottomToolBox: View {
                 )
                 .id("\(noticeManager.noticeIndex)")
                 .transition(.expandVertically)
-                /*
+ */
+ 
                  LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
-                 questionManager.updateQuestionList(questionIds: userDataManager.getIncorrects())
                  }
-                 */
-                .padding([.top, .bottom], 10)
+                //.padding([.top, .bottom], 10)
                 Divider().frame(height: 20)
                 Button(action: {
                     withAnimation {
                         self.showSettingModal.toggle()
                     }
                 }, label: {
-                    Image(systemName: "line.horizontal.3.circle.fill").resizable()
+                    Image(systemName: showSettingModal ?  "line.horizontal.3.circle.fill" : "line.horizontal.3.circle").resizable()
                         .frame(width: 24.0, height: 24.0)
                 })
                 .foregroundColor(.black)

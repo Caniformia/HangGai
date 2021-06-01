@@ -34,7 +34,7 @@ struct QuestionNavigationModule: View {
  */
                     }
                     .padding(.bottom, 4)
-                    CustomProgressBar(value: Double(questionManager.questionIndex)/Double(questionManager.questionAmount())).frame(height: 15)
+                    CustomProgressBar(value: Double(questionManager.questionIndex)/Double(questionManager.questionAmount())).frame(height: 10)
                 }
             }
             
