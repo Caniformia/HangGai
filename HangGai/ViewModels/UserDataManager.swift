@@ -61,7 +61,6 @@ class UserDataManager: ObservableObject {
         } else if !isCorrect && !incorrects.contains(questionId) {
             incorrects.insert(questionId)
         }
-        print(incorrects)
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
         incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         isIncorrectsEmpty = incorrects.isEmpty

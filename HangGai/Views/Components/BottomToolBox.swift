@@ -20,7 +20,7 @@ struct BottomToolBox: View {
             HStack(alignment: .center) {
                 Button(action: {
                     withAnimation {
-                    self.userDataManager.toggleFavorite(questionId: questionManager.questionIndex)
+                        self.userDataManager.toggleFavorite(questionId: questionManager.selectedQuestion?.id ?? 0)
                     }
                 }, label: {
                     Image(systemName: self.userDataManager.favorites.contains(questionManager.selectedQuestion?.id ?? 0) ? "bookmark.circle.fill" : "bookmark.circle").resizable()
