@@ -144,7 +144,14 @@ class UserDataManager: ObservableObject {
     
     func addVisitedQuestions(questionId: Int) {
         visitedQuestions.insert(questionId)
-    
         DataStorage.saveSet(key: DataStorage.visitedQuestions, set: visitedQuestions)
+    }
+    
+    func isInitialized() -> Bool {
+        return DataStorage.getInitialize()
+    }
+    
+    func setInitialized() {
+        DataStorage.saveInitialize()
     }
 }
