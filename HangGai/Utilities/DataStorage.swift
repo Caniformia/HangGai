@@ -30,7 +30,6 @@ struct DataStorage {
             saveLastVisitedQuestionId(questionId: 1)
             saveQuestionStatus(questionStatusDict: Dictionary(uniqueKeysWithValues: QuestionIdRange.map { ($0, UserQuestionStatus()) }))
             
-            standard.set(true, forKey: self.initializedKey)
             standard.synchronize()
             
             print("Initialize User Data successfully")
@@ -108,5 +107,14 @@ struct DataStorage {
     
     static func saveLastVisitedQuestionId(questionId: Int) {
         standard.setValue(questionId, forKey: lastVisitedQuestionIdKey)
+    }
+    
+    static func saveInitialize() {
+        standard.set(true, forKey: self.initializedKey)
+        standard.synchronize()
+    }
+    
+    static func getInitialize() -> Bool {
+        return standard.bool(forKey: self.initializedKey)
     }
 }
