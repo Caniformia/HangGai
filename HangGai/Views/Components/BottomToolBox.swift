@@ -46,6 +46,17 @@ struct BottomToolBox: View {
  */
  
                  LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
+                    withAnimation {
+                        if questionManager.getIsMemoryMode() {
+                            questionManager.incrementQuestionIndex()
+                            if questionManager.isDisplayingAnswer {
+                                questionManager.toggleMemoryMode()
+                                questionManager.isDisplayingAnswer.toggle()
+                            }
+                        } else {
+                            questionManager.verifyAnswer()
+                        }
+                    }
                  }
                 //.padding([.top, .bottom], 10)
                 Divider().frame(height: 20)

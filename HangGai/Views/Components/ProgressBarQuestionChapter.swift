@@ -19,8 +19,8 @@ struct ProgressBarQuestionChapter: View {
     }
     
     var body: some View {
-        HStack(alignment: .bottom) {
-            Text(self.chapterNumber).font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
+        HStack(alignment: .bottom, spacing: 0) {
+            Text(self.chapterNumber + "  ").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
                 .opacity(0.6)
             Text(self.chapterName[questionChapterID]).font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
         }.transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))

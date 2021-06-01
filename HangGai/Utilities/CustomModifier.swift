@@ -20,13 +20,13 @@ struct OverflowScrollView<Content>: View where Content : View {
         self.showsIndicator = showsIndicators
         self.content = content()
     }
-
+    
     fileprivate init(scrollView: ScrollView<Content>) {
         self._axes = .init(wrappedValue: scrollView.axes)
         self.showsIndicator = scrollView.showsIndicators
         self.content = scrollView.content
     }
-
+    
     public var body: some View {
         GeometryReader { geometry in
             ScrollView(axes, showsIndicators: showsIndicator) {
@@ -70,5 +70,16 @@ extension ScrollView {
     
     public func scrollOnlyOnOverflow() -> some View {
         OverflowScrollView(scrollView: self)
+    }
+}
+
+extension View {
+    func ifTrueThenModify(_ condition:Bool, apply:(AnyView) -> (AnyView)) -> AnyView {
+        if condition {
+            return apply(AnyView(self))
+        }
+        else {
+            return AnyView(self)
+        }
     }
 }

@@ -11,6 +11,10 @@ struct QuestionNavigationModule: View {
     @EnvironmentObject var questionManager: QuestionManager
     @State private var showChapterPopover: Bool = false
     @State private var jumpToQuestionID: String = ""
+    @State private var showChapterList: Bool = true
+    
+    private var intToCharacter: [String] = ["零","一","二","三","四","五","六","七","八","九"]
+    private var chapterName: [String] = ["","航空航天发展概况","飞行器飞行原理","飞行器动力装置","飞行器机载设备及飞行控制","飞行器构造","附录"]
     
     private var nowQuestionIndex: String {
         return "\(questionManager.questionIndex)" + "/" + "\(questionManager.questionAmount())"
@@ -18,14 +22,53 @@ struct QuestionNavigationModule: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+           if showChapterPopover {
+               VStack(alignment: .leading) {
+                   //QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
+                   TextField("请输入想跳转的题号", text: $jumpToQuestionID)
+                       .keyboardType(.numberPad)
+                       .padding()
+                       .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 3.5))
+                       .modifier(JumpQuestionButton(text: $jumpToQuestionID, questionManager: questionManager))
+               }.animation(.easeInOut)
+               .transition(.expandVertically)
+               .padding(.bottom, 5)
+           }
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
-                        ProgressBarQuestionChapter(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
+                        /*
+                        Button(action: {
+                            showChapterList.toggle()
+                        }, label: {
+ */
+                            ProgressBarQuestionChapter(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
+                                .transition(.opacity)
+                                .contextMenu(ContextMenu(menuItems: {
+                                    ForEach(1 ..< 7) { number in
+                                        Button(action: {
+                                            withAnimation(.easeInOut(duration: 2.0)) {
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                            questionManager.setQuestionIndex(toSetQuestionIndex: questionManager.getChapterQuestions(chapterId: number).min() ?? 1)
+                                                    }
+                                                }
+                                        }, label: {
+                                            Text("第\(intToCharacter[number])章  \(chapterName[number])").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
+                                        })}
+                                })
+                                )
+                            
+                        //})
                         Spacer()
-                        Text("\(questionManager.questionIndex)").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black).kerning(4.0)
-                            .opacity(0.8)
-                        Text("/" + "\(questionManager.questionAmount())").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black).kerning(4.0)
+                        Button(action: {
+                            withAnimation {
+                            self.showChapterPopover.toggle()
+                            }
+                        }, label: {
+                            Text("\(questionManager.questionIndex)").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black).kerning(4.0)
+                                .opacity(0.8)
+                            Text("/" + "\(questionManager.questionAmount())").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black).kerning(4.0)
+                        })
                         /*
                         Text("顺序模式")
                             .font(.system(size: 10, weight: .bold, design: .rounded))
@@ -65,18 +108,6 @@ struct QuestionNavigationModule: View {
              }).foregroundColor(.black)
              }
              */
-            if showChapterPopover {
-                VStack(alignment: .leading) {
-                    QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
-                    TextField("请输入想跳转的题号", text: $jumpToQuestionID)
-                        .keyboardType(.numberPad)
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 3.5))
-                        .modifier(JumpQuestionButton(text: $jumpToQuestionID, questionManager: questionManager))
-                }.animation(.easeInOut)
-                .transition(.expandVertically)
-                .padding(.top)
-            }
         }
     }
 }

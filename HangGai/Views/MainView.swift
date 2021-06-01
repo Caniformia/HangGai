@@ -16,6 +16,7 @@ struct MainView: View {
     
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
+    @State var isInitialized = true
     
     @EnvironmentObject var userDataManager: UserDataManager
     @EnvironmentObject var questionManager: QuestionManager
@@ -28,11 +29,18 @@ struct MainView: View {
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 //ScrollView (.vertical, showsIndicators: false) {
-                QuestionModule()
-                    .padding(.top,20)
-                    //}
-                    //.scrollOnlyOnOverflow()
-                    .padding(.horizontal)
+                ZStack {
+                    QuestionModule()
+                        .padding(.top,20)
+                        //}
+                        //.scrollOnlyOnOverflow()
+                        .padding(.horizontal)
+                        .blur(radius: isInitialized ? 0.0 : 20.0)
+                        .ifTrueThenModify(!isInitialized) {
+                            AnyView($0.overlay(IntroductionOverlay(isInitialized: $isInitialized).padding(.vertical).opacity(isInitialized ? 0 : 1.0).blur(radius: isInitialized ? 50.0 : 0))
+                            )
+                        }
+                }
                 
             }
             Spacer()
@@ -65,6 +73,7 @@ struct MainView: View {
                     }
         ).onAppear() {
             questionManager.bindUserDataManager(userDataManager: userDataManager)
+            self.isInitialized = userDataManager.isInitialized()
         }
     }
 }
