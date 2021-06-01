@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarqueeText
 
 struct BottomToolBox: View {
     @EnvironmentObject var userDataManager: UserDataManager
