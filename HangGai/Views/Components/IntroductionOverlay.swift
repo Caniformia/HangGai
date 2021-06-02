@@ -22,6 +22,7 @@ struct IntroductionOverlay: View {
     var body: some View {
         if nowView == 0 {
             VStack(alignment: .leading, spacing: 0){
+                
                 Spacer()
                 HStack {
                     Spacer()
@@ -52,6 +53,7 @@ struct IntroductionOverlay: View {
                     （听上去长得很帅的声音）
                     """).padding(.horizontal,40).font(.custom("FZSSJW--GB1-0", size: 13.0))
                     .padding(.top, 10)
+                
                 
                 Spacer()
                 
@@ -314,9 +316,7 @@ struct IntroductionOverlay: View {
                         最后，
                         长按上方章节名，
                         可以快速切换至
-                        所选题单对应章节的
-                        第一题。
-                        
+                        所选题单对应章节的第一题。
                         点击题号的话，
                         则可以输入题号跳题。
                         """)
