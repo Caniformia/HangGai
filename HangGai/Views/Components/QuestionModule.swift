@@ -11,6 +11,15 @@ import SwiftUI
 struct QuestionModule: View {
     @EnvironmentObject var questionManager: QuestionManager
     
+    @State var startPos : CGPoint = .zero
+    @State var isSwipping = true
+    
+    @Binding var isInitialized: Bool
+    
+    init(isInitialized: Binding<Bool>) {
+        self._isInitialized = isInitialized
+    }
+    
     var body: some View {
         if let selectedQuestion = self.questionManager.selectedQuestion {
             ZStack {
@@ -55,6 +64,35 @@ struct QuestionModule: View {
                     BigCorrectMark(correct: questionManager.isAnswerRight).transition(.opacity)
                 }
             }
+            .gesture(DragGesture()
+                        .onChanged { gesture in
+                            if self.isSwipping {
+                                self.startPos = gesture.location
+                                self.isSwipping.toggle()
+                            }
+                        }
+                        .onEnded { gesture in
+                            let xDist =  abs(gesture.location.x - self.startPos.x)
+                            let yDist =  abs(gesture.location.y - self.startPos.y)
+                            if isInitialized {
+                                if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
+                                    if questionManager.getIsMemoryMode() {
+                                        questionManager.incrementQuestionIndex()
+                                        if questionManager.isDisplayingAnswer {
+                                            questionManager.toggleMemoryMode()
+                                            questionManager.isDisplayingAnswer.toggle()
+                                        }
+                                    } else {
+                                        questionManager.swipedScreenRight()
+                                    }
+                                }
+                                else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {
+                                    questionManager.decrementQuestionIndex()
+                                }
+                            }
+                            self.isSwipping.toggle()
+                        }
+            )
             .animation(Animation.easeInOut(duration: AnimationSettingManager().getVerifyAnswerDuration()).delay(AnimationSettingManager().getVerifyAnswerDelay()), value: questionManager.playAnswerVerifyAnimation)
         } else {
             Text("No Question.")
@@ -65,6 +103,6 @@ struct QuestionModule: View {
 
 struct QuestionModule_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionModule()
+        QuestionModule(isInitialized: .constant(true))
     }
 }

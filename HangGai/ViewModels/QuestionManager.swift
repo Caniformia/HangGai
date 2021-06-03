@@ -26,6 +26,10 @@ class QuestionManager: ObservableObject {
             if questionSetIdentifier == "Meta" {
                 userDataManager.updateLastVisitedQuestionId(questionId: newValue)
             }
+            if isDisplayingAnswer && isMemoryMode {
+                isDisplayingAnswer = false
+                isMemoryMode = false
+            }
         }
     }
     
@@ -100,14 +104,24 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func verifyAnswer(){
+    func swipedScreenRight() {
+        if self.userAnswer.isEmpty {
+            self.incrementQuestionIndex()
+        } else {
+            self.verifyAnswer(withSwitchQuestion: true)
+        }
+    }
+    
+    func verifyAnswer(withSwitchQuestion: Bool) {
         if let selectedQuestion = selectedQuestion {
             self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
             withAnimation {
-            userDataManager.updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
+                userDataManager.updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
             }
-            if selectedQuestion.checkAnswer(choices: self.userAnswer) {
-                self.incrementQuestionIndex()
+            if withSwitchQuestion {
+                if selectedQuestion.checkAnswer(choices: self.userAnswer) {
+                    self.incrementQuestionIndex()
+                }
             }
             print("\(isAnswerRight)")
             withAnimation {
@@ -115,7 +129,7 @@ class QuestionManager: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()) {
                     withAnimation {
                         self.playAnswerVerifyAnimation.toggle()
-                        if !self.isAnswerRight {
+                        if !withSwitchQuestion || !self.isAnswerRight { // Display answer when only verifying userAnswers or userAnswer incorrect.
                             self.isMemoryMode.toggle()
                             self.isDisplayingAnswer.toggle()
                         }
@@ -166,7 +180,7 @@ class QuestionManager: ObservableObject {
                                                         userDataManager.getIncorrects() : Set(globalQuestions.map{$0.id}))
                 self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
                 self.questionSetIdentifier = identifier
-                self.questionIndex = 1
+                self.questionIndex = (identifier == "Meta") ? userDataManager.getLastVisitedQuestionId() : 1
                 self.isMemoryMode = false
                 self.isDisplayingAnswer = false
             }
@@ -176,7 +190,7 @@ class QuestionManager: ObservableObject {
     func getQuestionListCount(identifier: String) -> Int {
         return (identifier == "Favorites") ?
             userDataManager.favorites.count : ((identifier == "Incorrects") ?
-                                                        userDataManager.incorrects.count : globalQuestions.count)
+                                                userDataManager.incorrects.count : globalQuestions.count)
     }
     
     func restoreQuestionList() {
@@ -193,7 +207,7 @@ class QuestionManager: ObservableObject {
         self.userDataManager = userDataManager
         self.questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
     }
-
+    
     func getChapterQuestions(chapterId: Int) -> Set<Int> {
         return Set(globalQuestions.filter{ $0.chapter == chapterId }.map { $0.id })
     }

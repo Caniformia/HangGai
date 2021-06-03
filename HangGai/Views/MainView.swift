@@ -14,8 +14,6 @@ struct MainView: View {
     
     @State var showSettingModal = false
     
-    @State var startPos : CGPoint = .zero
-    @State var isSwipping = true
     @State var isInitialized = true
     
     @EnvironmentObject var userDataManager: UserDataManager
@@ -30,7 +28,7 @@ struct MainView: View {
             HStack(alignment: .center) {
                 //ScrollView (.vertical, showsIndicators: false) {
                 ZStack {
-                    QuestionModule()
+                    QuestionModule(isInitialized: $isInitialized)
                         .padding(.top,20)
                         //}
                         //.scrollOnlyOnOverflow()
@@ -44,34 +42,9 @@ struct MainView: View {
                 
             }
             Spacer()
-            BottomToolBox(showSettingModal: showSettingModal)
-        }.gesture(DragGesture()
-                    .onChanged { gesture in
-                        if self.isSwipping {
-                            self.startPos = gesture.location
-                            self.isSwipping.toggle()
-                        }
-                    }
-                    .onEnded { gesture in
-                        let xDist =  abs(gesture.location.x - self.startPos.x)
-                        let yDist =  abs(gesture.location.y - self.startPos.y)
-                        if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
-                            if questionManager.getIsMemoryMode() {
-                                questionManager.incrementQuestionIndex()
-                                if questionManager.isDisplayingAnswer {
-                                    questionManager.toggleMemoryMode()
-                                    questionManager.isDisplayingAnswer.toggle()
-                                }
-                            } else {
-                                questionManager.verifyAnswer()
-                            }
-                        }
-                        else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {
-                            questionManager.decrementQuestionIndex()
-                        }
-                        self.isSwipping.toggle()
-                    }
-        ).onAppear() {
+            BottomToolBox(isInitialized: $isInitialized)
+        }
+        .onAppear() {
             questionManager.bindUserDataManager(userDataManager: userDataManager)
             self.isInitialized = userDataManager.isInitialized()
         }

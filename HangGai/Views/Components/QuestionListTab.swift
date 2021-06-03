@@ -57,6 +57,7 @@ struct QuestionListTab: View {
     @EnvironmentObject var userDaraManager: UserDataManager
     var body: some View {
         VStack {
+            ScrollView(.horizontal, showsIndicators: false){
             HStack(alignment: .top, spacing: 0) {
                 ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
                     HStack(alignment: .top, spacing:0) {
@@ -118,11 +119,12 @@ struct QuestionListTab: View {
                 }
                 Spacer()
             }
-            .offset(x: 0, y: showQuestionListTab ? 0 : 200.0)
+        }
             HStack {
                 Spacer()
                 Text("@Taki & Roife, 2021").italic().padding().font(.footnote)
             }
         }
+        .offset(x: 0, y: showQuestionListTab ? 0 : 200.0)
     }
 }

@@ -12,7 +12,13 @@ struct BottomToolBox: View {
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
     
-    @State var showSettingModal: Bool
+    @State var showSettingModal: Bool = false
+    
+    @Binding var isInitialized: Bool
+    
+    init(isInitialized: Binding<Bool>) {
+        self._isInitialized = isInitialized
+    }
     
     var body: some View {
         VStack {
@@ -45,7 +51,7 @@ struct BottomToolBox: View {
  */
  
                  LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
-                    withAnimation {
+                    if isInitialized {
                         if questionManager.getIsMemoryMode() {
                             questionManager.incrementQuestionIndex()
                             if questionManager.isDisplayingAnswer {
@@ -53,7 +59,7 @@ struct BottomToolBox: View {
                                 questionManager.isDisplayingAnswer.toggle()
                             }
                         } else {
-                            questionManager.verifyAnswer()
+                            questionManager.verifyAnswer(withSwitchQuestion: false)
                         }
                     }
                  }
