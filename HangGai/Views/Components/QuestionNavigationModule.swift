@@ -9,15 +9,20 @@ import SwiftUI
 
 struct QuestionNavigationModule: View {
     @EnvironmentObject var questionManager: QuestionManager
-    @State private var showChapterPopover: Bool = false
     @State private var jumpToQuestionID: String = ""
     @State private var showChapterList: Bool = true
+    
+    @Binding var showChapterPopover: Bool
     
     private var intToCharacter: [String] = ["零","一","二","三","四","五","六","七","八","九"]
     private var chapterName: [String] = ["","航空航天发展概况","飞行器飞行原理","飞行器动力装置","飞行器机载设备及飞行控制","飞行器构造","附录"]
     
     private var nowQuestionIndex: String {
         return "\(questionManager.questionIndex)" + "/" + "\(questionManager.questionAmount())"
+    }
+    
+    init(showChapterPopover: Binding<Bool>) {
+        self._showChapterPopover = showChapterPopover
     }
     
     var body: some View {
@@ -114,6 +119,6 @@ struct QuestionNavigationModule: View {
 
 struct QuestionNavigationModule_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionNavigationModule()
+        QuestionNavigationModule(showChapterPopover: .constant(true))
     }
 }

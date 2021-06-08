@@ -97,7 +97,7 @@ class UserDataManager: ObservableObject {
     
     func getQuestionChoices(questionId: Int) -> Set<Int>? {
         guard questionStatus[questionId] != nil else {
-            print("Update question choices failed: question ID \(questionId) not found")
+            print("Get question choices failed: question ID \(questionId) not found")
             return nil
         }
         

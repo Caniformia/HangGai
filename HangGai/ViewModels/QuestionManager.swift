@@ -10,7 +10,11 @@ import SwiftUI
 
 class QuestionManager: ObservableObject {
     private let globalQuestions: [Question] // All questions
-    private var questions: [Question] // current questions
+    private var questions: [Question] {
+        willSet {
+            answeredQuestions.removeAll()
+        }
+    }
     private var questionSetIdentifier: String = "Meta"
     @ObservedObject var userDataManager: UserDataManager = UserDataManager()
     
@@ -19,6 +23,8 @@ class QuestionManager: ObservableObject {
     @Published var playAnswerVerifyAnimation: Bool = false
     @Published var isAnswerRight: Bool = false
     @Published var isDisplayingAnswer = false
+    
+    @Published var answeredQuestions: Set<Int> = []
     
     @Published var questionIndex: Int {
         willSet {
@@ -116,6 +122,8 @@ class QuestionManager: ObservableObject {
         if let selectedQuestion = selectedQuestion {
             self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
             withAnimation {
+                answeredQuestions.insert(selectedQuestion.id)
+                userDataManager.updateQuestionChoices(questionId: selectedQuestion.id, choices: userAnswer, isCorrect: isAnswerRight)
                 userDataManager.updateIncorrects(questionId: selectedQuestion.id, isCorrect: selectedQuestion.checkAnswer(choices: self.userAnswer))
             }
             if withSwitchQuestion {
@@ -175,10 +183,10 @@ class QuestionManager: ObservableObject {
     func updateQuestionList(identifier: String) {
         if identifier != self.questionSetIdentifier {
             withAnimation(.easeInOut(duration: 0.5)) {
-                let questionIds: Set<Int> = (identifier == "Favorites") ?
-                    userDataManager.getFavorites() : ((identifier == "Incorrects") ?
-                                                        userDataManager.getIncorrects() : Set(globalQuestions.map{$0.id}))
-                self.questions = self.globalQuestions.filter{ questionIds.contains($0.id) }
+                let questionIds: Set<Int> = (identifier == "Favorites") ? userDataManager.getFavorites()
+                    : ((identifier == "Incorrects") ? userDataManager.getIncorrects()
+                        : Set(globalQuestions.map{$0.id}))
+                self.questions = (identifier == "Random") ? (self.globalQuestions.filter{ questionIds.contains($0.id) }.shuffled()) : (self.globalQuestions.filter{ questionIds.contains($0.id) })
                 self.questionSetIdentifier = identifier
                 self.questionIndex = (identifier == "Meta") ? userDataManager.getLastVisitedQuestionId() : 1
                 self.isMemoryMode = false
@@ -193,6 +201,7 @@ class QuestionManager: ObservableObject {
                                                 userDataManager.incorrects.count : globalQuestions.count)
     }
     
+    /*
     func restoreQuestionList() {
         withAnimation(.easeInOut(duration: 0.5)) {
             self.questions = self.globalQuestions
@@ -202,6 +211,7 @@ class QuestionManager: ObservableObject {
             self.isDisplayingAnswer = false
         }
     }
+    */
     
     func bindUserDataManager(userDataManager: UserDataManager) {
         self.userDataManager = userDataManager
@@ -210,5 +220,9 @@ class QuestionManager: ObservableObject {
     
     func getChapterQuestions(chapterId: Int) -> Set<Int> {
         return Set(globalQuestions.filter{ $0.chapter == chapterId }.map { $0.id })
+    }
+    
+    func isQuestionAnswered(questionId: Int) -> Bool {
+        return answeredQuestions.contains(questionId)
     }
 }

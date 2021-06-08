@@ -10,6 +10,7 @@ import SwiftUI
 
 struct QuestionModule: View {
     @EnvironmentObject var questionManager: QuestionManager
+    @EnvironmentObject var userDataManager: UserDataManager
     
     @State var startPos : CGPoint = .zero
     @State var isSwipping = true
@@ -45,7 +46,7 @@ struct QuestionModule: View {
                         HStack(alignment: .bottom) {
                             VStack(alignment: .center) {
                                 ForEach(selectedQuestion.options.indices) { optionIndex in
-                                    AnswerButton(backgroundColor: Color.white, foregroundColor: Color.black, fontSize: 15, answerTagID: optionIndex, questionManager: questionManager)
+                                    AnswerButton(backgroundColor: Color.white, foregroundColor: Color.black, fontSize: 15, answerTagID: optionIndex, questionManager: questionManager, isAnswered: self.questionManager.isQuestionAnswered(questionId: selectedQuestion.id), hasBeenSelected: self.userDataManager.getQuestionChoices(questionId: selectedQuestion.id)?.contains(optionIndex) ?? false)
                                         .padding([.top, .bottom], 5)
                                         .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                                 }

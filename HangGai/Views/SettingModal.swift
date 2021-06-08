@@ -16,6 +16,7 @@ struct SettingModal: View {
     
     var body: some View {
         VStack(alignment: .center){
+            /*
             HStack {
                 Spacer()
                 RoundedRectangle(cornerRadius: 4.0).frame(width: showSettingModal ? 30.0 : 10.0 ,height: 5.0).padding(.top, 10).opacity(0.2)
@@ -45,6 +46,7 @@ struct SettingModal: View {
                 questionManager.restoreQuestionList()
                 self.showSettingModal = false
             })
+            */
             Spacer()
         }
     }

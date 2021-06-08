@@ -91,12 +91,14 @@ struct AnswerButton: View {
     private var isMemoryMode: Bool
     private let title: String
     @ObservedObject var questionManager: QuestionManager
+    private var isAnswered: Bool
+    private var hasBeenSelected: Bool
     
     var displayBackgroundColor: Color {
-        return (isMemoryMode && isAnswer) ? foregroundColor : ((isMemoryMode && !isAnswer) ? backgroundColor : (optionSelected ? foregroundColor : backgroundColor))
+        return isAnswered ? (isAnswer ? foregroundColor : backgroundColor) : ((isMemoryMode && isAnswer) ? foregroundColor : ((isMemoryMode && !isAnswer) ? backgroundColor : (optionSelected ? foregroundColor : backgroundColor)))
     }
     var displayForegroundColor: Color {
-        return (isMemoryMode && isAnswer) ? backgroundColor : ((isMemoryMode && !isAnswer) ? foregroundColor : (optionSelected ? backgroundColor : foregroundColor))
+        return isAnswered ? (isAnswer ? backgroundColor : foregroundColor) : ((isMemoryMode && isAnswer) ? backgroundColor : ((isMemoryMode && !isAnswer) ? foregroundColor : (optionSelected ? backgroundColor : foregroundColor)))
     }
     
     var answerTag: String {
@@ -111,12 +113,16 @@ struct AnswerButton: View {
          foregroundColor: Color = Color.white,
          fontSize: CGFloat = 15,
          answerTagID: Int = 0,
-            questionManager: QuestionManager) {
+         questionManager: QuestionManager,
+         isAnswered: Bool,
+         hasBeenSelected: Bool
+            ) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.fontSize = fontSize
         self.answerTagID = answerTagID
         self.questionManager = questionManager
+        self.isAnswered = isAnswered
         
         if let selectedQuestion = questionManager.selectedQuestion { // Avoid being updated because of the observer for /* selectedQuestion */
             self.isAnswer = selectedQuestion.answer.contains(answerTagID)
@@ -127,6 +133,7 @@ struct AnswerButton: View {
         }
         self.isMemoryMode = questionManager.getIsMemoryMode()
         self.optionSelected = questionManager.getUserAnswer().contains(answerTagID)
+        self.hasBeenSelected = hasBeenSelected
     }
     
     var body: some View {
@@ -139,9 +146,26 @@ struct AnswerButton: View {
             }) {
                 HStack(alignment: .center){
                     Text(self.answerTag).padding(.leading).font(Font.custom("FZSSJW--GB1-0", size: 20))
+                    if (!isAnswered || isAnswer) {
                     BoldText(text: self.title,width: 1,color: displayForegroundColor,size:15,kerning: 0).padding(.horizontal)
+                    } else {
+                        Text(self.title).font(Font.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(displayForegroundColor).padding(.horizontal)
+                    }
                     //Text(self.title).padding(.horizontal)
                     Spacer()
+                    if isAnswered {
+                        if isAnswer {
+                            Image(systemName: "checkmark.circle.fill").resizable()
+                                .frame(width: 24.0, height: 24.0).padding(.trailing)
+                        } else {
+                            if hasBeenSelected && !isAnswer{
+                                Image(systemName: "xmark.circle").resizable()
+                                    .frame(width: 24.0, height: 24.0).padding(.trailing)
+                            } else {
+                                Spacer().frame(width: 24.0, height: 24.0).padding(.trailing)
+                            }
+                        }
+                    }
                 }
             }
             .buttonStyle(LargeButtonStyle(backgroundColor: displayBackgroundColor,
@@ -149,6 +173,7 @@ struct AnswerButton: View {
                                           isDisabled: false,
                                           fontSize: fontSize,
                                           cornerRadius: 15))
+            .opacity(isAnswered ? ( isAnswer ? 1.0 : (hasBeenSelected ? 0.9 : 0.1)) : 1.0)
         }
         .frame(maxWidth:.infinity)
     }

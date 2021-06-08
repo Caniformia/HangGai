@@ -13,6 +13,7 @@ struct MainView: View {
     }
     
     @State var showSettingModal = false
+    @State var showChapterPopover = false
     
     @State var isInitialized = true
     
@@ -23,7 +24,7 @@ struct MainView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                QuestionNavigationModule()
+                QuestionNavigationModule(showChapterPopover: $showChapterPopover)
             }.padding(.horizontal).padding(.top, 10)
             HStack(alignment: .center) {
                 //ScrollView (.vertical, showsIndicators: false) {
@@ -35,14 +36,21 @@ struct MainView: View {
                         .padding(.horizontal)
                         .blur(radius: isInitialized ? 0.0 : 20.0)
                         .ifTrueThenModify(!isInitialized) {
-                            AnyView($0.overlay(IntroductionOverlay(isInitialized: $isInitialized).padding(.vertical).opacity(isInitialized ? 0 : 1.0).blur(radius: isInitialized ? 50.0 : 0))
-                            )
+                            AnyView($0.overlay(IntroductionOverlay(isInitialized: $isInitialized).padding(.vertical).opacity(isInitialized ? 0 : 1.0).blur(radius: isInitialized ? 50.0 : 0)))
+                        }
+                        .ifTrueThenModify(isInitialized){
+                            AnyView($0.onTapGesture {
+                                withAnimation {
+                                    showChapterPopover = false
+                                    showSettingModal = false
+                                }
+                            })
                         }
                 }
                 
             }
             Spacer()
-            BottomToolBox(isInitialized: $isInitialized)
+            BottomToolBox(isInitialized: $isInitialized, showSettingModal: $showSettingModal)
         }
         .onAppear() {
             questionManager.bindUserDataManager(userDataManager: userDataManager)

@@ -12,12 +12,12 @@ struct BottomToolBox: View {
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
     
-    @State var showSettingModal: Bool = false
-    
+    @Binding var showSettingModal: Bool
     @Binding var isInitialized: Bool
     
-    init(isInitialized: Binding<Bool>) {
+    init(isInitialized: Binding<Bool>, showSettingModal: Binding<Bool>) {
         self._isInitialized = isInitialized
+        self._showSettingModal = showSettingModal
     }
     
     var body: some View {
@@ -32,25 +32,27 @@ struct BottomToolBox: View {
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Button(action: {
-                    self.questionManager.toggleMemoryMode()
+                    if !self.questionManager.isDisplayingAnswer && !self.questionManager.isQuestionAnswered(questionId: self.questionManager.selectedQuestion?.id ?? 0){
+                        self.questionManager.toggleMemoryMode()
+                    }
                 }, label: {
                     Image(systemName: (self.questionManager.getIsMemoryMode() && !self.questionManager.isDisplayingAnswer) ? "book.circle.fill" : "book.circle").resizable()
                         .frame(width: 24.0, height: 24.0)
                 }).foregroundColor(.black)
                 Divider().frame(height: 20)
                 /*
-                MarqueeText(
-                    text: self.noticeManager.selectedNotice.toString(),
-                    font: UIFont(name: "FZSSJW--GB1-0", size: 15) ?? UIFont.preferredFont(forTextStyle: .subheadline),
-                    leftFade: 4,
-                    rightFade: 24,
-                    startDelay: 2
-                )
-                .id("\(noticeManager.noticeIndex)")
-                .transition(.expandVertically)
- */
- 
-                 LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
+                 MarqueeText(
+                 text: self.noticeManager.selectedNotice.toString(),
+                 font: UIFont(name: "FZSSJW--GB1-0", size: 15) ?? UIFont.preferredFont(forTextStyle: .subheadline),
+                 leftFade: 4,
+                 rightFade: 24,
+                 startDelay: 2
+                 )
+                 .id("\(noticeManager.noticeIndex)")
+                 .transition(.expandVertically)
+                 */
+                
+                LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
                     if isInitialized {
                         if questionManager.getIsMemoryMode() {
                             questionManager.incrementQuestionIndex()
@@ -62,7 +64,7 @@ struct BottomToolBox: View {
                             questionManager.verifyAnswer(withSwitchQuestion: false)
                         }
                     }
-                 }
+                }
                 //.padding([.top, .bottom], 10)
                 Divider().frame(height: 20)
                 Button(action: {
