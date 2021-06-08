@@ -42,7 +42,7 @@ struct QuestionListTab: View {
          （大概？）
          """
         ),
-        (4,
+        (3,
          "随机刷题",
          "Random",
          """
