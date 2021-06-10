@@ -120,6 +120,12 @@ class QuestionManager: ObservableObject {
     
     func verifyAnswer(withSwitchQuestion: Bool) {
         if let selectedQuestion = selectedQuestion {
+            if answeredQuestions.contains(selectedQuestion.id) {
+                withAnimation {
+                    self.incrementQuestionIndex()
+                }
+                return
+            }
             self.isAnswerRight = selectedQuestion.checkAnswer(choices: self.userAnswer)
             withAnimation {
                 answeredQuestions.insert(selectedQuestion.id)

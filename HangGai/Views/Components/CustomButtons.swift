@@ -170,10 +170,10 @@ struct AnswerButton: View {
             }
             .buttonStyle(LargeButtonStyle(backgroundColor: displayBackgroundColor,
                                           foregroundColor: displayForegroundColor,
-                                          isDisabled: false,
+                                          isDisabled: isAnswered && !hasBeenSelected && !isAnswer,
                                           fontSize: fontSize,
                                           cornerRadius: 15))
-            .opacity(isAnswered ? ( isAnswer ? 1.0 : (hasBeenSelected ? 0.9 : 0.1)) : 1.0)
+            .opacity(isAnswered ? ( isAnswer ? 1.0 : (hasBeenSelected ? 0.9 : 0.2)) : 1.0)
         }
         .frame(maxWidth:.infinity)
     }
