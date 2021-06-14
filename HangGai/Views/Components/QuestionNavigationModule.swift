@@ -58,7 +58,8 @@ struct QuestionNavigationModule: View {
                                         Button(action: {
                                             withAnimation(.easeInOut(duration: 2.0)) {
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                                    questionManager.setQuestionIndex(toSetQuestionIndex: questionManager.getChapterQuestions(chapterId: number).min() ?? 1)
+                                                    questionManager.setQuestionIndex(toSetQuestionIndex:
+                                                                                        questionManager.getIndexByQuestionId(questionId: questionManager.getChapterQuestions(chapterId: number).min() ?? 0))
                                                 }
                                             }
                                         }, label: {

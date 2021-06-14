@@ -17,15 +17,15 @@ class QuestionManager: ObservableObject {
     }
     private var questionSetIdentifier: String = "Meta"
     @ObservedObject var userDataManager: UserDataManager = UserDataManager()
-
+    
     @Published var isMemoryMode = false
     @Published var userAnswer: Set<Int> = []
     @Published var playAnswerVerifyAnimation: Bool = false
     @Published var isAnswerRight: Bool = false
     @Published var isDisplayingAnswer = false
-
+    
     @Published var answeredQuestions: Set<Int> = []
-
+    
     @Published var questionIndex: Int {
         willSet {
             userAnswer.removeAll()
@@ -38,9 +38,9 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     @Published var isIncrement: Bool
-
+    
     var selectedQuestion: Question? {
         if (questionIndex <= 0 || questionIndex > questionAmount()) {
             return nil
@@ -48,7 +48,7 @@ class QuestionManager: ObservableObject {
             return questions[questionIndex - 1]
         }
     }
-
+    
     init() {
         if let questions = QuestionLoader.loadQuestions() {
             globalQuestions = questions
@@ -61,11 +61,11 @@ class QuestionManager: ObservableObject {
         }
         isIncrement = true
     }
-
+    
     func questionAmount() -> Int {
         questions.count;
     }
-
+    
     func questionChapter() -> Int {
         withAnimation(.easeInOut(duration: 0.5)) {
             if let selectedQuestion = selectedQuestion {
@@ -75,23 +75,23 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func getSelectedQuestion() -> Question? {
         selectedQuestion
     }
-
+    
     func getIsMemoryMode() -> Bool {
         isMemoryMode
     }
-
+    
     func getIsIncrement() -> Bool {
         isIncrement
     }
-
+    
     func getUserAnswer() -> Set<Int> {
         userAnswer
     }
-
+    
     func incrementQuestionIndex() {
         isIncrement = true
         withAnimation(.easeInOut(duration: isMemoryMode ? 0.5 : 2 * (AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()))) {
@@ -100,7 +100,7 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func decrementQuestionIndex() {
         isIncrement = false
         withAnimation(.easeInOut(duration: 0.5)) {
@@ -109,7 +109,7 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func swipedScreenRight() {
         if userAnswer.isEmpty {
             incrementQuestionIndex()
@@ -117,7 +117,7 @@ class QuestionManager: ObservableObject {
             verifyAnswer(withSwitchQuestion: true)
         }
     }
-
+    
     func verifyAnswer(withSwitchQuestion: Bool) {
         if let selectedQuestion = selectedQuestion {
             if answeredQuestions.contains(selectedQuestion.id) {
@@ -152,7 +152,7 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func setQuestionIndex(toSetQuestionIndex: Int) {
         isIncrement = toSetQuestionIndex > questionIndex
         withAnimation(.easeInOut(duration: 0.5)) {
@@ -161,11 +161,11 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func toggleMemoryMode() {
         isMemoryMode.toggle()
     }
-
+    
     func toggleUserAnswer(answerTagID: Int) {
         if userAnswer.contains(answerTagID) {
             userAnswer.remove(answerTagID)
@@ -173,7 +173,7 @@ class QuestionManager: ObservableObject {
             userAnswer.insert(answerTagID)
         }
     }
-
+    
     func updateQuestionList(questionIds: Set<Int>, identifier: String) {
         if identifier != questionSetIdentifier {
             withAnimation(.easeInOut(duration: 0.5)) {
@@ -187,15 +187,15 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func updateQuestionList(identifier: String) {
         if identifier != questionSetIdentifier {
             withAnimation(.easeInOut(duration: 0.5)) {
                 let questionIds: Set<Int> = (identifier == "Favorites") ? userDataManager.getFavorites()
-                        : ((identifier == "Incorrects") ? userDataManager.getIncorrects()
+                    : ((identifier == "Incorrects") ? userDataManager.getIncorrects()
                         : Set(globalQuestions.map {
-                    $0.id
-                }))
+                            $0.id
+                        }))
                 self.questions = (identifier == "Random") ? (self.globalQuestions.filter {
                     questionIds.contains($0.id)
                 }.shuffled()) : (self.globalQuestions.filter {
@@ -208,38 +208,49 @@ class QuestionManager: ObservableObject {
             }
         }
     }
-
+    
     func getQuestionListCount(identifier: String) -> Int {
         (identifier == "Favorites") ?
-                userDataManager.favorites.count : ((identifier == "Incorrects") ?
-                userDataManager.incorrects.count : globalQuestions.count)
+            userDataManager.favorites.count : ((identifier == "Incorrects") ?
+                                                userDataManager.incorrects.count : globalQuestions.count)
     }
-
+    
     /*
-    func restoreQuestionList() {
-        withAnimation(.easeInOut(duration: 0.5)) {
-            self.questions = self.globalQuestions
-            self.questionSetIdentifier = "Meta"
-            self.questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
-            self.isMemoryMode = false
-            self.isDisplayingAnswer = false
-        }
-    }
-    */
-
+     func restoreQuestionList() {
+     withAnimation(.easeInOut(duration: 0.5)) {
+     self.questions = self.globalQuestions
+     self.questionSetIdentifier = "Meta"
+     self.questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
+     self.isMemoryMode = false
+     self.isDisplayingAnswer = false
+     }
+     }
+     */
+    
     func bindUserDataManager(userDataManager: UserDataManager) {
         self.userDataManager = userDataManager
         questionIndex = (userDataManager.getLastVisitedQuestionId() == 0) ? 1 : userDataManager.getLastVisitedQuestionId()
     }
-
+    
     func getChapterQuestions(chapterId: Int) -> Set<Int> {
-        Set(globalQuestions.filter {
+        Set(questions.filter {
             $0.chapter == chapterId
         }.map {
             $0.id
         })
     }
-
+    
+    func getIndexByQuestionId(questionId: Int) -> Int {
+        if questionId == 0 {
+            return (questions.firstIndex(where: { (e) -> Bool in
+                return e.id == selectedQuestion?.id
+            }) ?? 0) + 1
+        }
+        return ((questions.firstIndex(where: { (e) -> Bool in
+            return e.id == questionId
+        }) ?? 0) + 1 )
+    }
+    
     func isQuestionAnswered(questionId: Int) -> Bool {
         answeredQuestions.contains(questionId)
     }
