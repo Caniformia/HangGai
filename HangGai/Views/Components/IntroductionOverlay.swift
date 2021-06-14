@@ -95,8 +95,8 @@ struct IntroductionOverlay: View {
                         VStack(alignment: .leading, spacing: 0) {
                             Text("而且如果").font(.title2)
                             ZStack {
-                                BoldText(text: "从屏幕右边向左滑", font: .title2, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0).offset(x: 160).opacity(0.1)
-                                BoldText(text: "从屏幕右边向左滑", font: .title2, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0).offset(x: 80).opacity(0.5)
+                                BoldText(text: "从屏幕右边向左滑", font: .title2, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0).offset(x: 160).opacity(0.01)
+                                BoldText(text: "从屏幕右边向左滑", font: .title2, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0).offset(x: 80).opacity(0.05)
                                 BoldText(text: "从屏幕右边向左滑", font: .title2, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0)
                             }
                             Text("的话,").font(.title2)
