@@ -11,49 +11,49 @@ class UserDataManager: ObservableObject {
     @Published var favorites: Set<Int>
     @Published var incorrects: Set<Int>
     @Published var visitedQuestions: Set<Int>
-    
+
     @Published var isFavoritesEmpty: Bool
     @Published var isIncorrectsEmpty: Bool
-    
-    private var questionStatus: [Int:UserQuestionStatus]
-    
+
+    private var questionStatus: [Int: UserQuestionStatus]
+
     init() {
         DataStorage.initialize()
-        self.favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
-        self.incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
-        self.questionStatus = DataStorage.getQuestionStatus()
-        self.visitedQuestions = DataStorage.getSet(key: DataStorage.visitedQuestions)
-        self.isFavoritesEmpty = DataStorage.getSet(key: DataStorage.favoritesKey).isEmpty
-        self.isIncorrectsEmpty = DataStorage.getSet(key: DataStorage.incorrectsKey).isEmpty
+        favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
+        incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
+        questionStatus = DataStorage.getQuestionStatus()
+        visitedQuestions = DataStorage.getSet(key: DataStorage.visitedQuestions)
+        isFavoritesEmpty = DataStorage.getSet(key: DataStorage.favoritesKey).isEmpty
+        isIncorrectsEmpty = DataStorage.getSet(key: DataStorage.incorrectsKey).isEmpty
     }
-    
+
     // TODO
     func getFavorites() -> Set<Int> {
         favorites = DataStorage.getSet(key: DataStorage.favoritesKey)
         return favorites
     }
-    
+
     // TODO
     func getIncorrects() -> Set<Int> {
         incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         return incorrects
     }
-    
+
     func getVisitedQuestions() -> Set<Int> {
         visitedQuestions = DataStorage.getSet(key: DataStorage.lastVisitedQuestionIdKey)
         return visitedQuestions
     }
-    
+
     func toggleFavorite(questionId: Int) {
         if favorites.contains(questionId) {
             favorites.remove(questionId)
         } else {
             favorites.insert(questionId)
         }
-    
+
         DataStorage.saveSet(key: DataStorage.favoritesKey, set: favorites)
     }
-    
+
     // TODO
     func updateIncorrects(questionId: Int, isCorrect: Bool) {
         if isCorrect && incorrects.contains(questionId) {
@@ -65,7 +65,7 @@ class UserDataManager: ObservableObject {
         incorrects = DataStorage.getSet(key: DataStorage.incorrectsKey)
         isIncorrectsEmpty = incorrects.isEmpty
     }
-    
+
     func toggleIncorrects(questionId: Int) {
         if incorrects.contains(questionId) {
             incorrects.remove(questionId)
@@ -74,82 +74,86 @@ class UserDataManager: ObservableObject {
         }
         DataStorage.saveSet(key: DataStorage.incorrectsKey, set: incorrects)
     }
-    
+
     func getQuestionComment(questionId: Int) -> String? {
         guard questionStatus[questionId] != nil else {
             print("Get question comment failed: question ID \(questionId) not found")
             return nil
         }
-        
-        return self.questionStatus[questionId]!.comment
+
+        return questionStatus[questionId]!.comment
     }
-    
+
     func updateQuestionComment(questionId: Int, comment: String) {
         guard questionStatus[questionId] != nil else {
             print("Update question comment failed: question ID \(questionId) not found")
             return
         }
-        
-        self.questionStatus[questionId]!.comment = comment
+
+        questionStatus[questionId]!.comment = comment
         DataStorage.saveQuestionStatus(questionId: questionId,
-                                       questionStatus: questionStatus[questionId]!)
+                questionStatus: questionStatus[questionId]!)
     }
-    
+
     func getQuestionChoices(questionId: Int) -> Set<Int>? {
         guard questionStatus[questionId] != nil else {
             print("Get question choices failed: question ID \(questionId) not found")
             return nil
         }
-        
-        return self.questionStatus[questionId]!.lastChoices
+
+        return questionStatus[questionId]!.lastChoices
     }
-    
+
     func updateQuestionChoices(questionId: Int, choices: Set<Int>, isCorrect: Bool) {
         guard questionStatus[questionId] != nil else {
             print("Update question choices failed: question ID \(questionId) not found")
             return
         }
-        
-        self.questionStatus[questionId]!.lastChoices = choices
-        
+
+        questionStatus[questionId]!.lastChoices = choices
+
         if !isCorrect {
-            self.questionStatus[questionId]!.incorrectCount += 1
+            questionStatus[questionId]!.incorrectCount += 1
         }
-        
+
         DataStorage.saveQuestionStatus(questionId: questionId,
-                                       questionStatus: questionStatus[questionId]!)
+                questionStatus: questionStatus[questionId]!)
     }
-    
+
     func getQuestionIncorrectCount(questionId: Int) -> Int? {
         guard questionStatus[questionId] != nil else {
             print("Update question choices failed: question ID \(questionId) not found")
             return nil
         }
-        
-        return self.questionStatus[questionId]!.incorrectCount
+
+        return questionStatus[questionId]!.incorrectCount
     }
-    
+
     func getIncorrectsCountList() -> [(Int, Int)] {
-        questionStatus.map{ ($1.incorrectCount, $0) }.sorted{ $0.0 != $1.0 ? $0.0 > $1.0 : $0.1 < $1.1 }
+        questionStatus.map {
+            ($1.incorrectCount, $0)
+        }.sorted {
+            $0.0 != $1.0 ? $0.0 > $1.0 : $0.1 < $1.1
+        }
     }
-    
+
     func updateLastVisitedQuestionId(questionId: Int) {
         DataStorage.saveLastVisitedQuestionId(questionId: questionId)
     }
-    
+
     func getLastVisitedQuestionId() -> Int {
         DataStorage.getLastVisitedQuestionId()
     }
-    
+
     func addVisitedQuestions(questionId: Int) {
         visitedQuestions.insert(questionId)
         DataStorage.saveSet(key: DataStorage.visitedQuestions, set: visitedQuestions)
     }
-    
+
     func isInitialized() -> Bool {
-        return DataStorage.getInitialize()
+        DataStorage.getInitialize()
     }
-    
+
     func setInitialized() {
         DataStorage.saveInitialize()
     }

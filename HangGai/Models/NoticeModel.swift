@@ -9,12 +9,12 @@ import Foundation
 
 class CustomNotice {
     var rawData: String
-    
+
     init(rawData: String) {
         self.rawData = rawData
     }
-    
+
     func toString() -> String {
-        return self.rawData
+        rawData
     }
 }

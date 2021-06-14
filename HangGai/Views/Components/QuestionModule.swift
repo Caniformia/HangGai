@@ -11,93 +11,101 @@ import SwiftUI
 struct QuestionModule: View {
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var userDataManager: UserDataManager
-    
-    @State var startPos : CGPoint = .zero
-    @State var isSwipping = true
-    
+
+    @State var startPos: CGPoint = .zero
+    @State var isDragging = true
+
     @Binding var isInitialized: Bool
-    
+
+    @Environment(\.colorScheme) var colorScheme
+
     init(isInitialized: Binding<Bool>) {
         self._isInitialized = isInitialized
     }
-    
+
     var body: some View {
-        if let selectedQuestion = self.questionManager.selectedQuestion {
+        if let selectedQuestion = questionManager.selectedQuestion {
             ZStack {
-                ScrollView (.vertical, showsIndicators: false) {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
                         if selectedQuestion.imgName == "" {
                             VStack(alignment: .leading) {
-                                Text(selectedQuestion.questionText).font(.custom("FZSSJW--GB1-0", size: 35)).padding(.top, 10)
-                                    .minimumScaleFactor(0.00001)
-                            }.frame(height: 200, alignment: .top)
-                        }
-                        else {
+                                Text(selectedQuestion.questionText)
+                                        .font(.largeTitle)
+                                        .padding(.top, 10)
+                                        .lineSpacing(6)
+                            }.frame(minHeight: 200, alignment: .top)
+                        } else {
                             VStack(alignment: .leading) {
-                                Text(selectedQuestion.questionText).font(.custom("FZSSJW--GB1-0", size: 35)).padding(.top, 10)
-                                    .minimumScaleFactor(0.00001)
+                                Text(selectedQuestion.questionText)
+                                        .font(.largeTitle)
+                                        .padding(.top, 10)
+                                        .lineSpacing(6)
                                 Image(selectedQuestion.imgName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 0.8)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .border(colorScheme == .dark ? Color.white : .black, width: 1)
                             }.frame(minHeight: 200, alignment: .top)
                         }
                         //Spacer()
                         HStack(alignment: .bottom) {
                             VStack(alignment: .center) {
                                 ForEach(selectedQuestion.options.indices) { optionIndex in
-                                    AnswerButton(backgroundColor: Color.white, foregroundColor: Color.black, fontSize: 15, answerTagID: optionIndex, questionManager: questionManager, isAnswered: self.questionManager.isQuestionAnswered(questionId: selectedQuestion.id), hasBeenSelected: self.userDataManager.getQuestionChoices(questionId: selectedQuestion.id)?.contains(optionIndex) ?? false)
-                                        .padding([.top, .bottom], 5)
-                                        .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                    AnswerButton(backgroundColor: colorScheme == .light ? .white : .black,
+                                            foregroundColor: colorScheme == .dark ? .white : .black,
+                                            font: .title3,
+                                            answerTagID: optionIndex,
+                                            questionManager: questionManager,
+                                            isAnswered: questionManager.isQuestionAnswered(questionId: selectedQuestion.id),
+                                            hasBeenSelected: userDataManager.getQuestionChoices(questionId: selectedQuestion.id)?.contains(optionIndex) ?? false)
+                                            .padding([.top, .bottom], 5)
+                                            .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                                 }
                             }
-                        }.frame(minHeight: 200, idealHeight:250)
-                        .padding(.top, 10)
+                        }.frame(minHeight: 200, idealHeight: 250).padding(.top, 10)
                     }
-                    .padding(.horizontal)
-                    .transition(questionManager.isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
-                    .id("\(selectedQuestion.id).\(questionManager.questionAmount())")
+                            .padding(.horizontal)
+                            .transition(questionManager.isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
+                            .id("\(selectedQuestion.id).\(questionManager.questionAmount())")
                 }
-                .blur(radius: questionManager.playAnswerVerifyAnimation ? 1.0 : 0.0)
-                .opacity(questionManager.playAnswerVerifyAnimation ? 0.05 : 1.0)
-                
+                        .blur(radius: questionManager.playAnswerVerifyAnimation ? 1.0 : 0.0)
+                        .opacity(questionManager.playAnswerVerifyAnimation ? 0.05 : 1.0)
+
                 if questionManager.playAnswerVerifyAnimation {
                     BigCorrectMark(correct: questionManager.isAnswerRight).transition(.opacity)
                 }
             }
-            .gesture(DragGesture()
-                        .onChanged { gesture in
-                            if self.isSwipping {
-                                self.startPos = gesture.location
-                                self.isSwipping.toggle()
+                    .gesture(DragGesture()
+                            .onChanged { gesture in
+                                if isDragging {
+                                    self.startPos = gesture.location
+                                    self.isDragging.toggle()
+                                }
                             }
-                        }
-                        .onEnded { gesture in
-                            let xDist =  abs(gesture.location.x - self.startPos.x)
-                            let yDist =  abs(gesture.location.y - self.startPos.y)
-                            if isInitialized {
-                                if self.startPos.x > gesture.location.x + 20 && yDist < xDist {
-                                    if questionManager.getIsMemoryMode() {
-                                        questionManager.incrementQuestionIndex()
-                                        if questionManager.isDisplayingAnswer {
-                                            questionManager.toggleMemoryMode()
-                                            questionManager.isDisplayingAnswer.toggle()
+                            .onEnded { gesture in
+                                let xDist = abs(gesture.location.x - startPos.x)
+                                let yDist = abs(gesture.location.y - startPos.y)
+                                if isInitialized {
+                                    if startPos.x > gesture.location.x + 20 && yDist < xDist {
+                                        if questionManager.getIsMemoryMode() {
+                                            questionManager.incrementQuestionIndex()
+                                            if questionManager.isDisplayingAnswer {
+                                                questionManager.toggleMemoryMode()
+                                                questionManager.isDisplayingAnswer.toggle()
+                                            }
+                                        } else {
+                                            questionManager.swipedScreenRight()
                                         }
-                                    } else {
-                                        questionManager.swipedScreenRight()
+                                    } else if startPos.x < gesture.location.x - 20 && yDist < xDist {
+                                        questionManager.decrementQuestionIndex()
                                     }
                                 }
-                                else if self.startPos.x < gesture.location.x - 20 && yDist < xDist {
-                                    questionManager.decrementQuestionIndex()
-                                }
+                                self.isDragging.toggle()
                             }
-                            self.isSwipping.toggle()
-                        }
-            )
-            .animation(Animation.easeInOut(duration: AnimationSettingManager().getVerifyAnswerDuration()).delay(AnimationSettingManager().getVerifyAnswerDelay()), value: questionManager.playAnswerVerifyAnimation)
+                    )
+                    .animation(Animation.easeInOut(duration: AnimationSettingManager().getVerifyAnswerDuration()).delay(AnimationSettingManager().getVerifyAnswerDelay()), value: questionManager.playAnswerVerifyAnimation)
         } else {
             Text("No Question.")
-            
         }
     }
 }

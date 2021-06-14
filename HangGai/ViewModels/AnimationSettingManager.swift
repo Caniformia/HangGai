@@ -10,11 +10,11 @@ import Foundation
 class AnimationSettingManager {
     private var verifyAnswerDuration: Double = 0.30
     private var verifyAnswerDelay: Double = 0.00
-    
+
     func getVerifyAnswerDuration() -> Double {
         return self.verifyAnswerDuration
     }
-    
+
     func getVerifyAnswerDelay() -> Double {
         return self.verifyAnswerDelay
     }

@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SettingModal: View {
-    
+
     @EnvironmentObject var userDataManager: UserDataManager
     @EnvironmentObject var questionManager: QuestionManager
-    
+
     @Binding var showSettingModal: Bool
-    
+
     var body: some View {
-        VStack(alignment: .center){
+        VStack(alignment: .center) {
             /*
             HStack {
                 Spacer()

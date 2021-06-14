@@ -11,34 +11,42 @@ struct BottomToolBox: View {
     @EnvironmentObject var userDataManager: UserDataManager
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
-    
+
     @Binding var showSettingModal: Bool
     @Binding var isInitialized: Bool
-    
+
+    @Environment(\.colorScheme) var colorScheme
+
+    let smallConfiguration = UIImage.SymbolConfiguration(scale: .small)
+
     init(isInitialized: Binding<Bool>, showSettingModal: Binding<Bool>) {
         self._isInitialized = isInitialized
         self._showSettingModal = showSettingModal
     }
-    
+
     var body: some View {
         VStack {
             HStack(alignment: .center) {
                 Button(action: {
                     withAnimation {
-                        self.userDataManager.toggleFavorite(questionId: questionManager.selectedQuestion?.id ?? 0)
+                        userDataManager.toggleFavorite(questionId: questionManager.selectedQuestion?.id ?? 0)
                     }
                 }, label: {
-                    Image(systemName: self.userDataManager.favorites.contains(questionManager.selectedQuestion?.id ?? 0) ? "bookmark.circle.fill" : "bookmark.circle").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black)
+                    Image(systemName: userDataManager.favorites.contains(questionManager.selectedQuestion?.id ?? 0) ? "bookmark.circle.fill" : "bookmark.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .font(.system(size: 24, weight: .thin))
+                }).foregroundColor(colorScheme == .dark ? .white : .black)
                 Button(action: {
-                    if !self.questionManager.isDisplayingAnswer && !self.questionManager.isQuestionAnswered(questionId: self.questionManager.selectedQuestion?.id ?? 0){
-                        self.questionManager.toggleMemoryMode()
+                    if !questionManager.isDisplayingAnswer && !questionManager.isQuestionAnswered(questionId: questionManager.selectedQuestion?.id ?? 0) {
+                        questionManager.toggleMemoryMode()
                     }
                 }, label: {
-                    Image(systemName: (self.questionManager.getIsMemoryMode() && !self.questionManager.isDisplayingAnswer) ? "book.circle.fill" : "book.circle").resizable()
-                        .frame(width: 24.0, height: 24.0)
-                }).foregroundColor(.black)
+                    Image(systemName: (questionManager.getIsMemoryMode() && !questionManager.isDisplayingAnswer) ? "book.circle.fill" : "book.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .font(.system(size: 24, weight: .thin))
+                }).foregroundColor(colorScheme == .dark ? .white : .black)
                 Divider().frame(height: 20)
                 /*
                  MarqueeText(
@@ -51,8 +59,7 @@ struct BottomToolBox: View {
                  .id("\(noticeManager.noticeIndex)")
                  .transition(.expandVertically)
                  */
-                
-                LargeButton(title: "", backgroundColor: Color.black, foregroundColor: Color.white) {
+                LargeButton(title: "", backgroundColor: colorScheme == .light ? .white : .black, foregroundColor: colorScheme == .dark ? .white : .black) {
                     if isInitialized {
                         if questionManager.getIsMemoryMode() {
                             questionManager.incrementQuestionIndex()
@@ -65,22 +72,29 @@ struct BottomToolBox: View {
                         }
                     }
                 }
-                //.padding([.top, .bottom], 10)
                 Divider().frame(height: 20)
                 Button(action: {
                     withAnimation {
                         self.showSettingModal.toggle()
                     }
                 }, label: {
-                    Image(systemName: showSettingModal ?  "line.horizontal.3.circle.fill" : "line.horizontal.3.circle").resizable()
-                        .frame(width: 24.0, height: 24.0)
+                    Image(systemName: showSettingModal ? "line.horizontal.3.circle.fill" : "line.horizontal.3.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .font(.system(size: 24, weight: .thin))
                 })
-                .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
             }
-            .padding(.horizontal)
+                    .padding(.horizontal)
             QuestionListTab(showQuestionListTab: $showSettingModal)
-                .frame(maxHeight: showSettingModal ? nil : 0)
-                .padding(.horizontal)
+                    .frame(maxHeight: showSettingModal ? nil : 0)
+                    .padding(.horizontal)
         }
+    }
+}
+
+struct BottomToolBox_Previews: PreviewProvider {
+    static var previews: some View {
+        BottomToolBox(isInitialized: .constant(true), showSettingModal: .constant(true))
     }
 }

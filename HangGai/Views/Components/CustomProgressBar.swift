@@ -9,20 +9,23 @@ import SwiftUI
 
 struct CustomProgressBar: View {
     var value: Double
+
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.black)
-                    .frame(width: geometry.size.width , height: geometry.size.height)
-                    .opacity(0.3)
-                    .foregroundColor(Color.white)
-                
+                        .stroke(colorScheme == .dark ? Color.white : .black)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .opacity(0.3)
+                        .foregroundColor(colorScheme == .light ? .white : .black)
                 Rectangle()
-                    .frame(width: min(CGFloat(self.value) * geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(Color.black)
-                    .animation(.linear)
-                    .opacity(0.8)
+                        .frame(width: min(CGFloat(value) * geometry.size.width, geometry.size.width),
+                                height: geometry.size.height)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                        .animation(.linear)
+                        .opacity(0.8)
             }.cornerRadius(8)
         }
     }
@@ -30,20 +33,19 @@ struct CustomProgressBar: View {
 
 struct CircularProgressBar: View {
     var progress: Float
-    
+
     var body: some View {
         ZStack {
             Circle()
-                .stroke(lineWidth: 20.0)
-                .opacity(0.3)
-                .foregroundColor(Color.red)
-            
+                    .stroke(lineWidth: 20.0)
+                    .opacity(0.3)
+                    .foregroundColor(Color.red)
             Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                .foregroundColor(Color.red)
-                .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
+                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(Color.red)
+                    .rotationEffect(Angle(degrees: 270.0))
+                    .animation(.linear)
         }
     }
 }

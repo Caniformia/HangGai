@@ -21,26 +21,26 @@ struct Question: CustomStringConvertible {
     let options: [String]
     let answer: Set<Int>
     let rawImgName: String
-    
+
     var imgName: String {
         String(rawImgName.dropLast(4))
     }
-    
+
     public var description: String {
-        return """
-            id: \(id)
-            chapter: \(chapter)
-            question: \(questionText)
-            choices: \(options)
-            answer: \(answer)
-            imgName: \(rawImgName)
-            answer: \(answer)
-            """
+        """
+        id: \(id)
+        chapter: \(chapter)
+        question: \(questionText)
+        choices: \(options)
+        answer: \(answer)
+        imgName: \(rawImgName)
+        answer: \(answer)
+        """
     }
 }
 
 extension Question {
     func checkAnswer(choices: Set<Int>) -> Bool {
-        return answer == choices
+        answer == choices
     }
 }

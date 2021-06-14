@@ -10,23 +10,30 @@ import SwiftUI
 struct ProgressBarQuestionChapter: View {
     private var questionChapterID: Int
     private var isIncrement: Bool
-    
-    private var intToCharacter: [String] = ["零","一","二","三","四","五","六","七","八","九"]
-    private var chapterName: [String] = ["","航空航天发展概况","飞行器飞行原理","飞行器动力装置","飞行器机载设备及飞行控制","飞行器构造","附录"]
-    
+
+    private var intToCharacter: [String] = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]
+    private var chapterName: [String] = ["", "航空航天发展概况", "飞行器飞行原理", "飞行器动力装置", "飞行器机载设备及飞行控制", "飞行器构造", "附录"]
+
     private var chapterNumber: String {
-        return "第" + intToCharacter[questionChapterID] + "章"
+        "第" + intToCharacter[questionChapterID] + "章"
     }
-    
+
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         HStack(alignment: .bottom, spacing: 0) {
-            Text(self.chapterNumber + "  ").font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
-                .opacity(0.6)
-            Text(self.chapterName[questionChapterID]).font(.custom("FZSSJW--GB1-0", size: 15)).foregroundColor(.black)
-        }.transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
-        .id("\(questionChapterID)")
+            Text(chapterNumber + "  ")
+                    .font(.headline)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .opacity(0.6)
+            Text(chapterName[questionChapterID])
+                    .font(.headline)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+        }
+                .transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
+                .id("\(questionChapterID)")
     }
-    
+
     init(questionChapterID: Int, isIncrement: Bool) {
         self.questionChapterID = questionChapterID
         self.isIncrement = isIncrement

@@ -10,9 +10,9 @@ import SwiftUI
 extension AnyTransition {
     static var moveOutAndIn: AnyTransition {
         let insertion = AnyTransition.move(edge: .trailing)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         let removal = AnyTransition.move(edge: .leading)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         return .asymmetric(insertion: insertion, removal: removal)
     }
 }
@@ -20,9 +20,9 @@ extension AnyTransition {
 extension AnyTransition {
     static var moveInAndOut: AnyTransition {
         let insertion = AnyTransition.move(edge: .leading)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         let removal = AnyTransition.move(edge: .trailing)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         return .asymmetric(insertion: insertion, removal: removal)
     }
 }
@@ -30,9 +30,9 @@ extension AnyTransition {
 extension AnyTransition {
     static var expandVertically: AnyTransition {
         let insertion = AnyTransition.move(edge: .top)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         let removal = AnyTransition.move(edge: .top)
-            .combined(with: .opacity)
+                .combined(with: .opacity)
         return .asymmetric(insertion: insertion, removal: removal)
     }
 }
