@@ -28,8 +28,8 @@ extension Color {
 
 class ColorSetting {
     var bigCorrectMarkColor: [String: Color] = [
-        "correctColor": Color(hex: 0x4CAF50),
-        "incorrectColor": Color(hex: 0xC03331)
+        "correctColor": Color(hex: 0x61f3dd),
+        "incorrectColor": Color(hex: 0xff7473)
     ]
 }
 

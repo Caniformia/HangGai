@@ -33,16 +33,16 @@ struct QuestionNavigationModule: View {
                 VStack(alignment: .leading) {
                     //QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
                     TextField("请输入想跳转的题号", text: $jumpToQuestionID)
-                            .font(.headline)
+                            .font(.navigationNotice)
                             .keyboardType(.numberPad)
-                            //.padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            //.overlay(RoundedRectangle(cornerRadius: 20).stroke(colorScheme == .dark ? Color.white : .black, lineWidth: 1))
+                            .padding()
+                            //.textFieldStyle(RoundedBorderTextFieldStyle())
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(colorScheme == .dark ? Color.white : .black, lineWidth: 1).frame(height: 40.0))
                             .modifier(JumpQuestionButton(text: $jumpToQuestionID, questionManager: questionManager))
                 }
                         .animation(.easeInOut)
                         .transition(.expandVertically)
-                        .padding(.bottom)
+                        .padding(.bottom, 2)
             }
             HStack {
                 VStack(alignment: .leading, spacing: 0) {

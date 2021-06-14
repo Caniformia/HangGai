@@ -48,7 +48,7 @@ struct LargeButton: View {
          disabled: Bool = false,
          backgroundColor: Color = Color.green,
          foregroundColor: Color = Color.white,
-         font: Font = .body,
+         font: Font = .title3,
          action: @escaping () -> Void) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
@@ -104,7 +104,7 @@ struct AnswerButton: View {
 
     init(backgroundColor: Color = Color.green,
          foregroundColor: Color = Color.white,
-         font: Font = .body,
+         font: Font = .title3,
          answerTagID: Int = 0,
          questionManager: QuestionManager,
          isAnswered: Bool,
@@ -138,17 +138,15 @@ struct AnswerButton: View {
                 }
             }) {
                 HStack(alignment: .center) {
-                    Text(answerTag).padding(.leading).font(.title3)
+                    Text(answerTag).padding(.leading).font(.title2)
                     if (!isAnswered || isAnswer) {
                         BoldText(text: title, font: font, color: displayForegroundColor, width: 1, kerning: 0)
-                                .padding(.leading)
-                                .lineSpacing(4)
+                            .padding(.horizontal)
                     } else {
                         Text(title)
                                 .font(font)
                                 .foregroundColor(displayForegroundColor)
-                                .padding(.leading)
-                                .lineSpacing(4)
+                            .padding(.horizontal)
                     }
                     //Text(self.title).padding(.horizontal)
                     Spacer()
@@ -196,9 +194,10 @@ struct JumpQuestionButton: ViewModifier {
                 Image(systemName: "arrowshape.turn.up.right.circle.fill")
                         .resizable()
                         .foregroundColor(colorScheme == .dark ? .white : .black)
-                        .frame(width: 24, height: 24)
+                        .frame(width: 22, height: 22)
             })
-                    .padding(.trailing, 15)
+                    .padding(.trailing, 13)
+            .opacity(0.8)
         }
     }
 }

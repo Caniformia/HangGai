@@ -103,7 +103,7 @@ struct QuestionListTab: View {
                                         VStack(alignment: .leading, spacing: 0) {
                                             ForEach(Array(name), id: \.self) { char in
                                                 BoldText(text: String(char),
-                                                         font: selectedQuestionList == id ? .title1 : .body,
+                                                         font: selectedQuestionList == id ? .selectedQuestionList : .caption1,
                                                          color: colorScheme == .dark ? .white : .black,
                                                          width: 1,
                                                          kerning: 2)
@@ -128,7 +128,7 @@ struct QuestionListTab: View {
                             Text(description)
                                     .opacity(selectedQuestionList == id ? 1 : 0)
                                     .foregroundColor(colorScheme == .dark ? .white : .black)
-                                    .font(.body)
+                                    .font(.headline)
                                     .padding(.horizontal, selectedQuestionList == id ? 7.5 : 0)
                                     .padding(.vertical, selectedQuestionList == id ? 10.5 : 0)
                                     .lineSpacing(2.5)
@@ -136,7 +136,7 @@ struct QuestionListTab: View {
                                             .stroke(colorScheme == .dark ? Color.white : .black)
                                             .foregroundColor(colorScheme == .light ? Color.white : .black)
                                     )
-                                    .frame(maxWidth: selectedQuestionList == id ? nil : 0, maxHeight: 150)
+                                    .frame(maxWidth: selectedQuestionList == id ? nil : 0, maxHeight: 116)
                                     .padding(.leading, selectedQuestionList == id ? 5 : 0)
                                     .padding(.trailing, selectedQuestionList == id ? 15 : 0)
                         }
@@ -148,7 +148,7 @@ struct QuestionListTab: View {
             }
             HStack {
                 Spacer()
-                Text("© Taki & Roife & Kevin, 2021").italic().padding().font(.system(.footnote))
+                Text("© Team Caniformia, 2021").italic().padding().font(.system(.footnote))
             }
         }
                 .offset(x: 0, y: showQuestionListTab ? 0 : 200)

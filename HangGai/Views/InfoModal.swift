@@ -38,13 +38,13 @@ struct InfoModal: View {
 
                  风带走它的身躯,
                  风环抱你的梦。
-                 """).padding(.horizontal, 40).font(.title2)
+                 """).padding(.horizontal, 40).font(.infoModalBody)
 
             Spacer()
 
             HStack {
                 Spacer()
-                Text("@Roife & Taki, 2021").italic().padding().font(.footnote)
+                Text("© Team Caniformia, 2021").italic().padding().font(.footnote)
             }
         }
     }

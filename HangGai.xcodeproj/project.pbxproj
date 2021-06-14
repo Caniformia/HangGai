@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A54F34A9EE74834D86CE155 /* CostomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A54F3CEB48AC5531DE901B1 /* CostomFont.swift */; };
+		1A54F34A9EE74834D86CE155 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A54F3CEB48AC5531DE901B1 /* CustomFont.swift */; };
 		322050F126602E6D0078A9D5 /* questions.db in Resources */ = {isa = PBXBuildFile; fileRef = 3220505A26602E6D0078A9D5 /* questions.db */; };
 		322050F226602E6D0078A9D5 /* FZSSJW.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 3220505C26602E6D0078A9D5 /* FZSSJW.TTF */; };
 		322050F326602E6D0078A9D5 /* SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3220505D26602E6D0078A9D5 /* SmartFontUI.ttf */; };
@@ -44,7 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A54F3CEB48AC5531DE901B1 /* CostomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostomFont.swift; sourceTree = "<group>"; };
+		1A54F3CEB48AC5531DE901B1 /* CustomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		3220505A26602E6D0078A9D5 /* questions.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = questions.db; sourceTree = "<group>"; };
 		3220505C26602E6D0078A9D5 /* FZSSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZSSJW.TTF; sourceTree = "<group>"; };
 		3220505D26602E6D0078A9D5 /* SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmartFontUI.ttf; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				3FC0852D266402E3008780A8 /* SettingModal.swift */,
 				32DDE6EA264D646D00A251EB /* MainView.swift */,
 				32DDE6EE264D646D00A251EB /* Components */,
-				1A54F3CEB48AC5531DE901B1 /* CostomFont.swift */,
+				1A54F3CEB48AC5531DE901B1 /* CustomFont.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 				3F6572E626501241004F4650 /* CustomTransitions.swift in Sources */,
 				3FC085252663D467008780A8 /* ColorSettingManager.swift in Sources */,
 				3FCDFFB5266152ED0047B961 /* CustomModifier.swift in Sources */,
-				1A54F34A9EE74834D86CE155 /* CostomFont.swift in Sources */,
+				1A54F34A9EE74834D86CE155 /* CustomFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HangGai/Preview Content\"";
-				DEVELOPMENT_TEAM = XT7VW5BNZ5;
+				DEVELOPMENT_TEAM = ZMTNTXNK98;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HangGai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -473,7 +473,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.buaa.tsq-kevin";
+				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -488,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HangGai/Preview Content\"";
-				DEVELOPMENT_TEAM = XT7VW5BNZ5;
+				DEVELOPMENT_TEAM = ZMTNTXNK98;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HangGai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -497,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.buaa.tsq-kevin";
+				PRODUCT_BUNDLE_IDENTIFIER = Taki.HangGai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -31,20 +31,18 @@ struct QuestionModule: View {
                         if selectedQuestion.imgName == "" {
                             VStack(alignment: .leading) {
                                 Text(selectedQuestion.questionText)
-                                        .font(.largeTitle)
-                                        .padding(.top, 10)
-                                        .lineSpacing(6)
-                            }.frame(minHeight: 200, alignment: .top)
+                                        .font(.headTitle)
+                                    .padding(.top, 10).minimumScaleFactor(0.00001)
+                            }.frame(height: 200, alignment: .top)
                         } else {
                             VStack(alignment: .leading) {
                                 Text(selectedQuestion.questionText)
-                                        .font(.largeTitle)
-                                        .padding(.top, 10)
-                                        .lineSpacing(6)
+                                        .font(.headTitle)
+                                    .padding(.top, 10).minimumScaleFactor(0.00001)
                                 Image(selectedQuestion.imgName)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .border(colorScheme == .dark ? Color.white : .black, width: 1)
+                                    .border(colorScheme == .dark ? Color.white : .black, width: 0.8)
                             }.frame(minHeight: 200, alignment: .top)
                         }
                         //Spacer()
@@ -53,7 +51,7 @@ struct QuestionModule: View {
                                 ForEach(selectedQuestion.options.indices) { optionIndex in
                                     AnswerButton(backgroundColor: colorScheme == .light ? .white : .black,
                                             foregroundColor: colorScheme == .dark ? .white : .black,
-                                            font: .title3,
+                                            font: .answerButtonText,
                                             answerTagID: optionIndex,
                                             questionManager: questionManager,
                                             isAnswered: questionManager.isQuestionAnswered(questionId: selectedQuestion.id),

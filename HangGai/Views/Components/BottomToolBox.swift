@@ -59,7 +59,7 @@ struct BottomToolBox: View {
                  .id("\(noticeManager.noticeIndex)")
                  .transition(.expandVertically)
                  */
-                LargeButton(title: "", backgroundColor: colorScheme == .light ? .white : .black, foregroundColor: colorScheme == .dark ? .white : .black) {
+                LargeButton(title: "", backgroundColor: colorScheme == .light ? .black : .black, foregroundColor: colorScheme == .dark ? .white : .black) {
                     if isInitialized {
                         if questionManager.getIsMemoryMode() {
                             questionManager.incrementQuestionIndex()
