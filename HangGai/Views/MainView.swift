@@ -50,7 +50,7 @@ struct MainView: View {
 
             }
             Spacer()
-            BottomToolBox(isInitialized: $isInitialized, showSettingModal: $showSettingModal)
+            BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
         }
                 .onAppear {
                     questionManager.bindUserDataManager(userDataManager: userDataManager)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuestionListTab: View {
-    private var questionListTable: [(id: Int, name: String, key: String, description: String)] = [
+    let questionListTable: [(id: Int, name: String, key: String, description: String)] = [
         (0,
                 "顺序刷题",
                 "Meta",
@@ -69,15 +69,13 @@ struct QuestionListTab: View {
         */
     ]
 
-    @State var selectedQuestionList: Int = 0
-
+    @Binding var selectedQuestionList: Int
     @Binding var showQuestionListTab: Bool
-
     @Environment(\.colorScheme) var colorScheme
 
-    init(showQuestionListTab: Binding<Bool>) {
-        self._showQuestionListTab = showQuestionListTab
-    }
+//    init(showQuestionListTab: Binding<Bool>) {
+//        self._showQuestionListTab = showQuestionListTab
+//    }
 
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var userDaraManager: UserDataManager
@@ -156,7 +154,11 @@ struct QuestionListTab: View {
 }
 
 struct QuestionListTab_Previews: PreviewProvider {
+    @State static var selectedQuestionList = 0
     static var previews: some View {
-        QuestionListTab(showQuestionListTab: .constant(true))
+        QuestionListTab(selectedQuestionList: $selectedQuestionList ,showQuestionListTab: .constant(true))
+            .environmentObject(UserDataManager())
+            .environmentObject(QuestionManager())
+            .environmentObject(NoticeManager())
     }
 }
