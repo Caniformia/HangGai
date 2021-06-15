@@ -82,7 +82,7 @@ struct QuestionListTab: View {
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 0) {
+                HStack(alignment: .top, spacing: 0) {
                     ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
                         HStack(alignment: .top, spacing: 0) {
                             Button(action: {
@@ -144,8 +144,9 @@ struct QuestionListTab: View {
                                 .padding(.trailing, 5)
                                 .opacity(selectedQuestionList == id ? 1 : ((questionManager.getQuestionListCount(identifier: key) == 0) ? 0.1 : 1))
                     }
-                    Spacer()
+                    
                 }
+                Spacer()
             }
             .frame(height: 160)
             HStack {
