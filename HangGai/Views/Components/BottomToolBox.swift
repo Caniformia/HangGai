@@ -90,10 +90,8 @@ struct BottomToolBox: View {
             if (showSettingModal) {
                 QuestionListTab(selectedQuestionList: $selectedQuestionList,showQuestionListTab: $showSettingModal)
                     .padding(.horizontal)
-                    .transition(.move(edge: .bottom))
-                    
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            
         }
     }
 }

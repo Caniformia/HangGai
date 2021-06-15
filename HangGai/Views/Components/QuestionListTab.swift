@@ -154,7 +154,6 @@ struct QuestionListTab: View {
                 Text("© Team Caniformia, 2021").italic().padding().font(.system(.footnote))
             }
         }
-        
     }
 }
 
