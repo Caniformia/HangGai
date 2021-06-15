@@ -82,7 +82,7 @@ struct QuestionListTab: View {
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
+                HStack(alignment: .center, spacing: 0) {
                     ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
                         HStack(alignment: .top, spacing: 0) {
                             Button(action: {
@@ -100,11 +100,14 @@ struct QuestionListTab: View {
                                     HStack(alignment: .top, spacing: 0) {
                                         VStack(alignment: .leading, spacing: 0) {
                                             ForEach(Array(name), id: \.self) { char in
-                                                BoldText(text: String(char),
-                                                         font: selectedQuestionList == id ? .selectedQuestionList : .caption1,
-                                                         color: colorScheme == .dark ? .white : .black,
-                                                         width: 1,
-                                                         kerning: 2)
+                                                AnimatableBoldText(
+                                                    text: String(char),
+                                                    fontName: "FZSSJW--GB1-0",
+                                                    id: id,
+                                                    selectedId: $selectedQuestionList,
+                                                    color: colorScheme == .dark ? .white : .black,
+                                                    width: 1,
+                                                    kerning: 2)
                                             }
                                         }
                                         VStack(alignment: .center, spacing: 0) {
@@ -144,19 +147,19 @@ struct QuestionListTab: View {
                     Spacer()
                 }
             }
+            .frame(height: 160)
             HStack {
                 Spacer()
                 Text("© Team Caniformia, 2021").italic().padding().font(.system(.footnote))
             }
         }
-                .offset(x: 0, y: showQuestionListTab ? 0 : 200)
+        
     }
 }
 
 struct QuestionListTab_Previews: PreviewProvider {
-    @State static var selectedQuestionList = 0
     static var previews: some View {
-        QuestionListTab(selectedQuestionList: $selectedQuestionList ,showQuestionListTab: .constant(true))
+        QuestionListTab(selectedQuestionList: .constant(0) ,showQuestionListTab: .constant(true))
             .environmentObject(UserDataManager())
             .environmentObject(QuestionManager())
             .environmentObject(NoticeManager())
