@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuestionListTab: View {
-    private var questionListTable: [(id: Int, name: String, key: String, description: String)] = [
+    let questionListTable: [(id: Int, name: String, key: String, description: String)] = [
         (0,
                 "顺序刷题",
                 "Meta",
@@ -69,15 +69,13 @@ struct QuestionListTab: View {
         */
     ]
 
-    @State var selectedQuestionList: Int = 0
-
+    @Binding var selectedQuestionList: Int
     @Binding var showQuestionListTab: Bool
-
     @Environment(\.colorScheme) var colorScheme
 
-    init(showQuestionListTab: Binding<Bool>) {
-        self._showQuestionListTab = showQuestionListTab
-    }
+//    init(showQuestionListTab: Binding<Bool>) {
+//        self._showQuestionListTab = showQuestionListTab
+//    }
 
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var userDaraManager: UserDataManager
@@ -102,11 +100,14 @@ struct QuestionListTab: View {
                                     HStack(alignment: .top, spacing: 0) {
                                         VStack(alignment: .leading, spacing: 0) {
                                             ForEach(Array(name), id: \.self) { char in
-                                                BoldText(text: String(char),
-                                                         font: selectedQuestionList == id ? .selectedQuestionList : .caption1,
-                                                         color: colorScheme == .dark ? .white : .black,
-                                                         width: 1,
-                                                         kerning: 2)
+                                                AnimatableBoldText(
+                                                    text: String(char),
+                                                    fontName: "FZSSJW--GB1-0",
+                                                    id: id,
+                                                    selectedId: $selectedQuestionList,
+                                                    color: colorScheme == .dark ? .white : .black,
+                                                    width: 1,
+                                                    kerning: 2)
                                             }
                                         }
                                         VStack(alignment: .center, spacing: 0) {
@@ -143,20 +144,24 @@ struct QuestionListTab: View {
                                 .padding(.trailing, 5)
                                 .opacity(selectedQuestionList == id ? 1 : ((questionManager.getQuestionListCount(identifier: key) == 0) ? 0.1 : 1))
                     }
-                    Spacer()
+                    
                 }
+                Spacer()
             }
+            .frame(height: 160)
             HStack {
                 Spacer()
                 Text("© Team Caniformia, 2021").italic().padding().font(.system(.footnote))
             }
         }
-                .offset(x: 0, y: showQuestionListTab ? 0 : 200)
     }
 }
 
 struct QuestionListTab_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionListTab(showQuestionListTab: .constant(true))
+        QuestionListTab(selectedQuestionList: .constant(0) ,showQuestionListTab: .constant(true))
+            .environmentObject(UserDataManager())
+            .environmentObject(QuestionManager())
+            .environmentObject(NoticeManager())
     }
 }

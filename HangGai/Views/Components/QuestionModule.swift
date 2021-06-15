@@ -73,7 +73,7 @@ struct QuestionModule: View {
                     BigCorrectMark(correct: questionManager.isAnswerRight).transition(.opacity)
                 }
             }
-                    .gesture(DragGesture()
+                    .highPriorityGesture(DragGesture()
                             .onChanged { gesture in
                                 if isDragging {
                                     self.startPos = gesture.location
@@ -111,5 +111,8 @@ struct QuestionModule: View {
 struct QuestionModule_Previews: PreviewProvider {
     static var previews: some View {
         QuestionModule(isInitialized: .constant(true))
+            .environmentObject(UserDataManager())
+            .environmentObject(QuestionManager())
+            .environmentObject(NoticeManager())
     }
 }

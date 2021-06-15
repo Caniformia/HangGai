@@ -12,6 +12,7 @@ struct BottomToolBox: View {
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
 
+    @State var selectedQuestionList: Int = 0
     @Binding var showSettingModal: Bool
     @Binding var isInitialized: Bool
 
@@ -19,10 +20,10 @@ struct BottomToolBox: View {
 
     let smallConfiguration = UIImage.SymbolConfiguration(scale: .small)
 
-    init(isInitialized: Binding<Bool>, showSettingModal: Binding<Bool>) {
-        self._isInitialized = isInitialized
-        self._showSettingModal = showSettingModal
-    }
+//    init(isInitialized: Binding<Bool>, showSettingModal: Binding<Bool>) {
+//        self._isInitialized = isInitialized
+//        self._showSettingModal = showSettingModal
+//    }
 
     var body: some View {
         VStack {
@@ -86,15 +87,20 @@ struct BottomToolBox: View {
                         .foregroundColor(colorScheme == .dark ? .white : .black)
             }
                     .padding(.horizontal)
-            QuestionListTab(showQuestionListTab: $showSettingModal)
-                    .frame(maxHeight: showSettingModal ? nil : 0)
+            if (showSettingModal) {
+                QuestionListTab(selectedQuestionList: $selectedQuestionList,showQuestionListTab: $showSettingModal)
                     .padding(.horizontal)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
     }
 }
 
 struct BottomToolBox_Previews: PreviewProvider {
     static var previews: some View {
-        BottomToolBox(isInitialized: .constant(true), showSettingModal: .constant(true))
+        BottomToolBox(showSettingModal: .constant(true), isInitialized: .constant(true))
+            .environmentObject(UserDataManager())
+            .environmentObject(QuestionManager())
+            .environmentObject(NoticeManager())
     }
 }

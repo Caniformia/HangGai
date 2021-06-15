@@ -90,3 +90,24 @@ extension Font {
         Font.custom("FZSSJW--GB1-0", size: 15.0)
     }
 }
+
+struct AnimatableCustomFontModifier: AnimatableModifier {
+    let name: String
+    var size: CGFloat
+
+    var animatableData: CGFloat {
+        get { size }
+        set { size = newValue }
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .font(.custom(name, size: size))
+    }
+}
+
+extension View {
+    func animatableFont(name: String, size: CGFloat) -> some View {
+        self.modifier(AnimatableCustomFontModifier(name: name,size: size))
+    }
+}

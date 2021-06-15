@@ -24,7 +24,6 @@ struct CustomProgressBar: View {
                         .frame(width: min(CGFloat(value) * geometry.size.width, geometry.size.width),
                                 height: geometry.size.height)
                         .foregroundColor(colorScheme == .dark ? .white : .black)
-                        .animation(.linear)
                         .opacity(0.8)
             }.cornerRadius(8)
         }
