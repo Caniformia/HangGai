@@ -18,17 +18,17 @@ public struct QuestionLoader {
 
     private static func openDB() -> OpaquePointer? {
         guard let path = path else {
-            print("Cannot find DB from the path")
+            //print("Cannot find DB from the path")
             return nil
         }
 
         var db: OpaquePointer?
 
         if sqlite3_open(path, &db) == SQLITE_OK {
-            print("Successfully open DB at \(path)")
+            //print("Successfully open DB at \(path)")
             return db
         } else {
-            print("Fail to open DB at \(path)")
+            //print("Fail to open DB at \(path)")
             return nil
         }
     }
@@ -46,7 +46,7 @@ public struct QuestionLoader {
         }
 
         guard sqlite3_prepare(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK else {
-            print("Query for DB is not prepared")
+            //print("Query for DB is not prepared")
             return nil
         }
 
@@ -77,7 +77,7 @@ public struct QuestionLoader {
                 choicesIndexDict[String($0)]
             }
             guard answer.allSatisfy({ $0 != nil }) else {
-                print("Load answers for question \(id) failed: \(answer) not found in dict")
+                //print("Load answers for question \(id) failed: \(answer) not found in dict")
                 return nil
             }
 

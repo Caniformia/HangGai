@@ -34,13 +34,13 @@ struct DataStorage {
 
             standard.synchronize()
 
-            print("Initialize User Data successfully")
+            //print("Initialize User Data successfully")
         }
     }
 
     static func saveSet(key: String, set: Set<Int>) {
         guard let encodedData = try? encoder.encode(set) else {
-            print("Failed to encode \(key) when saving")
+            //print("Failed to encode \(key) when saving")
             return
         }
         standard.set(encodedData, forKey: key)
@@ -49,12 +49,12 @@ struct DataStorage {
 
     static func getSet(key: String) -> Set<Int> {
         guard let data = standard.object(forKey: key) as? Data else {
-            print("Cannot read \(key)")
+            //print("Cannot read \(key)")
             return Set()
         }
 
         guard let set = try? decoder.decode(Set<Int>.self, from: data) else {
-            print("Cannot convert data to \(key)")
+            //print("Cannot convert data to \(key)")
             return Set()
         }
 
@@ -65,7 +65,7 @@ struct DataStorage {
         let key = questionKey(questionId: questionId)
 
         guard let encodedData = try? encoder.encode(questionStatus) else {
-            print("Failed to encode \(key) when saving")
+            //print("Failed to encode \(key) when saving")
             return
         }
 
@@ -77,12 +77,12 @@ struct DataStorage {
         let key = questionKey(questionId: questionId)
 
         guard let data = standard.object(forKey: key) as? Data else {
-            print("Cannot read \(key)")
+            //print("Cannot read \(key)")
             return UserQuestionStatus()
         }
 
         guard let questionStatus = try? decoder.decode(UserQuestionStatus.self, from: data) else {
-            print("Cannot convert data to \(key)")
+            //print("Cannot convert data to \(key)")
             return UserQuestionStatus()
         }
 
@@ -104,7 +104,7 @@ struct DataStorage {
     static func getLastVisitedQuestionId() -> Int {
         let questionId = standard.integer(forKey: lastVisitedQuestionIdKey)
         guard questionId != 0 else {
-            print("Cannot read \(lastVisitedQuestionIdKey)")
+            //print("Cannot read \(lastVisitedQuestionIdKey)")
             return 0
         }
 

@@ -77,7 +77,7 @@ class UserDataManager: ObservableObject {
 
     func getQuestionComment(questionId: Int) -> String? {
         guard questionStatus[questionId] != nil else {
-            print("Get question comment failed: question ID \(questionId) not found")
+            //print("Get question comment failed: question ID \(questionId) not found")
             return nil
         }
 
@@ -86,7 +86,7 @@ class UserDataManager: ObservableObject {
 
     func updateQuestionComment(questionId: Int, comment: String) {
         guard questionStatus[questionId] != nil else {
-            print("Update question comment failed: question ID \(questionId) not found")
+            //print("Update question comment failed: question ID \(questionId) not found")
             return
         }
 
@@ -97,7 +97,7 @@ class UserDataManager: ObservableObject {
 
     func getQuestionChoices(questionId: Int) -> Set<Int>? {
         guard questionStatus[questionId] != nil else {
-            print("Get question choices failed: question ID \(questionId) not found")
+//            print("Get question choices failed: question ID \(questionId) not found")
             return nil
         }
 
@@ -106,7 +106,7 @@ class UserDataManager: ObservableObject {
 
     func updateQuestionChoices(questionId: Int, choices: Set<Int>, isCorrect: Bool) {
         guard questionStatus[questionId] != nil else {
-            print("Update question choices failed: question ID \(questionId) not found")
+//            print("Update question choices failed: question ID \(questionId) not found")
             return
         }
 
@@ -122,7 +122,7 @@ class UserDataManager: ObservableObject {
 
     func getQuestionIncorrectCount(questionId: Int) -> Int? {
         guard questionStatus[questionId] != nil else {
-            print("Update question choices failed: question ID \(questionId) not found")
+//            print("Update question choices failed: question ID \(questionId) not found")
             return nil
         }
 

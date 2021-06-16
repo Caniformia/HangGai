@@ -137,7 +137,6 @@ class QuestionManager: ObservableObject {
                     incrementQuestionIndex()
                 }
             }
-            print("\(isAnswerRight)")
             withAnimation {
                 self.playAnswerVerifyAnimation.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + AnimationSettingManager().getVerifyAnswerDelay() + AnimationSettingManager().getVerifyAnswerDuration()) {
