@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuestionListTab: View {
-    private var questionListTable: [(id: Int, name: String, key: String, description: String)] = [
+    let questionListTable: [(id: Int, name: String, key: String, description: String)] = [
         (0,
                 "顺序刷题",
                 "Meta",
@@ -69,81 +69,126 @@ struct QuestionListTab: View {
         */
     ]
 
-    @State var selectedQuestionList: Int = 0
-
+    @Binding var selectedQuestionList: Int
     @Binding var showQuestionListTab: Bool
-
     @Environment(\.colorScheme) var colorScheme
-
-    init(showQuestionListTab: Binding<Bool>) {
-        self._showQuestionListTab = showQuestionListTab
-    }
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var userDaraManager: UserDataManager
+
+    @ViewBuilder func descriptionText(of text: String, id: Int) -> some View {
+        Text(text)
+                .opacity(selectedQuestionList == id ? 1 : 0)
+                .font(.body)
+                .padding(selectedQuestionList == id ? 10 : 0)
+                .lineSpacing(2.5)
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                        .stroke(colorScheme == .dark ? Color.white : .black)
+                        .foregroundColor(colorScheme == .light ? Color.white : .black)
+                )
+                .frame(maxWidth: selectedQuestionList == id ? nil : 0, maxHeight: selectedQuestionList == id ? nil : 0)
+                .padding([.top, .leading], selectedQuestionList == id ? 5 : 0)
+                .padding(.trailing, selectedQuestionList == id ? 15 : 0)
+    }
+
     var body: some View {
         VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
-                    ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
-                        HStack(alignment: .top, spacing: 0) {
-                            Button(action: {
-                                withAnimation(.easeInOut(duration: 0.5)) {
-                                    selectedQuestionList = id
-                                    questionManager.updateQuestionList(identifier: key)
-                                }
-                            }, label: {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    RoundedRectangle(cornerRadius: 6)
-                                            .foregroundColor(Color(hex: 0x91989F))
-                                            .frame(width: selectedQuestionList == id ? 40 : 30, height: 3)
-                                            .opacity(0.5)
-                                            .padding(.bottom, 3)
-                                    HStack(alignment: .top, spacing: 0) {
-                                        VStack(alignment: .leading, spacing: 0) {
-                                            ForEach(Array(name), id: \.self) { char in
-                                                BoldText(text: String(char),
-                                                         font: selectedQuestionList == id ? .selectedQuestionList : .caption1,
-                                                         color: colorScheme == .dark ? .white : .black,
-                                                         width: 1,
-                                                         kerning: 2)
+            if horizontalSizeClass == .compact {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top) {
+                        ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
+                            HStack(alignment: .top) {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        selectedQuestionList = id
+                                        questionManager.updateQuestionList(identifier: key)
+                                    }
+                                }, label: {
+                                    VStack(alignment: .center) {
+                                        RoundedRectangle(cornerRadius: 6)
+                                                .foregroundColor(Color(hex: 0x91989F))
+                                                .frame(width: selectedQuestionList == id ? 55 : 40, height: 3)
+                                                .opacity(0.5)
+                                                .padding(.bottom, 3)
+                                        HStack(alignment: .top, spacing: 0) {
+                                            VStack(alignment: .center, spacing: 0) {
+                                                ForEach(Array(name), id: \.self) { char in
+                                                    AnimatableBoldText(
+                                                            text: String(char),
+                                                            fontName: "SourceHanSerifCN-Medium",
+                                                            id: id,
+                                                            selectedId: $selectedQuestionList,
+                                                            color: colorScheme == .dark ? .white : .black,
+                                                            width: 1,
+                                                            kerning: 2)
+                                                }
+                                            }
+                                            VStack(alignment: .center, spacing: 0) {
+                                                if questionManager.getQuestionListCount(identifier: key) != 0 {
+                                                    ForEach(Array("共\(questionManager.getQuestionListCount(identifier: key))题"), id: \.self) { char in
+                                                        Text(String(char))
+                                                                .font(.caption1)
+                                                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                                    }
+                                                } else {
+                                                    ForEach(Array("无题目"), id: \.self) { char in
+                                                        Text(String(char))
+                                                                .font(.caption1)
+                                                    }
+                                                }
                                             }
                                         }
-                                        VStack(alignment: .center, spacing: 0) {
+                                    }.frame(height: 160, alignment: .top)
+                                }
+                                ).disabled(questionManager.getQuestionListCount(identifier: key) == 0)
+                                descriptionText(of: description, id: id)
+                            }.opacity(selectedQuestionList == id ? 1 : ((questionManager.getQuestionListCount(identifier: key) == 0) ? 0.1 : 1))
+                        }
+                    }
+                }
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading) {
+                        ForEach(questionListTable, id: \.self.id) { (id, name, key, description) in
+                            VStack(alignment: .leading) {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        selectedQuestionList = id
+                                        questionManager.updateQuestionList(identifier: key)
+                                    }
+                                }, label: {
+                                    HStack(alignment: .center) {
+                                        RoundedRectangle(cornerRadius: 6)
+                                                .foregroundColor(Color(hex: 0x91989F))
+                                                .frame(width: 3, height: selectedQuestionList == id ? 55 : 40)
+                                                .opacity(0.5)
+                                                .padding(.trailing, 3)
+                                        VStack(alignment: .leading, spacing: 0) {
+                                            AnimatableBoldText(
+                                                    text: name,
+                                                    fontName: "SourceHanSerifCN-Medium",
+                                                    id: id,
+                                                    selectedId: $selectedQuestionList,
+                                                    color: colorScheme == .dark ? .white : .black,
+                                                    width: 1,
+                                                    kerning: 2)
                                             if questionManager.getQuestionListCount(identifier: key) != 0 {
-                                                ForEach(Array("共\(questionManager.getQuestionListCount(identifier: key))题"), id: \.self) { char in
-                                                    Text(String(char)).font(.caption1).foregroundColor(colorScheme == .dark ? .white : .black)
-                                                }
+                                                Text("共\(questionManager.getQuestionListCount(identifier: key))题")
+                                                        .font(.caption1)
+                                                        .foregroundColor(colorScheme == .dark ? .white : .black)
                                             } else {
-                                                ForEach(Array("无题目"), id: \.self) { char in
-                                                    Text(String(char)).font(.caption1).foregroundColor(colorScheme == .dark ? .white : .black)
-                                                }
+                                                Text("无题目")
+                                                        .font(.caption1)
                                             }
                                         }
                                     }
                                 }
-                            }
-                            )
-                                    .disabled(questionManager.getQuestionListCount(identifier: key) == 0)
-                            Text(description)
-                                    .opacity(selectedQuestionList == id ? 1 : 0)
-                                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                                    .font(.headline)
-                                    .padding(.horizontal, selectedQuestionList == id ? 7.5 : 0)
-                                    .padding(.vertical, selectedQuestionList == id ? 10.5 : 0)
-                                    .lineSpacing(2.5)
-                                    .background(RoundedRectangle(cornerRadius: 10)
-                                            .stroke(colorScheme == .dark ? Color.white : .black)
-                                            .foregroundColor(colorScheme == .light ? Color.white : .black)
-                                    )
-                                    .frame(maxWidth: selectedQuestionList == id ? nil : 0, maxHeight: 116)
-                                    .padding(.leading, selectedQuestionList == id ? 5 : 0)
-                                    .padding(.trailing, selectedQuestionList == id ? 15 : 0)
+                                ).disabled(questionManager.getQuestionListCount(identifier: key) == 0)
+                                descriptionText(of: description, id: id)
+                            }.opacity(selectedQuestionList == id ? 1 : ((questionManager.getQuestionListCount(identifier: key) == 0) ? 0.1 : 1))
                         }
-                                .padding(.trailing, 5)
-                                .opacity(selectedQuestionList == id ? 1 : ((questionManager.getQuestionListCount(identifier: key) == 0) ? 0.1 : 1))
                     }
-                    Spacer()
                 }
             }
             HStack {
@@ -151,12 +196,14 @@ struct QuestionListTab: View {
                 Text("© Team Caniformia, 2021").italic().padding().font(.system(.footnote))
             }
         }
-                .offset(x: 0, y: showQuestionListTab ? 0 : 200)
     }
 }
 
 struct QuestionListTab_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionListTab(showQuestionListTab: .constant(true))
+        QuestionListTab(selectedQuestionList: .constant(0), showQuestionListTab: .constant(true))
+                .environmentObject(UserDataManager())
+                .environmentObject(QuestionManager())
+                .environmentObject(NoticeManager())
     }
 }

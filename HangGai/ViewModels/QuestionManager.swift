@@ -242,11 +242,11 @@ class QuestionManager: ObservableObject {
     func getIndexByQuestionId(questionId: Int) -> Int {
         if questionId == 0 {
             return (questions.firstIndex(where: { (e) -> Bool in
-                return e.id == selectedQuestion?.id
+                e.id == selectedQuestion?.id
             }) ?? 0) + 1
         }
         return ((questions.firstIndex(where: { (e) -> Bool in
-            return e.id == questionId
+            e.id == questionId
         }) ?? 0) + 1 )
     }
     

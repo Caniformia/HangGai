@@ -20,7 +20,7 @@ struct BigCorrectMark: View {
                 .frame(width: 150, height: 150, alignment: .center)
                 .overlay(Image(systemName: correct ? "checkmark" : "xmark")
                         .foregroundColor(colorScheme == .light ? .white : .black)
-                        .font(.system(size: 90, weight: .ultraLight)))
+                        .font(.system(size: 90, weight: .regular)))
     }
 }
 

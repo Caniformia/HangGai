@@ -12,10 +12,10 @@ class AnimationSettingManager {
     private var verifyAnswerDelay: Double = 0.00
 
     func getVerifyAnswerDuration() -> Double {
-        return self.verifyAnswerDuration
+        verifyAnswerDuration
     }
 
     func getVerifyAnswerDelay() -> Double {
-        return self.verifyAnswerDelay
+        verifyAnswerDelay
     }
 }

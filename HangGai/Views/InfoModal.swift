@@ -24,11 +24,13 @@ struct InfoModal: View {
             }
 
             ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                Text("航").padding(.leading, 40).font(.custom("FZSSJW--GB1-0", size: 120)).offset(y: -20)
-                Text("概").padding(.leading, 115).font(.custom("FZSSJW--GB1-0", size: 120)).offset(y: 35)
+                Text("航").padding(.leading, 40).offset(y: -20)
+                        .font(.custom("SourceHanSerifCN-Regular", size: 120, relativeTo: .largeTitle))
+                Text("概").padding(.leading, 108).offset(y: 50)
+                        .font(.custom("SourceHanSerifCN-Regular", size: 120, relativeTo: .largeTitle))
             }.padding(.bottom, 20)
 
-            Divider().padding(.leading, 40).padding(.trailing, 150).padding(.vertical, 10)
+            Divider().padding(.leading, 40).padding(.trailing, 150).padding(.vertical, 30)
 
             Text("""
                  或许你望向窗外，
@@ -38,7 +40,7 @@ struct InfoModal: View {
 
                  风带走它的身躯,
                  风环抱你的梦。
-                 """).padding(.horizontal, 40).font(.infoModalBody)
+                 """).padding(.horizontal, 40).font(.title2)
 
             Spacer()
 

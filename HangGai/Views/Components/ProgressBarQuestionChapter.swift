@@ -23,12 +23,10 @@ struct ProgressBarQuestionChapter: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 0) {
             Text(chapterNumber + "  ")
-                    .font(.headline)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .font(.subheadline)
                     .opacity(0.6)
             Text(chapterName[questionChapterID])
-                    .font(.headline)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .font(.subheadline)
         }
                 .transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
                 .id("\(questionChapterID)")
