@@ -16,6 +16,6 @@ struct BoldText: View {
 
     var body: some View {
         Text(text).font(font).kerning(kerning)
-                .foregroundColor(color)
+                .foregroundColor(color).lineSpacing(5)
     }
 }
