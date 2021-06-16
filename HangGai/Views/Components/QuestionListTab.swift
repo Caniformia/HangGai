@@ -80,7 +80,6 @@ struct QuestionListTab: View {
     @ViewBuilder func descriptionText(of text: String, id: Int) -> some View {
         Text(text)
                 .opacity(selectedQuestionList == id ? 1 : 0)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .font(.body)
                 .padding(selectedQuestionList == id ? 10 : 0)
                 .lineSpacing(2.5)
@@ -136,7 +135,6 @@ struct QuestionListTab: View {
                                                     ForEach(Array("无题目"), id: \.self) { char in
                                                         Text(String(char))
                                                                 .font(.caption1)
-                                                                .foregroundColor(colorScheme == .dark ? .white : .black)
                                                     }
                                                 }
                                             }
@@ -182,7 +180,6 @@ struct QuestionListTab: View {
                                             } else {
                                                 Text("无题目")
                                                         .font(.caption1)
-                                                        .foregroundColor(colorScheme == .dark ? .white : .black)
                                             }
                                         }
                                     }

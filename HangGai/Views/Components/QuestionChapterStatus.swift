@@ -24,11 +24,9 @@ struct QuestionChapterStatus: View {
         VStack(alignment: .leading) {
             Text(chapterNumber)
                     .font(.caption)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
                     .opacity(0.6)
             Text(chapterName[questionChapterID])
                     .font(.caption)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
         }
                 .transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))
                 .id("\(questionChapterID)")

@@ -64,7 +64,6 @@ struct QuestionNavigationModule: View {
                                         }, label: {
                                             Text("第\(intToCharacter[number])章  \(chapterName[number])")
                                                     .font(.subheadline)
-                                                    .foregroundColor(colorScheme == .dark ? .white : .black)
                                         })
                                     }
                                 })
@@ -77,12 +76,12 @@ struct QuestionNavigationModule: View {
                             }
                         }, label: {
                             Text("\(questionManager.questionIndex)")
-                                    .font(.subheadline).foregroundColor(colorScheme == .dark ? .white : .black)
-                                    //.kerning(4.0)
+                                    .font(.subheadline)
+                                    .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .opacity(0.8)
                             Text("/ \(questionManager.questionAmount())")
-                                    .font(.subheadline).foregroundColor(colorScheme == .dark ? .white : .black)
-                                    //.kerning(4.0)
+                                    .font(.subheadline)
+                                    .foregroundColor(colorScheme == .dark ? .white : .black)
                         })
                         /*
                         Text("顺序模式")
