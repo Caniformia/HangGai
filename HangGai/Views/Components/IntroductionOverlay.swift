@@ -33,10 +33,12 @@ struct IntroductionOverlay: View {
                             .padding(.horizontal, 40)
                             .padding(.bottom, 30)
                     ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                        Text("航").padding(.leading, 40).font(.custom("FZSSJW--GB1-0", size: 120)).offset(y: -20)
-                        Text("概").padding(.leading, 115).font(.custom("FZSSJW--GB1-0", size: 120)).offset(y: 35)
+                        Text("航").padding(.leading, 40).offset(y: -20)
+                                .font(.custom("SourceHanSerifCN-Regular", size: 120, relativeTo: .largeTitle))
+                        Text("概").padding(.leading, 108).offset(y: 50)
+                                .font(.custom("SourceHanSerifCN-Regular", size: 120, relativeTo: .largeTitle))
                     }.padding(.bottom, 20)
-                    Divider().padding(.leading, 40).padding(.trailing, 150).padding(.vertical, 10)
+                    Divider().padding(.leading, 40).padding(.trailing, 150).padding(.vertical, 30)
                     HStack(alignment: .center, spacing: 1, content: {
                         Text("请点击右下角的").font(.headline)
                         Image(systemName: "arrowshape.turn.up.forward.circle.fill").resizable().frame(width: 17, height: 17)

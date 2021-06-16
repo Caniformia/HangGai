@@ -116,7 +116,7 @@ struct QuestionListTab: View {
                                                 ForEach(Array(name), id: \.self) { char in
                                                     AnimatableBoldText(
                                                             text: String(char),
-                                                            fontName: "FZSSJW--GB1-0",
+                                                            fontName: "SourceHanSerifCN-Medium",
                                                             id: id,
                                                             selectedId: $selectedQuestionList,
                                                             color: colorScheme == .dark ? .white : .black,
@@ -167,7 +167,7 @@ struct QuestionListTab: View {
                                         VStack(alignment: .leading, spacing: 0) {
                                             AnimatableBoldText(
                                                     text: name,
-                                                    fontName: "FZSSJW--GB1-0",
+                                                    fontName: "SourceHanSerifCN-Medium",
                                                     id: id,
                                                     selectedId: $selectedQuestionList,
                                                     color: colorScheme == .dark ? .white : .black,

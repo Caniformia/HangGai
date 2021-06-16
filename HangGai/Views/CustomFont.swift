@@ -8,54 +8,54 @@ extension Font {
 
     /// Create a font with the large title text style.
     public static var largeTitle: Font {
-        Font.custom("FZSSJW--GB1-0", size: 45, relativeTo: .largeTitle)
+        Font.custom("SourceHanSerifCN-Regular", size: 45, relativeTo: .largeTitle)
     }
 
     /// Create a font with the title text style.
     public static var title1: Font {
-        Font.custom("FZSSJW--GB1-0", size: 30, relativeTo: .title)
+        Font.custom("SourceHanSerifCN-Regular", size: 30, relativeTo: .title)
     }
 
     public static var title2: Font {
-        Font.custom("FZSSJW--GB1-0", size: 20, relativeTo: .title2)
+        Font.custom("SourceHanSerifCN-Regular", size: 20, relativeTo: .title2)
     }
 
     public static var title3: Font {
-        Font.custom("FZSSJW--GB1-0", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+        Font.custom("SourceHanSerifCN-Regular", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
     }
 
     /// Create a font with the headline text style.
     public static var headline: Font {
-        Font.custom("FZSSJW--GB1-0", size: 17, relativeTo: .headline)
+        Font.custom("SourceHanSerifCN-Regular", size: 17, relativeTo: .headline)
     }
 
     /// Create a font with the subheadline text style.
     public static var subheadline: Font {
-        Font.custom("FZSSJW--GB1-0", size: 13, relativeTo: .subheadline)
+        Font.custom("SourceHanSerifCN-Regular", size: 13, relativeTo: .subheadline)
     }
 
     /// Create a font with the body text style.
     public static var body: Font {
-        Font.custom("FZSSJW--GB1-0", size: 15, relativeTo: .body)
+        Font.custom("SourceHanSerifCN-Medium", size: 15, relativeTo: .body)
     }
 
     /// Create a font with the callout text style.
     public static var callout: Font {
-        Font.custom("FZSSJW--GB1-0", size: UIFont.preferredFont(forTextStyle: .callout).pointSize)
+        Font.custom("SourceHanSerifCN-Regular", size: UIFont.preferredFont(forTextStyle: .callout).pointSize)
     }
 
     /// Create a font with the footnote text style.
     public static var footnote: Font {
-        Font.custom("FZSSJW--GB1-0", size: UIFont.preferredFont(forTextStyle: .footnote).pointSize)
+        Font.custom("SourceHanSerifCN-Regular", size: UIFont.preferredFont(forTextStyle: .footnote).pointSize)
     }
 
     /// Create a font with the caption text style.
     public static var caption1: Font {
-        Font.custom("FZSSJW--GB1-0", size: 13, relativeTo: .caption)
+        Font.custom("SourceHanSerifCN-Regular", size: 13, relativeTo: .caption)
     }
 
     public static var caption2: Font {
-        Font.custom("FZSSJW--GB1-0", size: UIFont.preferredFont(forTextStyle: .caption2).pointSize)
+        Font.custom("SourceHanSerifCN-Regular", size: UIFont.preferredFont(forTextStyle: .caption2).pointSize)
     }
 }
 

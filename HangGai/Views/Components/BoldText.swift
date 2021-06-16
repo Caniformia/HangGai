@@ -15,14 +15,7 @@ struct BoldText: View {
     let kerning: CGFloat
 
     var body: some View {
-        ZStack {
-            ZStack {
-                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: width / 1000).lineSpacing(5)
-                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: -width / 1000).lineSpacing(5)
-                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: width / 1000).lineSpacing(5)
-                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: -width / 1000).lineSpacing(5)
-            }
-                    .foregroundColor(color)
-        }
+        Text(text).font(font).kerning(kerning)
+                .foregroundColor(color)
     }
 }

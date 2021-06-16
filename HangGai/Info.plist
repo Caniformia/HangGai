@@ -22,8 +22,10 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SourceHanSerifCN-Regular.ttf</string>
+		<string>SourceHanSerifCN-SemiBold.ttf</string>
+		<string>SourceHanSerifCN-Medium.ttf</string>
 		<string>SmartFontUI.ttf</string>
-		<string>FZSSJW.TTF</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
