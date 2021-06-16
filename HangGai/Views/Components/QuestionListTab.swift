@@ -105,7 +105,7 @@ struct QuestionListTab: View {
                                         questionManager.updateQuestionList(identifier: key)
                                     }
                                 }, label: {
-                                    VStack(alignment: .leading) {
+                                    VStack(alignment: .center) {
                                         RoundedRectangle(cornerRadius: 6)
                                                 .foregroundColor(Color(hex: 0x91989F))
                                                 .frame(width: selectedQuestionList == id ? 55 : 40, height: 3)
@@ -158,7 +158,7 @@ struct QuestionListTab: View {
                                         questionManager.updateQuestionList(identifier: key)
                                     }
                                 }, label: {
-                                    HStack(alignment: .top) {
+                                    HStack(alignment: .center) {
                                         RoundedRectangle(cornerRadius: 6)
                                                 .foregroundColor(Color(hex: 0x91989F))
                                                 .frame(width: 3, height: selectedQuestionList == id ? 55 : 40)
