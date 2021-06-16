@@ -23,11 +23,11 @@ struct QuestionChapterStatus: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(chapterNumber)
-                    .font(.chapterNumber)
+                    .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                     .opacity(0.6)
             Text(chapterName[questionChapterID])
-                    .font(.chapterName)
+                    .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .white : .black)
         }
                 .transition(isIncrement ? (.moveOutAndIn) : (.moveInAndOut))

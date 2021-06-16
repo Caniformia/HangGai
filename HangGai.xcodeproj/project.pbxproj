@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04364DA2267998EC001F9A32 /* AnimatableBoldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04364DA1267998EC001F9A32 /* AnimatableBoldText.swift */; };
 		1A54F34A9EE74834D86CE155 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A54F3CEB48AC5531DE901B1 /* CustomFont.swift */; };
 		322050F126602E6D0078A9D5 /* questions.db in Resources */ = {isa = PBXBuildFile; fileRef = 3220505A26602E6D0078A9D5 /* questions.db */; };
 		322050F226602E6D0078A9D5 /* FZSSJW.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 3220505C26602E6D0078A9D5 /* FZSSJW.TTF */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04364DA1267998EC001F9A32 /* AnimatableBoldText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableBoldText.swift; sourceTree = "<group>"; };
 		1A54F3CEB48AC5531DE901B1 /* CustomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		3220505A26602E6D0078A9D5 /* questions.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = questions.db; sourceTree = "<group>"; };
 		3220505C26602E6D0078A9D5 /* FZSSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZSSJW.TTF; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */,
 				3FC085222663D1EF008780A8 /* BigCorrectMark.swift */,
 				3F3E65962664C20900370661 /* QuestionListTab.swift */,
+				04364DA1267998EC001F9A32 /* AnimatableBoldText.swift */,
 				3FB49A6A266699D30066EB86 /* IntroductionOverlay.swift */,
 			);
 			path = Components;
@@ -320,6 +323,7 @@
 				32DDE6F5264D646D00A251EB /* InfoModal.swift in Sources */,
 				3FC085212663C42B008780A8 /* AnimationSettingManager.swift in Sources */,
 				32DDE6F4264D646D00A251EB /* CustomButtons.swift in Sources */,
+				04364DA2267998EC001F9A32 /* AnimatableBoldText.swift in Sources */,
 				3F3E65972664C20900370661 /* QuestionListTab.swift in Sources */,
 				3FC0852E266402E3008780A8 /* SettingModal.swift in Sources */,
 				3F6415BB264C518E002950CF /* CustomFuncs.swift in Sources */,

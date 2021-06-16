@@ -48,7 +48,7 @@ struct LargeButton: View {
          disabled: Bool = false,
          backgroundColor: Color = Color.green,
          foregroundColor: Color = Color.white,
-         font: Font = .title3,
+         font: Font = .body,
          action: @escaping () -> Void) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
@@ -59,18 +59,15 @@ struct LargeButton: View {
     }
 
     var body: some View {
-        HStack {
-            Button(action: action) {
-                Text(title).frame(maxWidth: .infinity)
-            }
-                    .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
-                            foregroundColor: foregroundColor,
-                            isDisabled: disabled,
-                            font: font,
-                            cornerRadius: 6))
-                    .disabled(disabled)
+        Button(action: action) {
+            Text(title).frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
+                        foregroundColor: foregroundColor,
+                        isDisabled: disabled,
+                        font: font,
+                        cornerRadius: 20))
+                .disabled(disabled)
     }
 }
 
@@ -104,7 +101,7 @@ struct AnswerButton: View {
 
     init(backgroundColor: Color = Color.green,
          foregroundColor: Color = Color.white,
-         font: Font = .title3,
+         font: Font = .body,
          answerTagID: Int = 0,
          questionManager: QuestionManager,
          isAnswered: Bool,
@@ -141,12 +138,13 @@ struct AnswerButton: View {
                     Text(answerTag).padding(.leading).font(.title2)
                     if (!isAnswered || isAnswer) {
                         BoldText(text: title, font: font, color: displayForegroundColor, width: 1, kerning: 0)
-                            .padding(.horizontal)
+                                .padding(.horizontal)
                     } else {
                         Text(title)
                                 .font(font)
+                                .lineSpacing(5)
                                 .foregroundColor(displayForegroundColor)
-                            .padding(.horizontal)
+                                .padding(.horizontal)
                     }
                     //Text(self.title).padding(.horizontal)
                     Spacer()
@@ -172,9 +170,7 @@ struct AnswerButton: View {
                             cornerRadius: 15))
                     .opacity(isAnswered ? (isAnswer ? 1 : (hasBeenSelected ? 0.9 : 0.2)) : 1)
         }
-                .frame(maxWidth: .infinity)
     }
-
 }
 
 struct JumpQuestionButton: ViewModifier {
@@ -197,7 +193,7 @@ struct JumpQuestionButton: ViewModifier {
                         .frame(width: 22, height: 22)
             })
                     .padding(.trailing, 13)
-            .opacity(0.8)
+                    .opacity(0.8)
         }
     }
 }

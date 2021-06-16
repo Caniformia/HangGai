@@ -14,47 +14,53 @@ struct MainView: View {
 
     @State var showSettingModal = false
     @State var showChapterPopover = false
-
     @State var isInitialized = true
+
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     @EnvironmentObject var userDataManager: UserDataManager
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
 
-    var body: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                QuestionNavigationModule(showChapterPopover: $showChapterPopover)
-            }.padding(.horizontal).padding(.top, 10)
-            HStack(alignment: .center) {
-                //ScrollView (.vertical, showsIndicators: false) {
-                ZStack {
-                    QuestionModule(isInitialized: $isInitialized)
-                            .padding(.top, 20)
-                            //}
-                            //.scrollOnlyOnOverflow()
-                            .padding(.horizontal)
-                            .blur(radius: isInitialized ? 0.0 : 20.0)
-                            .ifTrueThenModify(!isInitialized) {
-                                AnyView($0.overlay(IntroductionOverlay(isInitialized: $isInitialized).padding(.vertical).opacity(isInitialized ? 0 : 1.0).blur(radius: isInitialized ? 50.0 : 0)))
-                            }
-                            .ifTrueThenModify(isInitialized) {
-                                AnyView($0.onTapGesture {
-                                    withAnimation {
-                                        showChapterPopover = false
-                                        showSettingModal = false
-                                    }
-                                })
-                            }
+    var questionModule: some View {
+        QuestionModule(isInitialized: $isInitialized)
+                .blur(radius: isInitialized ? 0 : 20)
+                .ifTrueThenModify(!isInitialized) {
+                    AnyView($0.overlay(IntroductionOverlay(isInitialized: $isInitialized).padding(.vertical).opacity(isInitialized ? 0 : 1).blur(radius: isInitialized ? 50 : 0)))
                 }
+                .ifTrueThenModify(isInitialized) {
+                    AnyView($0.onTapGesture {
+                        withAnimation {
+                            showChapterPopover = false
+                            showSettingModal = false
+                        }
+                    })
+                }
+    }
 
-            }
-            Spacer()
-            BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
-        }
-                .onAppear {
-                    questionManager.bindUserDataManager(userDataManager: userDataManager)
-                    self.isInitialized = userDataManager.isInitialized()
+    var body: some View {
+        if horizontalSizeClass == .compact {
+            VStack {
+                QuestionNavigationModule(showChapterPopover: $showChapterPopover).padding()
+                VStack {
+                    questionModule.padding(.horizontal)
+                    BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
                 }
+            }.onAppear {
+                questionManager.bindUserDataManager(userDataManager: userDataManager)
+                self.isInitialized = userDataManager.isInitialized()
+            }
+        } else {
+            HStack {
+                VStack {
+                    QuestionNavigationModule(showChapterPopover: $showChapterPopover).padding()
+                    questionModule.padding([.leading, .bottom])
+                }
+                BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
+            }.onAppear {
+                questionManager.bindUserDataManager(userDataManager: userDataManager)
+                self.isInitialized = userDataManager.isInitialized()
+            }
+        }
     }
 }

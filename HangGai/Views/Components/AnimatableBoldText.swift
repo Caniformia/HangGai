@@ -15,7 +15,7 @@ struct AnimatableBoldText: View {
     let color: Color
     let width: CGFloat
     let kerning: CGFloat
-    
+
     var body: some View {
         ZStack {
             ZStack {
@@ -25,7 +25,7 @@ struct AnimatableBoldText: View {
                 Text(text).kerning(kerning).offset(x: width / 1000, y: -width / 1000)
             }
                     .foregroundColor(color)
-            .animatableFont(name: fontName, size: id == selectedId ? 25.0 : 15.0)
+                    .animatableFont(name: fontName, size: id == selectedId ? 25.0 : 15.0)
         }
     }
 }

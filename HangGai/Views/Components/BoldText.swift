@@ -17,10 +17,10 @@ struct BoldText: View {
     var body: some View {
         ZStack {
             ZStack {
-                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: width / 1000)
-                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: -width / 1000)
-                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: width / 1000)
-                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: -width / 1000)
+                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: width / 1000).lineSpacing(5)
+                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: -width / 1000).lineSpacing(5)
+                Text(text).font(font).kerning(kerning).offset(x: -width / 1000, y: width / 1000).lineSpacing(5)
+                Text(text).font(font).kerning(kerning).offset(x: width / 1000, y: -width / 1000).lineSpacing(5)
             }
                     .foregroundColor(color)
         }

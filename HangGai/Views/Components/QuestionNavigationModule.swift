@@ -30,19 +30,18 @@ struct QuestionNavigationModule: View {
     var body: some View {
         VStack(alignment: .leading) {
             if showChapterPopover {
-                VStack(alignment: .leading) {
-                    //QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
-                    TextField("请输入想跳转的题号", text: $jumpToQuestionID)
-                            .font(.navigationNotice)
-                            .keyboardType(.numberPad)
-                            .padding()
-                            //.textFieldStyle(RoundedBorderTextFieldStyle())
+                //VStack(alignment: .leading) {
+                //QuestionChapterStatus(questionChapterID: self.questionManager.questionChapter(), isIncrement: self.questionManager.getIsIncrement())
+                TextField("请输入想跳转的题号", text: $jumpToQuestionID)
+                        .font(.body)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        //.textFieldStyle(RoundedBorderTextFieldStyle())
                         .overlay(RoundedRectangle(cornerRadius: 20).stroke(colorScheme == .dark ? Color.white : .black, lineWidth: 1).frame(height: 40.0))
-                            .modifier(JumpQuestionButton(text: $jumpToQuestionID, questionManager: questionManager))
-                }
+                        .modifier(JumpQuestionButton(text: $jumpToQuestionID, questionManager: questionManager))
+                        //}
                         .animation(.easeInOut)
                         .transition(.expandVertically)
-                        .padding(.bottom, 2)
             }
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
@@ -59,12 +58,12 @@ struct QuestionNavigationModule: View {
                                             withAnimation(.easeInOut(duration: 2.0)) {
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                                                     questionManager.setQuestionIndex(toSetQuestionIndex:
-                                                                                        questionManager.getIndexByQuestionId(questionId: questionManager.getChapterQuestions(chapterId: number).min() ?? 0))
+                                                    questionManager.getIndexByQuestionId(questionId: questionManager.getChapterQuestions(chapterId: number).min() ?? 0))
                                                 }
                                             }
                                         }, label: {
                                             Text("第\(intToCharacter[number])章  \(chapterName[number])")
-                                                    .font(.headline)
+                                                    .font(.subheadline)
                                                     .foregroundColor(colorScheme == .dark ? .white : .black)
                                         })
                                     }
@@ -78,12 +77,12 @@ struct QuestionNavigationModule: View {
                             }
                         }, label: {
                             Text("\(questionManager.questionIndex)")
-                                    .font(.headline).foregroundColor(colorScheme == .dark ? .white : .black)
-                                    .kerning(4.0)
+                                    .font(.subheadline).foregroundColor(colorScheme == .dark ? .white : .black)
+                                    //.kerning(4.0)
                                     .opacity(0.8)
-                            Text("/" + "\(questionManager.questionAmount())")
-                                    .font(.headline).foregroundColor(colorScheme == .dark ? .white : .black)
-                                    .kerning(4.0)
+                            Text("/ \(questionManager.questionAmount())")
+                                    .font(.subheadline).foregroundColor(colorScheme == .dark ? .white : .black)
+                                    //.kerning(4.0)
                         })
                         /*
                         Text("顺序模式")

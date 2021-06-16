@@ -36,14 +36,14 @@ struct CircularProgressBar: View {
     var body: some View {
         ZStack {
             Circle()
-                    .stroke(lineWidth: 20.0)
+                    .stroke(lineWidth: 20)
                     .opacity(0.3)
                     .foregroundColor(Color.red)
             Circle()
-                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .trim(from: 0, to: CGFloat(min(progress, 1)))
+                    .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .foregroundColor(Color.red)
-                    .rotationEffect(Angle(degrees: 270.0))
+                    .rotationEffect(Angle(degrees: 270))
                     .animation(.linear)
         }
     }

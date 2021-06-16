@@ -38,7 +38,7 @@ struct InfoModal: View {
 
                  风带走它的身躯,
                  风环抱你的梦。
-                 """).padding(.horizontal, 40).font(.infoModalBody)
+                 """).padding(.horizontal, 40).font(.title2)
 
             Spacer()
 
