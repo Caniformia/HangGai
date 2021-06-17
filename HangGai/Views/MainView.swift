@@ -37,8 +37,15 @@ struct MainView: View {
                     })
                 }
     }
-
+    
     var body: some View {
+        bodyShit.onAppear {
+            questionManager.bindUserDataManager(userDataManager: userDataManager)
+            self.isInitialized = userDataManager.isInitialized()
+        }
+    }
+
+    @ViewBuilder var bodyShit: some View {
         if horizontalSizeClass == .compact {
             VStack {
                 QuestionNavigationModule(showChapterPopover: $showChapterPopover).padding()
@@ -46,9 +53,6 @@ struct MainView: View {
                     questionModule.padding(.horizontal)
                     BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
                 }
-            }.onAppear {
-                questionManager.bindUserDataManager(userDataManager: userDataManager)
-                self.isInitialized = userDataManager.isInitialized()
             }
         } else {
             HStack {
@@ -57,9 +61,6 @@ struct MainView: View {
                     questionModule.padding([.leading, .bottom])
                 }
                 BottomToolBox(showSettingModal: $showSettingModal, isInitialized: $isInitialized)
-            }.onAppear {
-                questionManager.bindUserDataManager(userDataManager: userDataManager)
-                self.isInitialized = userDataManager.isInitialized()
             }
         }
     }
