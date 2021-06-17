@@ -108,7 +108,7 @@ struct QuestionListTab: View {
                                     VStack(alignment: .center) {
                                         RoundedRectangle(cornerRadius: 6)
                                                 .foregroundColor(Color(hex: 0x91989F))
-                                                .frame(width: selectedQuestionList == id ? 55 : 40, height: 3)
+                                                .frame(width: selectedQuestionList == id ? 40 : 30, height: 3)
                                                 .opacity(0.5)
                                                 .padding(.bottom, 3)
                                         HStack(alignment: .top, spacing: 0) {

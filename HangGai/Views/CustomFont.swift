@@ -55,7 +55,7 @@ extension Font {
     }
 
     public static var caption2: Font {
-        Font.custom("SourceHanSerifCN-Regular", size: UIFont.preferredFont(forTextStyle: .caption2).pointSize)
+        Font.custom("SourceHanSerifCN-Regular", size: 14, relativeTo: .caption)
     }
 }
 

@@ -28,6 +28,7 @@
 		3F8F7C242658F56E008AA07A /* BottomToolBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8F7C232658F56E008AA07A /* BottomToolBox.swift */; };
 		3FA2B9A8265931B200D35D64 /* QuestionChapterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */; };
 		3FB49A6B266699D30066EB86 /* IntroductionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB49A6A266699D30066EB86 /* IntroductionOverlay.swift */; };
+		3FBCC429267B4109001F4C38 /* SourceHanSerifCN-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FBCC428267B4109001F4C38 /* SourceHanSerifCN-Medium.ttf */; };
 		3FC0851D2663A417008780A8 /* CustomProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0851C2663A417008780A8 /* CustomProgressBar.swift */; };
 		3FC0851F2663A9A7008780A8 /* ProgressBarQuestionChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */; };
 		3FC085212663C42B008780A8 /* AnimationSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC085202663C42B008780A8 /* AnimationSettingManager.swift */; };
@@ -41,7 +42,6 @@
 		3FE0B61A264FCEB2008167E1 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B619264FCEB2008167E1 /* QuestionManager.swift */; };
 		3FE0B61D264FD416008167E1 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0B61C264FD416008167E1 /* UserDataManager.swift */; };
 		B5FD503A267A0128006D69E8 /* BoldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD5039267A0128006D69E8 /* BoldText.swift */; };
-		E2BDA84B44F2424EAC94BDC1 /* SourceHanSerifCN-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2BDACC7D3FE62D95E47DD3B /* SourceHanSerifCN-Medium.ttf */; };
 		E2BDAB8D3D92E533A7E2AB37 /* SourceHanSerifCN-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2BDA0A295D2CC97D39EC0D0 /* SourceHanSerifCN-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +69,7 @@
 		3F8F7C232658F56E008AA07A /* BottomToolBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolBox.swift; sourceTree = "<group>"; };
 		3FA2B9A7265931B200D35D64 /* QuestionChapterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChapterStatus.swift; sourceTree = "<group>"; };
 		3FB49A6A266699D30066EB86 /* IntroductionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionOverlay.swift; sourceTree = "<group>"; };
+		3FBCC428267B4109001F4C38 /* SourceHanSerifCN-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceHanSerifCN-Medium.ttf"; path = "HangGai/Assets/fonts/SourceHanSerifCN-Medium.ttf"; sourceTree = SOURCE_ROOT; };
 		3FC0851C2663A417008780A8 /* CustomProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressBar.swift; sourceTree = "<group>"; };
 		3FC0851E2663A9A7008780A8 /* ProgressBarQuestionChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarQuestionChapter.swift; sourceTree = "<group>"; };
 		3FC085202663C42B008780A8 /* AnimationSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettingManager.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		3FE0B61C264FD416008167E1 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		B5FD5039267A0128006D69E8 /* BoldText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoldText.swift; sourceTree = "<group>"; };
 		E2BDA0A295D2CC97D39EC0D0 /* SourceHanSerifCN-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "SourceHanSerifCN-Regular.ttf"; sourceTree = "<group>"; };
-		E2BDACC7D3FE62D95E47DD3B /* SourceHanSerifCN-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "SourceHanSerifCN-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +108,9 @@
 		3220505B26602E6D0078A9D5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3FBCC428267B4109001F4C38 /* SourceHanSerifCN-Medium.ttf */,
 				3220505D26602E6D0078A9D5 /* SmartFontUI.ttf */,
 				E2BDA0A295D2CC97D39EC0D0 /* SourceHanSerifCN-Regular.ttf */,
-				E2BDACC7D3FE62D95E47DD3B /* SourceHanSerifCN-Medium.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -291,11 +291,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F641590264C4CF9002950CF /* Preview Assets.xcassets in Resources */,
+				3FBCC429267B4109001F4C38 /* SourceHanSerifCN-Medium.ttf in Resources */,
 				3F64158D264C4CF9002950CF /* Assets.xcassets in Resources */,
 				322050F326602E6D0078A9D5 /* SmartFontUI.ttf in Resources */,
 				322050F126602E6D0078A9D5 /* questions.db in Resources */,
 				E2BDAB8D3D92E533A7E2AB37 /* SourceHanSerifCN-Regular.ttf in Resources */,
-				E2BDA84B44F2424EAC94BDC1 /* SourceHanSerifCN-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

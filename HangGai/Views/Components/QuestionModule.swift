@@ -26,14 +26,14 @@ struct QuestionModule: View {
 
     @ViewBuilder func question(for selectedQuestion: Question) -> some View {
         if selectedQuestion.imgName == "" {
-            VStack {
+            VStack(alignment: .leading) {
                 Text(selectedQuestion.questionText)
                         .font(.title1)
                         .lineSpacing(7)
                         .minimumScaleFactor(0.00001)
             }.frame(height: 200).padding([.horizontal, .bottom])
         } else {
-            VStack {
+            VStack(alignment: .leading) {
                 Text(selectedQuestion.questionText).font(.title1).minimumScaleFactor(0.00001)
                 Image(selectedQuestion.imgName)
                         .resizable()
@@ -63,8 +63,8 @@ struct QuestionModule: View {
         if let selectedQuestion = questionManager.selectedQuestion {
             ZStack {
                 ScrollView(.vertical, showsIndicators: false) {
-                    if horizontalSizeClass == .compact {
-                        VStack {
+                    if true{// horizontalSizeClass == .compact {
+                        VStack(alignment: .leading) {
                             question(for: selectedQuestion)
                             options(for: selectedQuestion)
                         }

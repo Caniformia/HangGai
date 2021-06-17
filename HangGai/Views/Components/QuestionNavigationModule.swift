@@ -63,7 +63,6 @@ struct QuestionNavigationModule: View {
                                             }
                                         }, label: {
                                             Text("第\(intToCharacter[number])章  \(chapterName[number])")
-                                                    .font(.subheadline)
                                         })
                                     }
                                 })
@@ -76,11 +75,11 @@ struct QuestionNavigationModule: View {
                             }
                         }, label: {
                             Text("\(questionManager.questionIndex)")
-                                    .font(.subheadline)
+                                    .font(.caption2)
                                     .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .opacity(0.8)
                             Text("/ \(questionManager.questionAmount())")
-                                    .font(.subheadline)
+                                    .font(.caption2)
                                     .foregroundColor(colorScheme == .dark ? .white : .black)
                         })
                         /*
