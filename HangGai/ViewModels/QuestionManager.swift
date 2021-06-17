@@ -62,6 +62,10 @@ class QuestionManager: ObservableObject {
         isIncrement = true
     }
     
+    func getQuestionSetIdentifier()->String {
+        return self.questionSetIdentifier
+    }
+    
     func questionAmount() -> Int {
         questions.count;
     }
@@ -188,6 +192,7 @@ class QuestionManager: ObservableObject {
     }
     
     func updateQuestionList(identifier: String) {
+        print("Changed:\(identifier)")
         if identifier != questionSetIdentifier {
             withAnimation(.easeInOut(duration: 0.5)) {
                 let questionIds: Set<Int> = (identifier == "Favorites") ? userDataManager.getFavorites()

@@ -12,12 +12,17 @@ struct BottomToolBox: View {
     @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var noticeManager: NoticeManager
 
-    @State var selectedQuestionList: Int = 0
+    @State var selectedQuestionList: String = ""
     @Binding var showSettingModal: Bool
     @Binding var isInitialized: Bool
 
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    init(showSettingModal: Binding<Bool>, isInitialized: Binding<Bool>) {
+        self._showSettingModal = showSettingModal
+        self._isInitialized = isInitialized
+    }
 
     var favoriteButton: some View {
         Button(action: {
@@ -88,8 +93,10 @@ struct BottomToolBox: View {
                 if (showSettingModal) {
                     QuestionListTab(selectedQuestionList: $selectedQuestionList, showQuestionListTab: $showSettingModal)
                             .padding(.horizontal)
-                            .transition(.move(edge: .bottom))
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
+            }.onAppear(){
+                selectedQuestionList = questionManager.getQuestionSetIdentifier()
             }
         } else {
             HStack {
@@ -104,8 +111,10 @@ struct BottomToolBox: View {
                 if (showSettingModal) {
                     QuestionListTab(selectedQuestionList: $selectedQuestionList, showQuestionListTab: $showSettingModal)
                             .padding(.vertical)
-                            .transition(.move(edge: .trailing))
+                            .transition(.move(edge: .trailing).combined(with: .opacity))
                 }
+            }.onAppear(){
+                selectedQuestionList = questionManager.getQuestionSetIdentifier()
             }
         }
     }

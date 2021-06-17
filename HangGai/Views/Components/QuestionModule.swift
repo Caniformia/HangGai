@@ -29,7 +29,7 @@ struct QuestionModule: View {
             VStack(alignment: .leading) {
                 Text(selectedQuestion.questionText)
                         .font(.title1)
-                        .lineSpacing(7)
+                        .lineSpacing(10)
                         .minimumScaleFactor(0.00001)
             }.frame(height: 200).padding([.horizontal, .bottom])
         } else {
@@ -63,7 +63,7 @@ struct QuestionModule: View {
         if let selectedQuestion = questionManager.selectedQuestion {
             ZStack {
                 ScrollView(.vertical, showsIndicators: false) {
-                    if true{// horizontalSizeClass == .compact {
+                    if true {// horizontalSizeClass == .compact {
                         VStack(alignment: .leading) {
                             question(for: selectedQuestion)
                             options(for: selectedQuestion)

@@ -10,8 +10,8 @@ import SwiftUI
 struct AnimatableBoldText: View {
     let text: String
     let fontName: String
-    let id: Int
-    @Binding var selectedId: Int
+    let identifier: String
+    @Binding var selectedIdentifier: String
     let color: Color
     let width: CGFloat
     let kerning: CGFloat
@@ -19,6 +19,6 @@ struct AnimatableBoldText: View {
     var body: some View {
         Text(text).kerning(kerning)
                 .foregroundColor(color)
-                .animatableFont(name: fontName, size: id == selectedId ? 25.0 : 15.0)
+                .animatableFont(name: fontName, size: identifier == selectedIdentifier ? 25.0 : 15.0)
     }
 }
