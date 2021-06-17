@@ -273,8 +273,13 @@ struct IntroductionOverlay: View {
                                 BoldText(text: "错题列表", font: .headline, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0)
                                         .overlay((colorScheme == .dark ? Color.white : .black).frame(height: 1).offset(y: 1),
                                                 alignment: Alignment(horizontal: .center, vertical: .bottom))
-                                Text("三个选项可选。").font(.headline)
+                                Text("、").font(.headline)
+                                BoldText(text: "随机刷题", font: .headline, color: colorScheme == .dark ? .white : .black, width: 200, kerning: 0)
+                                        .overlay((colorScheme == .dark ? Color.white : .black).frame(height: 1).offset(y: 1),
+                                                alignment: Alignment(horizontal: .center, vertical: .bottom))
+                                
                             }).padding(.horizontal, 40)
+                            Text("四个选项可选。").padding(.horizontal, 40).font(.headline)
                         }
                         Group {
                             Text("""
