@@ -105,10 +105,10 @@ struct QuestionListTab: View {
                                         questionManager.updateQuestionList(identifier: key)
                                     }
                                 }, label: {
-                                    VStack(alignment: .center) {
+                                    VStack(alignment: .center, spacing: 0) {
                                         RoundedRectangle(cornerRadius: 6)
                                             .foregroundColor(Color(hex: 0x91989F))
-                                            .frame(width: selectedQuestionList == key ? 40 : 30, height: 3)
+                                            .frame(width: selectedQuestionList == key ? 50 : 40, height: 3)
                                             .opacity(0.5)
                                             .padding(.bottom, 3)
                                         HStack(alignment: .top, spacing: 0) {
@@ -161,7 +161,7 @@ struct QuestionListTab: View {
                                     HStack(alignment: .center) {
                                         RoundedRectangle(cornerRadius: 6)
                                             .foregroundColor(Color(hex: 0x91989F))
-                                            .frame(width: 3, height: selectedQuestionList == key ? 40 : 30)
+                                            .frame(width: 3, height: selectedQuestionList == key ? 50 : 40)
                                             .opacity(0.5)
                                             .padding(.trailing, 3)
                                         VStack(alignment: .leading, spacing: 0) {
