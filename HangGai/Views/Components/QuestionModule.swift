@@ -34,7 +34,10 @@ struct QuestionModule: View {
             }.frame(height: 200).padding([.horizontal, .bottom])
         } else {
             VStack(alignment: .leading) {
-                Text(selectedQuestion.questionText).font(.title1).minimumScaleFactor(0.00001)
+                Text(selectedQuestion.questionText)
+                        .font(.title1)
+                        .lineSpacing(10)
+                        .minimumScaleFactor(0.00001)
                 Image(selectedQuestion.imgName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
