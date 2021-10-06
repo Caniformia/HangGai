@@ -1,7 +1,6 @@
 # HangGai
 
-
-[Download on the App Store](/img/download-on-the-app-store-banner.png)
+[Download on the App Store](https://apps.apple.com/cn/app/航概-hanggai/id1570322898)
 
 一款使用 SwiftUI 2.0 开发的航概刷题 APP，兼容 iPhone 与 iPad。
 
